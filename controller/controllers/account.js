@@ -1,8 +1,9 @@
+const path = require('path');
+
 // GET '/account'
 const getAccount = (req, res, next) => {
     // replace with front end page 
-    res.sendFile(__dirname + '/static/login.html');
-    
+    res.sendFile(path.resolve('../controller/static/login.html'));
 }
 
 // POST '/account'
@@ -12,7 +13,7 @@ const postAccount = (req, res, next) => {
 
     let account_type = req.body.account_type; 
     res.send(`Account type: ${account_type}`);
-    
+
     // filter by account_type to enter into DB and call correct function
     switch (account_type)
     {
@@ -33,7 +34,7 @@ const postAccount = (req, res, next) => {
             break;
 
         default: 
-            console.log("unabl to create account");
+            console.log("unable to create account");
     }
 }
 

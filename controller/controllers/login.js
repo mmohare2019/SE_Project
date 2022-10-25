@@ -1,3 +1,5 @@
+const path = require('path');
+
 // GET login 
 const getLogin = (req, res, next) => {
     res.json({message: "GET log in"})
