@@ -9,6 +9,7 @@ const CoachSchema = new Schema({
     password : {type: String, required: true}
 });
 
+/*
 // make sure name field isn't empty 
 CoachSchema.virtual("name").get(function () {
     let fullname = "";
@@ -20,5 +21,6 @@ CoachSchema.virtual("name").get(function () {
     }
     return fullname;
 });
+*/
 
 module.exports = mongoose.model("Coach", CoachSchema);
