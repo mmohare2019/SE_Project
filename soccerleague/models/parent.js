@@ -9,6 +9,7 @@ const ParentSchema = new Schema({
     password : {type: String, required: true}
 });
 
+/*
 // make sure name field isn't empty 
 ParentSchema.virtual("name").get(function () {
     let fullname = "";
@@ -20,5 +21,6 @@ ParentSchema.virtual("name").get(function () {
     }
     return fullname;
 });
+*/
 
 module.exports = mongoose.model("Parent", ParentSchema);
