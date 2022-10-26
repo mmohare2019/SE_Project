@@ -16,6 +16,12 @@ mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
 const db = mongoose.connection; 
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 */
+main().catch(err => console.log(err));
+
+async function myConnection() {
+  await mongoose.connect('mongodb+srv://Barbara-K-322:Loyola-2023@cluster0.lvagtqb.mongodb.net/?retryWrites=true&w=majority');
+}
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
