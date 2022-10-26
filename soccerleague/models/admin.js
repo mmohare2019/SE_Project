@@ -9,6 +9,7 @@ const AdminSchema = new Schema({
     password : {type: String, required: true}
 });
 
+/*
 // make sure name field isn't empty 
 AdminSchema.virtual("name").get(function () {
     let fullname = "";
@@ -20,5 +21,6 @@ AdminSchema.virtual("name").get(function () {
     }
     return fullname;
 });
+*/
 
 module.exports = mongoose.model("Admin", AdminSchema);
