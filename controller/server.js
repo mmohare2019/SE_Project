@@ -1,8 +1,13 @@
-const express = require("express");
-const app = express(); 
+const express = require ('express');
+const routes = require('./routes/account'); // import the routes
+const path = require('path');
+
+const app = express();
+
 app.use(express.json());
 
-const listener = app.listen(process.env.PORT || 3000, () => {
-    console.log('App is listening on port ' + listener.address().port)
-})
+app.use('/', routes); //to use the routes
 
+const listener = app.listen(process.env.PORT || 3000, () => {
+    console.log('Your app is listening on port ' + listener.address().port)
+})
