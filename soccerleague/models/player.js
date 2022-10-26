@@ -9,6 +9,7 @@ const PlayerSchema = new Schema({
     password : {type: String, required: true}
 });
 
+/*
 // make sure name field isn't empty 
 PlayerSchema.virtual("name").get(function () {
     let fullname = "";
@@ -20,5 +21,6 @@ PlayerSchema.virtual("name").get(function () {
     }
     return fullname;
 });
+*/
 
 module.exports = mongoose.model("Player", PlayerSchema);
