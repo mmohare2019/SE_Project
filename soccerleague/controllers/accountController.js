@@ -8,7 +8,7 @@ const { body, validationResult } = require("express-validator");
 var async = require("async");
 
 exports.account_create_get = (req, res, next) => {
-    res.render("account", {title: "Create account"});
+    res.render("account", {title: "Create account"}); 
 };
 
 exports.account_create_post = [
@@ -24,15 +24,15 @@ exports.account_create_post = [
         const errors = validationResult(req);
 
         // Render body just for checking if post work (remove for production)
-        /*
+        
         res.render("account", {title: "Create account",
             first_name: req.body.first_name,
             last_name: req.body.last_name,
             email: req.body.email,
             password: req.body.password,
         });  
-        */
-
+         
+        /*
         // Make admin account 
         const admin = new Admin ({
             first_name: req.body.first_name, 
@@ -67,12 +67,13 @@ exports.account_create_post = [
                  });
             }
         });
+        */
 
     },
 ];
 
 exports.signin_get = (req, res)  => {
-    res.render("signin", {title: "Sign into account"});
+    res.render("signin", { title: "Sign into account"});
 };
 
 exports.signin_post =  [
