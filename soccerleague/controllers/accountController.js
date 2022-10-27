@@ -44,7 +44,7 @@ exports.account_create_post = [
 ];
 
 exports.signin_get = (req, res)  => {
-    res.send("NOT IMPLEMENTED: Sign in GET");
+    res.render("signin", {title: "Sign into account"});
 };
 
 exports.signin_post = (req, res) => {
