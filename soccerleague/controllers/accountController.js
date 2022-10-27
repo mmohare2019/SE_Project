@@ -7,9 +7,9 @@ const { body, validationResult } = require("express-validator");
 
 var async = require("async");
 
-exports.account_create_get = (req, res) => {
+exports.account_create_get = (req, res, next) => {
     res.render("account", {title: "Create account"});
-}
+};
 
 exports.account_create_post = (req, res, next) => {
     // Create account 
@@ -88,8 +88,8 @@ exports.account_create_post = (req, res, next) => {
 
 exports.signin_get = (req, res)  => {
     res.send("NOT IMPLEMENTED: Sign in GET");
-}
+};
 
 exports.signin_post = (req, res) => {
     res.send("NOT IMPLEMENTED: Sign in POST");
-}
+};
