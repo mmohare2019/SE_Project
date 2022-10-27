@@ -12,7 +12,15 @@ exports.account_create_get = (req, res, next) => {
 };
 
 exports.account_create_post = (req, res, next) => {
+    res.render("account", {title: "Create account",
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email: req.body.email,
+        password: req.body.password,
+    });
+
     // Create account 
+    /*
     switch (req.body.account_type)
     {
         case "admin":
@@ -84,6 +92,9 @@ exports.account_create_post = (req, res, next) => {
 
             break;
     }  
+
+        // can render a new jade form or json
+    */
 };
 
 exports.signin_get = (req, res)  => {
