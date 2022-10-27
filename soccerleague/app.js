@@ -9,17 +9,15 @@ var accountRouter = require('./routes/account');
 
 var app = express();
 
-var mongoose = require('mongoose');
+const mongoose = require("mongoose");
 /*
-var dev_db_url = 'mongodb+srv://Barbara-K-322:Loyola-2023@cluster0.lvagtqb.mongodb.net/SoccerApp?retryWrites=true&w=majority';
-var mongoDB = process.env.MONGODB_URI || dev_db_url;
+const mongoDB = "mongodb+srv://Barbara-K-322:Loyola-2023@cluster0.lvagtqb.mongodb.net/?retryWrites=true&w=majority";
 mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
-mongoose.Promise = global.Promise;
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+const db = mongoose.connection; 
+db.on("error", console.error.bind(console, "MongoDB connection error:"));
+*/
 
 //main().catch(err => console.log(err));
-*/
 
 
 async function myConnection() {
