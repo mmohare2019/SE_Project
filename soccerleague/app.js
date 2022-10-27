@@ -44,18 +44,20 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
+var accountRouter = require('./routes/account');
 
 var app = express();
 
-// @TODO set up mongoose connection
 const mongoose = require("mongoose");
 /*
-const mongoDB = "";
+const mongoDB = "mongodb+srv://Barbara-K-322:Loyola-2023@cluster0.lvagtqb.mongodb.net/SoccerApp?retryWrites=true&w=majority";
 mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
 const db = mongoose.connection; 
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 */
-main().catch(err => console.log(err));
+
+//main().catch(err => console.log(err));
+
 
 async function myConnection() {
   await mongoose.connect('mongodb+srv://Barbara-K-322:Loyola-2023@cluster0.lvagtqb.mongodb.net/SoccerApp?retryWrites=true&w=majority');
@@ -73,7 +75,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-//app.use("");
+app.use('/account', accountRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
