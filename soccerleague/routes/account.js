@@ -4,8 +4,6 @@ var router = express.Router();
 const account_controller = require("../controllers/accountController");
 
 // ACCOUNT ROUTES //
-router.get("/", account_controller.index);
-
 router.get("/account", account_controller.account_create_get);
 
 router.post("/account", account_controller.account_create_post);
