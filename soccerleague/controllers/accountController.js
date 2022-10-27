@@ -1,12 +1,14 @@
-const { body, validationResult } = require("express-validator");
-
 const Admin = require("../models/admin");
 const Player = require("../models/player");
 const Coach = require("../models/coach");
 const Parent = require("../models/parent");
 
+const { body, validationResult } = require("express-validator");
+
+var async = require("async");
+
 exports.account_create_get = (req, res) => {
-    res.send("account_form", {title: "Create account"});
+    res.send("account", {title: "Create account"});
 }
 
 exports.account_create_post = (req, res, next) => {
