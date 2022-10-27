@@ -8,7 +8,7 @@ const { body, validationResult } = require("express-validator");
 var async = require("async");
 
 exports.account_create_get = (req, res) => {
-    res.send("account", {title: "Create account"});
+    res.render("account", {title: "Create account"});
 }
 
 exports.account_create_post = (req, res, next) => {
