@@ -11,91 +11,37 @@ exports.account_create_get = (req, res, next) => {
     res.render("account", {title: "Create account"});
 };
 
-exports.account_create_post = (req, res, next) => {
-    res.render("account", {title: "Create account",
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        email: req.body.email,
-        password: req.body.password,
-    });
+exports.account_create_post = [
+    // Validate and clean the fields 
+    body("first_name", "First name required").trim().isLength({min: 1}).escape(),
+    body("last_name", "Last name required").trim().isLength({min: 1}).escape(),
+    body("email", "Email is required").trim().isLength({min: 1}).escape(),
+    body("password", "Password is required").trim().isLength({min: 1}).escape(),
 
-    // Create account 
-    /*
-    switch (req.body.account_type)
-    {
-        case "admin":
-            const admin = new Admin({
-                first_name: req.body.first_name,
-                last_name: req.body.last_name,
-                email: req.body.email,
-                password: req.body.password,
-            });
+    // Process request
+    (req, res, next) => {
+        // Extract validation errors from req
+        const errors = validationResult(req);
 
-            admin.save((err) => {
-                if (err) {
-                    return next(err);
-                }
+        // Render body just for checking if post work (remove for production)
+        
+        res.render("account", {title: "Create account",
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            email: req.body.email,
+            password: req.body.password,
+        });  
 
-                res.redirect(admin.url);
-            });
+        // Make admin account 
+        const admin = new Admin ({
+            first_name: req.body.first_name, 
+            last_name: req.body.last_name,
+            email: req.body.email,
+            password: req.body.password,
+        });
 
-            break;
-
-        case "coach":
-            const coach = new Coach ({
-                first_name: req.body.first_name,
-                last_name: req.body.last_name,
-                email: req.body.email,
-                password: req.body.password,
-            });
-
-            coach.save((err) => {
-                if (err) {
-                    return next(err);
-                }
-                res.redirect(coach.url);
-            });
-
-            break;
-
-        case "parent":
-            const parent = new Parent({
-                first_name: req.body.first_name,
-                last_name: req.body.last_name,
-                email: req.body.email,
-                password: req.body.password,
-            });
-
-            parent.save((err) => {
-                if (err) {
-                    return next(err);
-                }
-                res.redirect(parent.url);
-            });
-
-            break;
-
-        case "player":
-            const player = new Player({
-                first_name: req.body.first_name,
-                last_name: req.body.last_name,
-                email: req.body.email,
-                password: req.body.password,
-            });
-
-            player.save((err) => {
-                if (err) {
-                    return next(err);
-                }
-                res.redirect(player.url);
-            })
-
-            break;
-    }  
-
-        // can render a new jade form or json
-    */
-};
+    },
+];
 
 exports.signin_get = (req, res)  => {
     res.send("NOT IMPLEMENTED: Sign in GET");
