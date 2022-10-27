@@ -16,7 +16,7 @@ exports.account_create_post = [
     body("first_name", "First name required").trim().isLength({min: 1}).escape(),
     body("last_name", "Last name required").trim().isLength({min: 1}).escape(),
     body("email", "Email is required").trim().isLength({min: 1}).escape(),
-    body("password", "Password is required").trim().isLength({min: 1}).escape(),
+    body("password", "Password is required").trim().isLength({min: 6}).escape(),
 
     // Process request
     (req, res, next) => {
@@ -58,8 +58,11 @@ exports.account_create_post = [
                     if (err) {
                         return next(err);
                     }
+
+                    // Prompt user to sign into their account y
                     else {
                         console.log(result);
+                        res.render("signin", {title: "Sign into account"});
                     }
                  });
             }
@@ -75,10 +78,16 @@ exports.signin_get = (req, res)  => {
 exports.signin_post =  [
     // Validate and clean fields 
     body("email", "Email is required").trim().isLength({min: 1}).escape(),
-    body("password", "Password is required").trim().isLength({min: 1}).escape(),
+    body("password", "Password is required").trim().isLength({min: 6}).escape(),
 
     // Process request
     (req, res) => {
-        res.send("NOT IMPLEMENTED: Sign in POST");
+        res.render("signin", {title: "Sign into account",
+            email: req.body.email,
+            password: req.body.password,
+        });
+
+        // Extract validation errors from req
+        const errors = validationResult(req);
     },
 ];
