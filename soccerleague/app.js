@@ -27,7 +27,7 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 */
 
 async function myConnection() {
-  await mongoose.connect('mongodb+srv://Barbara-K-322:Loyola-2023@cluster0.lvagtqb.mongodb.net/SoccerApp?retryWrites=true&w=majority');
+  await mongoose.connect('"mongodb+srv://Barbara-K-322@cluster0.lbb8n.mongodb.net/SoccerApp?retryWrites=true&w=majority"y');
 }
 
 /*
