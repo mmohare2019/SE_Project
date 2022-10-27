@@ -47,6 +47,13 @@ exports.signin_get = (req, res)  => {
     res.render("signin", {title: "Sign into account"});
 };
 
-exports.signin_post = (req, res) => {
-    res.send("NOT IMPLEMENTED: Sign in POST");
-};
+exports.signin_post =  [
+    // Validate and clean fields 
+    body("email", "Email is required").trim().isLength({min: 1}).escape(),
+    body("password", "Password is required").trim().isLength({min: 1}).escape(),
+
+    // Process request
+    (req, res) => {
+        res.send("NOT IMPLEMENTED: Sign in POST");
+    },
+];
