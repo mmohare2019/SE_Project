@@ -82,12 +82,17 @@ exports.signin_post =  [
 
     // Process request
     (req, res) => {
+        res.render("user_home", {title: "User home page"});
+        /*
         res.render("signin", {title: "Sign into account",
             email: req.body.email,
             password: req.body.password,
         });
+        */
 
         // Extract validation errors from req
         const errors = validationResult(req);
+
+        
     },
 ];
