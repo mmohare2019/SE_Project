@@ -11,53 +11,6 @@ var accountRouter = require('./routes/account');
 
 var app = express();
 
-import mongoose from 'mongoose';
-
-/*
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
-const mongoDB = "mongodb+srv://Barbara-K-322:Loyola-2023@cluster0.lvagtqb.mongodb.net/SoccerApp?retryWrites=true&w=majority"
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "MongoDB connection error:"))
-*/
-
-/*
-const mongoDB = "mongodb+srv://Barbara-K-322:Loyola-2023@cluster0.lvagtqb.mongodb.net/?retryWrites=true&w=majority";
-mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
-const db = mongoose.connection; 
-db.on("error", console.error.bind(console, "MongoDB connection error:"));
-*/
-
-//main().catch(err => console.log(err));
-
-/*
- app.use(BodyParser.json());
- app.use(BodyParser.urlencoded({ extend: true }));
-*/
-
-/*async function myConnection() {
-  await mongoose.connect('"mongodb+srv://Barbara-K-322@cluster0.lbb8n.mongodb.net/SoccerApp?retryWrites=true&w=majority"y');
-}
-*/
-
-/*
- const UserModel= new mongoose.model("user", {
-    username: String,
-    password: String
- });
-
- UserSchema.pre("save", function(next) {
-    if(!this.isModified("password")) {
-        return next();
-    }
-    this.password= Bcrypt.hashSync(this.password, 10);
-    next();
- });
- 
-  UserSchema.methods.comparePassword= function(plaintext, callback) {
-    return callback(null, Bcrypt.compareSync(plaintext, this.password));
- };
-*/
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -87,48 +40,3 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-/*
-app.post("/register", async (request, response) => {
-    try {
-        request.body.password= Bcrypt.hashSync(request.body.password, 10);
-        var user= new UserModel(request.body);
-        var result= await user.save();
-        response.send(result);
-    } catch (error) {
-        response.status(500).send(error);
-    }
- });
-
- app.post("/login", async (request, response) => {
-    try {
-        var user= await UserModel.findOne({ username: request.body.username}).exec();
-        if(!user) {
-            return response.status(400).send({ message: "Error: Invalid Username"});
-        }
-        user.comparePassword(request.body.password, (error, match) => {
-            if(!match) {
-                return response.status(400).send({ message: "Error: Invalid Password"});
-            }
-        });
-        response.send({ message: "Username and Password Combination are Correct!"});
-    } catch (error) {
-        response.status(500).send(error);
-    }
- });
- 
-  app.get("/dump", async (request, response) => {
-    try {
-        var result= await UserModel.find().exec();
-        response.send(result);
-    } catch (error) {
-        response.status(500).send(error);
-    }
- });
-
- app.listen(3000, () => {
-    console.log(" ");
- });
-*/
-
-module.exports = app;
