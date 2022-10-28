@@ -11,7 +11,13 @@ var accountRouter = require('./routes/account');
 
 var app = express();
 
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
+
+mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+const mongoDB = "mongodb+srv://Barbara-K-322:Loyola-2023@cluster0.lvagtqb.mongodb.net/SoccerApp?retryWrites=true&w=majority"
+mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "MongoDB connection error:"))
 /*
 const mongoDB = "mongodb+srv://Barbara-K-322:Loyola-2023@cluster0.lvagtqb.mongodb.net/?retryWrites=true&w=majority";
 mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
@@ -26,9 +32,10 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
  app.use(BodyParser.urlencoded({ extend: true }));
 */
 
-async function myConnection() {
+/*async function myConnection() {
   await mongoose.connect('"mongodb+srv://Barbara-K-322@cluster0.lbb8n.mongodb.net/SoccerApp?retryWrites=true&w=majority"y');
 }
+*/
 
 /*
  const UserModel= new mongoose.model("user", {
