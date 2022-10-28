@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('soccerleague:server');
 var http = require('http');
+var dbcon = require('../models/dbConnection');
 
 /**
  * Get port from environment and store in Express.
@@ -14,6 +15,9 @@ var http = require('http');
 
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
+
+// Connect to DB
+dbcon.connect(); 
 
 /**
  * Create HTTP server.
