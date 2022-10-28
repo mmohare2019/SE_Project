@@ -22,3 +22,12 @@ exports.create = async function(newAdmin) {
   await admin.save(); 
   return user;
 }
+
+exports.findMe = async function(admin, email) {
+  const myAdmin = new adminModel(admin);
+  return myAdmin.findOne({email: email});
+}
+
+exports.deleteAll = async function() {
+  await adminModel.deleteMany(); 
+}

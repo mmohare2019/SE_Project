@@ -6,8 +6,6 @@ const Parent = require("../models/parentDao");
 const { body, validationResult } = require("express-validator");
 
 var async = require("async");
-const { compileClientWithDependenciesTracked } = require("jade");
-
 
 exports.account_create_get = (req, res, next) => {
     res.render("account", {title: "Create account"}); 
@@ -45,7 +43,14 @@ exports.account_create_post = [
                     password: req.body.password,
                 });
         
-                Admin.create(admin);
+                // Does the account already exist?
+                var ret = Admin.findMe(req.body.email);
+                if (!ret) {
+                    Admin.create(admin);
+                }
+                else {
+                    res.render("signin", {title: "Sign into your account"});
+                }
 
             case "player":
                 const player = new Player ({
