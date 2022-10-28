@@ -13,11 +13,14 @@ var app = express();
 
 import mongoose from 'mongoose';
 
+/*
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const mongoDB = "mongodb+srv://Barbara-K-322:Loyola-2023@cluster0.lvagtqb.mongodb.net/SoccerApp?retryWrites=true&w=majority"
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"))
+*/
+
 /*
 const mongoDB = "mongodb+srv://Barbara-K-322:Loyola-2023@cluster0.lvagtqb.mongodb.net/?retryWrites=true&w=majority";
 mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
