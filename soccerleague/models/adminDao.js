@@ -22,8 +22,3 @@ exports.create = async function(newAdmin) {
   await admin.save(); 
   return user;
 }
-
-exports.exist = async function(newAdmin, email) {
-  const admin = new adminModel(newAdmin);
-  return admin.findOne(email);
-}

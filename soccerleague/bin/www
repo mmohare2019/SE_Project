@@ -4,9 +4,11 @@
  * Module dependencies.
  */
 
+require('dotenv').config();
 var app = require('../app');
 var debug = require('debug')('soccerleague:server');
 var http = require('http');
+
 var dbcon = require('../models/dbConnection');
 
 /**
