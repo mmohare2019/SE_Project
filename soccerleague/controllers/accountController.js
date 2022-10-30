@@ -7,7 +7,6 @@ const { body, validationResult } = require("express-validator");
 
 var async = require("async");
 
-
 exports.account_create_get = (req, res, next) => {
     res.render("account", {title: "Create account"}); 
 };
@@ -16,6 +15,7 @@ exports.account_create_post = [
     // Validate and clean the fields 
     body("first_name", "First name required").trim().isLength({min: 1}).escape(),
     body("last_name", "Last name required").trim().isLength({min: 1}).escape(),
+    body("account_type", "Account type required").trim().isLength({min: 1}).escape(),
     body("email", "Email is required").trim().isLength({min: 1}).escape(),
     body("password", "Password is required").trim().isLength({min: 6}).escape(),
 
@@ -34,45 +34,55 @@ exports.account_create_post = [
         });  
         */      
 
-        const admin = new Admin ({
-            first_name: req.body.first_name, 
-            last_name: req.body.last_name,
-            email: req.body.email,
-            password: req.body.password,
-        });
+        switch(req.body.account_type) {
+            case "admin":
+                const admin = new Admin ({
+                    first_name: req.body.first_name, 
+                    last_name: req.body.last_name,
+                    email: req.body.email,
+                    password: req.body.password,
+                });
+        
+                // Does the account already exist?
+                var ret = Admin.findMe(req.body.email);
+                if (!ret) {
+                    Admin.create(admin);
+                }
+                else {
+                    res.render("signin", {title: "Sign into your account"});
+                }
 
-        Admin.create(admin);
+            case "player":
+                const player = new Player ({
+                    first_name: req.body.first_name,
+                    last_name: req.body.last_name,
+                    email: req.body.email,
+                    password: req.body.password,
+                });
 
-        /*
-        // Check to see if email is already used 
-        Admin.findOne({email: req.body.email}).exec(function (err, found_email) {
-            if (err) {
-                return next(err);
-            }
+                Player.create(player);
 
-            // If the email exists already, then prompt user to sign in 
-            if (found_email) {
-                res.render("signin", {title: "Sign into account"});
-            } 
+            case "parent":
+                const parent = new Parent ({
+                    first_name: req.body.first_name,
+                    last_name: req.body.last_name,
+                    email: req.body.email,
+                    password: req.body.password,
+                });
 
-            else {
-                // Save user to DB
-                admin.save(function(err, result) {
-                    if (err) {
-                        return next(err);
-                    }
+                Parent.create(parent);
 
-                    // Prompt user to sign into their account y
-                    else {
-                        console.log(result);
-                        res.render("signin", {title: "Sign into account"});
-                    }
-                 });
-            }
-            
-        });
-        */
+            case "coach":
+                const coach = new Coach ({
+                    first_name: req.body.first_name,
+                    last_name: req.body.last_name,
+                    email: req.body.email,
+                    password:req.body.password,
+                })
 
+                Coach.create(coach);
+        }
+        
     },
 ];
 
