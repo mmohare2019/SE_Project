@@ -20,7 +20,7 @@ exports.readAll = async function() {
 exports.create = async function(newAdmin) {
   const admin = new adminModel(newAdmin);
   await admin.save(); 
-  return user;
+  return admin;
 }
 
 exports.findMe = async function(admin, email) {

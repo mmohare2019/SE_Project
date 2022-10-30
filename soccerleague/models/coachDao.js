@@ -12,6 +12,6 @@ const CoachSchema = new Schema({
 exports.create = async function(newCoach) {
     const coach = new adminModel(newCoach);
     await coach.save(); 
-    return user;
+    return coach;
   }
 

@@ -12,6 +12,6 @@ const ParentSchema = new Schema({
 exports.create = async function(newParent) {
     const parent = new adminModel(newParent);
     await parent.save(); 
-    return user;
+    return parent;
   }
 

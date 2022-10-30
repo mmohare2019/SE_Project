@@ -12,5 +12,5 @@ const PlayerSchema = new Schema({
 exports.create = async function(newPlayer) {
     const player = new adminModel(newPlayer);
     await player.save(); 
-    return user;
+    return player;
   }

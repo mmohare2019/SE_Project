@@ -32,16 +32,38 @@ exports.account_create_post = [
             email: req.body.email,
             password: req.body.password,
         });  
-        */      
+        */     
+       
+        let newUser = {};
+        newUser.first_name = req.body.first_name;
+        newUser.last_name = req.body.last_name;
+        newUser.password = req.body.password;
+        newUser.email = req.body.email;
 
-        switch(req.body.account_type) {
+        switch(req.body.accout_type) {
             case "admin":
-                const admin = new Admin ({
-                    first_name: req.body.first_name, 
-                    last_name: req.body.last_name,
-                    email: req.body.email,
-                    password: req.body.password,
-                });
+                Admin.create(newUser);
+                break;
+
+            case "parent":
+                Parent.create(newUser);
+                break;
+
+            case "player":
+                Player.create(newUser);
+                break;
+
+            case "coach":
+                Coach.create(newUser);
+                break;
+        }
+        console.log("New user created");
+        //Admin.create(newAdmin);
+        //res.redirect("signin", { title: "Sign into account"});
+
+        /*
+        switch(req.body.account_type) {
+            
         
                 // Does the account already exist?
                 var ret = Admin.findMe(req.body.email);
@@ -52,36 +74,8 @@ exports.account_create_post = [
                     res.render("signin", {title: "Sign into your account"});
                 }
 
-            case "player":
-                const player = new Player ({
-                    first_name: req.body.first_name,
-                    last_name: req.body.last_name,
-                    email: req.body.email,
-                    password: req.body.password,
-                });
-
-                Player.create(player);
-
-            case "parent":
-                const parent = new Parent ({
-                    first_name: req.body.first_name,
-                    last_name: req.body.last_name,
-                    email: req.body.email,
-                    password: req.body.password,
-                });
-
-                Parent.create(parent);
-
-            case "coach":
-                const coach = new Coach ({
-                    first_name: req.body.first_name,
-                    last_name: req.body.last_name,
-                    email: req.body.email,
-                    password:req.body.password,
-                })
-
-                Coach.create(coach);
         }
+        */
         
     },
 ];
