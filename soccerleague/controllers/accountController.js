@@ -56,26 +56,10 @@ exports.account_create_post = [
             case "coach":
                 Coach.create(newUser);
                 break;
-        }
-        console.log("New user created");
-        //Admin.create(newAdmin);
-        //res.redirect("signin", { title: "Sign into account"});
 
-        /*
-        switch(req.body.account_type) {
-            
-        
-                // Does the account already exist?
-                var ret = Admin.findMe(req.body.email);
-                if (!ret) {
-                    Admin.create(admin);
-                }
-                else {
-                    res.render("signin", {title: "Sign into your account"});
-                }
-
-        }
-        */
+            default:
+                res.render("account", {title: "Create account"});
+        }     
         
     },
 ];
@@ -101,7 +85,6 @@ exports.signin_post =  [
 
         // Extract validation errors from req
         const errors = validationResult(req);
-
         
     },
 ];
