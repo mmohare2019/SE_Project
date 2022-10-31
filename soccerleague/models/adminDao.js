@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const passwordUtil = require("../util/PasswordUtil");
 
 const Schema = mongoose.Schema; 
 
@@ -12,6 +11,7 @@ const AdminSchema = new Schema({
 
 const adminModel = mongoose.model("Admin", AdminSchema)
 
+
 exports.readAll = async function() {
   let users = await adminModel.find();
   return users;
@@ -22,6 +22,7 @@ exports.create = async function(newAdmin) {
   await admin.save(); 
   return admin;
 }
+
 
 exports.findMe = async function(admin, email) {
   const myAdmin = new adminModel(admin);

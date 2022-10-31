@@ -2,6 +2,7 @@ const Admin = require("../models/adminDao");
 const Player = require("../models/playerDao");
 const Coach = require("../models/coachDao");
 const Parent = require("../models/parentDao");
+const passwordUtil = require("../util/PasswordUtil");
 
 const { body, validationResult } = require("express-validator");
 
@@ -37,6 +38,11 @@ exports.account_create_post = [
         let newUser = {};
         newUser.first_name = req.body.first_name;
         newUser.last_name = req.body.last_name;
+
+        // @ToDo hash the password before putting into newUser after tested
+        // var password = passwordUtil.hash(req.body.password);
+        // newUser.password = password;
+
         newUser.password = req.body.password;
         newUser.email = req.body.email;
 
@@ -59,7 +65,7 @@ exports.account_create_post = [
 
             default:
                 res.render("account", {title: "Create account"});
-        }     
+        }   
         
     },
 ];
