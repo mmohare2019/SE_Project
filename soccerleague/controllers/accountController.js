@@ -2,6 +2,7 @@ const Admin = require("../models/adminDao");
 const Player = require("../models/playerDao");
 const Coach = require("../models/coachDao");
 const Parent = require("../models/parentDao");
+const passwordUtil = require("../util/PasswordUtil");
 
 const { body, validationResult } = require("express-validator");
 
@@ -32,56 +33,39 @@ exports.account_create_post = [
             email: req.body.email,
             password: req.body.password,
         });  
-        */      
+        */     
+       
+        let newUser = {};
+        newUser.first_name = req.body.first_name;
+        newUser.last_name = req.body.last_name;
 
-        switch(req.body.account_type) {
+        // @ToDo hash the password before putting into newUser after tested
+        // var password = passwordUtil.hash(req.body.password);
+        // newUser.password = password;
+
+        newUser.password = req.body.password;
+        newUser.email = req.body.email;
+
+        switch(req.body.accout_type) {
             case "admin":
-                const admin = new Admin ({
-                    first_name: req.body.first_name, 
-                    last_name: req.body.last_name,
-                    email: req.body.email,
-                    password: req.body.password,
-                });
-        
-                // Does the account already exist?
-                var ret = Admin.findMe(req.body.email);
-                if (!ret) {
-                    Admin.create(admin);
-                }
-                else {
-                    res.render("signin", {title: "Sign into your account"});
-                }
-
-            case "player":
-                const player = new Player ({
-                    first_name: req.body.first_name,
-                    last_name: req.body.last_name,
-                    email: req.body.email,
-                    password: req.body.password,
-                });
-
-                Player.create(player);
+                Admin.create(newUser);
+                break;
 
             case "parent":
-                const parent = new Parent ({
-                    first_name: req.body.first_name,
-                    last_name: req.body.last_name,
-                    email: req.body.email,
-                    password: req.body.password,
-                });
+                Parent.create(newUser);
+                break;
 
-                Parent.create(parent);
+            case "player":
+                Player.create(newUser);
+                break;
 
             case "coach":
-                const coach = new Coach ({
-                    first_name: req.body.first_name,
-                    last_name: req.body.last_name,
-                    email: req.body.email,
-                    password:req.body.password,
-                })
+                Coach.create(newUser);
+                break;
 
-                Coach.create(coach);
-        }
+            default:
+                res.render("account", {title: "Create account"});
+        }   
         
     },
 ];
@@ -107,7 +91,6 @@ exports.signin_post =  [
 
         // Extract validation errors from req
         const errors = validationResult(req);
-
         
     },
 ];
