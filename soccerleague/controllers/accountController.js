@@ -40,7 +40,7 @@ exports.account_create_post = [
         newUser.last_name = req.body.last_name;
 
         // @ToDo hash the password before putting into newUser after tested
-        // var password = passwordUtil.hash(req.body.password);
+        // var password = passwordUtil.hashPswd(req.body.password);
         // newUser.password = password;
 
         newUser.password = req.body.password;
@@ -92,5 +92,10 @@ exports.signin_post =  [
         // Extract validation errors from req
         const errors = validationResult(req);
         
+        let user = {};
+        user.email = req.body.email;
+        user.password = req.body.password; 
+
+        // Check credentials 
     },
 ];
