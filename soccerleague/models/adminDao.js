@@ -11,24 +11,8 @@ const AdminSchema = new Schema({
 
 const adminModel = mongoose.model("Admin", AdminSchema);
 
-
-exports.readAll = async function() {
-  let users = await adminModel.find();
-  return users;
-}
-
 exports.create = async function(newAdmin) {
   const admin = new adminModel(newAdmin);
   const createdAdmin = await admin.save(); 
   return createdAdmin;
-}
-
-
-exports.findMe = async function(admin, email) {
-  const myAdmin = new adminModel(admin);
-  return myAdmin.findOne({email: email});
-}
-
-exports.deleteAll = async function() {
-  await adminModel.deleteMany(); 
 }

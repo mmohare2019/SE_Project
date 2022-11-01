@@ -9,9 +9,11 @@ const CoachSchema = new Schema({
     password : {type: String, required: true}
 });
 
+const coachModel = mongoose.model("Coach", CoachSchema);
+
 exports.create = async function(newCoach) {
-    const coach = new adminModel(newCoach);
-    await coach.save(); 
-    return coach;
+    const coach = new coachModel(newCoach);
+    const createdCoach = await coach.save(); 
+    return createdCoach;
   }
 

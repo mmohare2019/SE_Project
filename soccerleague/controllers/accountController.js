@@ -45,32 +45,33 @@ exports.account_create_post = [
 
         newUser.password = req.body.password;
         newUser.email = req.body.email;
-
-        let createdAdmin;
-        createdAdmin = Admin.create(newUser);
-
-        /* 
-        switch(req.body.accout_type) {
-            case "admin":
-                createdAdmin = Admin.create(newUser);
+        
+        switch(req.body.account_type) {
+            case 'admin':
+                Admin.create(newUser).then(function (result) {
+                    res.json(result);
+                });
                 break;
 
-            case "parent":
-                Parent.create(newUser);
+            case 'parent':
+                Parent.create(newUser).then(function (result) {
+                    res.json(result);
+                });
                 break;
 
-            case "player":
-                Player.create(newUser);
+            case 'player':
+                Player.create(newUser).then(function (result) {
+                    res.json(result);
+                });
                 break;
 
-            case "coach":
-                Coach.create(newUser);
+            case 'coach':
+                Coach.create(newUser).then(function (result) {
+                    res.json(result);
+                })
                 break;
                 
         }  
-        */
-        //res.render("account", {title: "Create account", data: createdAdmin}); 
-        res.json(createdAdmin);
     },
 ];
 

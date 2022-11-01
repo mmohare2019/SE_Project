@@ -9,8 +9,10 @@ const PlayerSchema = new Schema({
     password : {type: String, required: true}
 });
 
+const playerModel = mongoose.model("Player", PlayerSchema); 
+
 exports.create = async function(newPlayer) {
-    const player = new adminModel(newPlayer);
-    await player.save(); 
-    return player;
+    const player = new playerModel(newPlayer);
+    const createdPlayer = await player.save(); 
+    return createdPlayer;
   }

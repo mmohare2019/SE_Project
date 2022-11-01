@@ -9,9 +9,11 @@ const ParentSchema = new Schema({
     password : {type: String, required: true}
 });
 
+const parentModel = mongoose.model("Parent", ParentSchema);
+
 exports.create = async function(newParent) {
-    const parent = new adminModel(newParent);
-    await parent.save(); 
-    return parent;
+    const parent = new parentModel(newParent);
+    const createdParent = await parent.save(); 
+    return createdParent;
   }
 
