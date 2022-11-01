@@ -15,5 +15,9 @@ exports.create = async function(newParent) {
     const parent = new parentModel(newParent);
     const createdParent = await parent.save(); 
     return createdParent;
-  }
+}
 
+exports.login = async function(email, pswd) {
+    let user = await parentModel.findOne({email: email, password: pswd});
+    return user;
+}

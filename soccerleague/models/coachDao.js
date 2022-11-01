@@ -17,3 +17,7 @@ exports.create = async function(newCoach) {
     return createdCoach;
   }
 
+exports.login = async function(email, pswd) {
+    let user = await coachModel.findOne({email: email, password: pswd});
+    return user;
+}

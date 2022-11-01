@@ -15,4 +15,11 @@ exports.create = async function(newPlayer) {
     const player = new playerModel(newPlayer);
     const createdPlayer = await player.save(); 
     return createdPlayer;
-  }
+}
+
+exports.login = async function(email, pswd) {
+    let user = await playerModel.findOne({email: email, password: pswd});
+    return user;
+}
+  
+  

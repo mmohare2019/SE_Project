@@ -102,8 +102,15 @@ exports.signin_post =  [
         user.password = req.body.password; 
 
         // Check credentials 
-        Admin.login(user.email, user.password).then(function (result){ 
-            res.json(result);
-        })
+        Admin.login(user.email, user.password).then(function (result) {
+            if (result != null) {
+                res.json(result); // success go to home page
+            }
+            else {
+                res.json("User not found");
+            }
+        });
+
+
     },
 ];
