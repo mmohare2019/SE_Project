@@ -46,9 +46,10 @@ exports.account_create_post = [
         newUser.password = req.body.password;
         newUser.email = req.body.email;
 
+        let createdAdmin;
         switch(req.body.accout_type) {
             case "admin":
-                Admin.create(newUser);
+                createdAdmin = Admin.create(newUser);
                 break;
 
             case "parent":
@@ -62,10 +63,9 @@ exports.account_create_post = [
             case "coach":
                 Coach.create(newUser);
                 break;
-
-            default:
-                res.render("account", {title: "Create account"});
-        }   
+                
+        }  
+        res.render("account", {title: "Create account", data: createdAdmin}); 
         
     },
 ];
