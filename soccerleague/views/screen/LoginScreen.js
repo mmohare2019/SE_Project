@@ -1,18 +1,15 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Button, Text, TextInput, TouchableOpacity, View } from "react-native";
 import HelloWorld from "./view/component/HelloWorld";
 import LoginScreen from "./view/screen/LoginScreen";
+import MainStyle from "../MainStyle.style";
+import FormStyle from "../Form.style";
 import { StyleSheet, Text, View, Image } from 'react-native';
 
-// adding image
-export default class App extends React.Component {
-  render(){
-    return (
-      <View style={styles.container}>
-        <Image source = {require("./assets/soccerlogo.png")}/>
-      </View>
-    );
-  }
+// initializing email and password use states
+export default function LoginScreen() {
+   const [email, setEmail] = React.useState("");
+   const [password, setPassword] = React.useState("");
 }
 
 // styling with color and text
