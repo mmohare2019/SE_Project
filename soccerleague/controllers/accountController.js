@@ -47,6 +47,9 @@ exports.account_create_post = [
         newUser.email = req.body.email;
 
         let createdAdmin;
+        createdAdmin = Admin.create(newUser);
+
+        /* 
         switch(req.body.accout_type) {
             case "admin":
                 createdAdmin = Admin.create(newUser);
@@ -65,8 +68,9 @@ exports.account_create_post = [
                 break;
                 
         }  
-        res.render("account", {title: "Create account", data: createdAdmin}); 
-        
+        */
+        //res.render("account", {title: "Create account", data: createdAdmin}); 
+        res.json(createdAdmin);
     },
 ];
 
