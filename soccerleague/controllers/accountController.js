@@ -39,7 +39,7 @@ exports.account_create_post = [
         newUser.first_name = req.body.first_name;
         newUser.last_name = req.body.last_name;
 
-        // @ToDo hash the password before putting into newUser after tested
+        // @To Do hash the password before putting into newUser after tested
         // var password = passwordUtil.hashPswd(req.body.password);
         // newUser.password = password;
 
