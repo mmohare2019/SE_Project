@@ -9,7 +9,7 @@ const AdminSchema = new Schema({
     password : {type: String, required: true}
 });
 
-const adminModel = mongoose.model("Admin", AdminSchema)
+const adminModel = mongoose.model("Admin", AdminSchema);
 
 
 exports.readAll = async function() {
@@ -19,8 +19,8 @@ exports.readAll = async function() {
 
 exports.create = async function(newAdmin) {
   const admin = new adminModel(newAdmin);
-  await admin.save(); 
-  return admin;
+  const createdAdmin = await admin.save(); 
+  return createdAdmin;
 }
 
 

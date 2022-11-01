@@ -1,10 +1,10 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-exports.connect = function(where){
+exports.connect = async function(){
     let uri = process.env.DB_URI; //production DB
 
-    mongoose.connect(uri,function(err){
+    await mongoose.connect(uri,function(err){
         if(err) console.log(err);
     });
 }

@@ -39,16 +39,20 @@ exports.account_create_post = [
         newUser.first_name = req.body.first_name;
         newUser.last_name = req.body.last_name;
 
-        // @ToDo hash the password before putting into newUser after tested
-        // var password = passwordUtil.hash(req.body.password);
+        // @To Do hash the password before putting into newUser after tested
+        // var password = passwordUtil.hashPswd(req.body.password);
         // newUser.password = password;
 
         newUser.password = req.body.password;
         newUser.email = req.body.email;
 
+        let createdAdmin;
+        createdAdmin = Admin.create(newUser);
+
+        /* 
         switch(req.body.accout_type) {
             case "admin":
-                Admin.create(newUser);
+                createdAdmin = Admin.create(newUser);
                 break;
 
             case "parent":
@@ -62,11 +66,11 @@ exports.account_create_post = [
             case "coach":
                 Coach.create(newUser);
                 break;
-
-            default:
-                res.render("account", {title: "Create account"});
-        }   
-        
+                
+        }  
+        */
+        //res.render("account", {title: "Create account", data: createdAdmin}); 
+        res.json(createdAdmin);
     },
 ];
 
@@ -92,5 +96,10 @@ exports.signin_post =  [
         // Extract validation errors from req
         const errors = validationResult(req);
         
+        let user = {};
+        user.email = req.body.email;
+        user.password = req.body.password; 
+
+        // Check credentials 
     },
 ];
