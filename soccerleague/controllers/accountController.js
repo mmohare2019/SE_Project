@@ -86,7 +86,7 @@ exports.signin_post =  [
 
     // Process request
     (req, res) => {
-        res.render("user_home", {title: "User home page"});
+        //res.render("user_home", {title: "User home page"});
         /*
         res.render("signin", {title: "Sign into account",
             email: req.body.email,
@@ -102,5 +102,8 @@ exports.signin_post =  [
         user.password = req.body.password; 
 
         // Check credentials 
+        Admin.login(user.email, user.password).then(function (result){ 
+            res.json(result);
+        })
     },
 ];

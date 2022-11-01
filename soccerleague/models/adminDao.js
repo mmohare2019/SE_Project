@@ -16,3 +16,17 @@ exports.create = async function(newAdmin) {
   const createdAdmin = await admin.save(); 
   return createdAdmin;
 }
+
+exports.login = async function(email, pswd) {
+  let user = await adminModel.findOne({email: email, password: pswd});
+  return user;
+}
+
+exports.deleteAll = async function() {
+  await adminModel.deleteMany(); 
+}
+
+exports.readAll = async function() {
+  let users = await adminModel.find();
+  return users;
+}
