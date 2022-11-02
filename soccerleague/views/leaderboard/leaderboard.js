@@ -1,4 +1,4 @@
-/*class LeaderBoard {
+class LeaderBoard {
     constructor(matches) {
         this.matches= matches;
         this.leaderboard= {};
@@ -59,4 +59,4 @@
     }
 }
 
-module.exports= LeaderBoard;*/
+module.exports= LeaderBoard
