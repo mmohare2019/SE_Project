@@ -1,4 +1,4 @@
-const LeaderBoard= require('./soccerleague/views/leaderbaord');
+const LeaderBoard= require('./soccerleague/views/leaderboard');
 const matches= [
     {
         homeTeam: 'Team1',
