@@ -1,7 +1,4 @@
-const Admin = require("../models/adminDao");
-const Player = require("../models/playerDao");
-const Coach = require("../models/coachDao");
-const Parent = require("../models/parentDao");
+const User = require("../models/userDao");
 const passwordUtil = require("../util/PasswordUtil");
 
 const { body, validationResult } = require("express-validator");
@@ -38,7 +35,8 @@ exports.account_create_post = [
         let newUser = {};
         newUser.first_name = req.body.first_name;
         newUser.last_name = req.body.last_name;
-
+        newUser.account_type = req.body.account_type;
+        
         // @To Do hash the password before putting into newUser after tested
         // var password = passwordUtil.hashPswd(req.body.password);
         // newUser.password = password;
@@ -46,6 +44,11 @@ exports.account_create_post = [
         newUser.password = req.body.password;
         newUser.email = req.body.email;
         
+        User.create(newUser).then(function (result) {
+            res.json(result);
+        });
+
+        /*
         switch(req.body.account_type) {
             case 'admin':
                 Admin.create(newUser).then(function (result) {
@@ -72,6 +75,7 @@ exports.account_create_post = [
                 break;
                 
         }  
+        */
     },
 ];
 
@@ -86,7 +90,7 @@ exports.signin_post =  [
 
     // Process request
     (req, res) => {
-        res.render("user_home", {title: "User home page"});
+        //res.render("user_home", {title: "User home page"});
         /*
         res.render("signin", {title: "Sign into account",
             email: req.body.email,
@@ -97,10 +101,10 @@ exports.signin_post =  [
         // Extract validation errors from req
         const errors = validationResult(req);
         
-        let user = {};
-        user.email = req.body.email;
-        user.password = req.body.password; 
 
         // Check credentials 
+        User.login(req.body.email, req.body.password);
+
+
     },
 ];
