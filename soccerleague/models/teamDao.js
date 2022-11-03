@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 const TeamSchema = new Schema ({
     team_name : {type: String, required: true, maxLength: 100},
     color : {type: String, required: true, maxLength: 100},
-    // coach type : user
-    // players 1 - 6 : user 
+    coach : {type: Schema.Types.ObjectId, ref: "User", required: true},
+    player : {type: Schema.Types.ObjectId, ref: "User", required: true}
 });
 
 const teamModel = mongoose.model("Team", TeamSchema);
