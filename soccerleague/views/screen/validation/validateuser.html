@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <meta name= "viewpoint" content= "width=device-width, initial-scale=1">
+    <head>
+        <style>
+            *{ box-sizing: border-box;}
+            body 
+            {
+                font-size: 1.2em;
+            }
+
+            body input, body button 
+            {
+                font-size: 1.2em;
+            }
+
+            form > div
+            {
+                margin: 1em;
+            }
+
+            form button
+            {
+                width: 100%;
+            }
+
+            label {display: block;}
+
+            input
+            {
+                width: 100%;
+                padding: 0.2em;
+            }
+
+            button
+            {
+                padding: 0.2em;
+            }
+
+            .invalid 
+            {
+                background: rgb(180, 3, 3);
+                color: rgb(255, 255, 255);  
+            }
+
+            .error
+            {
+                color:rgb(180, 3, 3);
+            }
+        </style>
+        <script>
+            function requireCredentials()
+            {
+                var errorNode= this.parentNode.querySelector(".error");
+                    span= document.createElement("span")
+                this.classList.remove("invalid");
+
+                if (errorNode)
+                {
+                    errorNode.parentNode.removeChild(errorNode);
+                }
+
+                if (!this.validity.valid)
+                {
+                    this.classList.add("invalid");
+                    this.parentNode.appendChild(span);
+                    span.classList.add("error");
+                    span.innerHTML= this.getAttribute(
+                        this.validity.valueMissing ? "data-required-message" : "data-type-message");
+                }
+            };
+
+            var form= document.querySelector("form"),
+                inputs= form.querySelectorAll("input");
+
+            for (var i=0; i<inputs.length; i++)
+            {
+                inputs[i].addEventListener("blur", requireCredentials);
+                inputs[i].addEventListener("invalid", requireCredentials);
+            };
+
+            form.addEventListener("invalid", function(event)
+            {
+                event.preventDefault();
+            }, true);
+
+            document.querySelector("form").addEventListener("submit", function(event) 
+            {
+                if (this.checkValidity())
+                {
+                    alert("Submission sucessfully added");
+                }
+
+                else
+                {
+                    event.preventDefault();
+                }
+            });
+        </script>
+    </head>
+    <body>
+    <form>
+        <div>
+            <label for="first_name">First Name:</label>
+            <input type="text" first_name="first_name" id="first_name" required data-required-message="First Name is Required.">
+        </div>
+
+        <div>
+            <label for="last_name">Last Name:</label>
+            <input type="text" first_name="last_name" id="last_name" required data-required-message="Last Name is Required.">
+        </div>
+
+        <div>
+            <label for="email">Email:</label>
+            <input type="text" email="email" id="email" required data-required-message="Email is Required.">
+        </div>
+
+        <div>
+            <label for="password">Password:</label>
+            <input type="text" password="password" id="password" required data-required-message="Password is Required.">
+        </div>
+
+        <div>
+            <button>Submit</button>
+        </div>
+    </form>
+    </body>
+</html>

@@ -1,12 +1,12 @@
-const express = require("expresss");
-const router = express.Router(); 
+var express = require("express");
+var router = express.Router(); 
 
 const account_controller = require("../controllers/accountController");
 
 // ACCOUNT ROUTES //
-router.get("/account", account_controller.account_create_get);
+router.get("/", account_controller.account_create_get);
 
-router.post("/account", account_controller.account_create_post);
+router.post("/", account_controller.account_create_post);
 
 // SIGN IN ROUTES //
 router.get("/signin", account_controller.signin_get);

@@ -1,93 +1,110 @@
+const User = require("../models/userDao");
+const passwordUtil = require("../util/PasswordUtil");
+
 const { body, validationResult } = require("express-validator");
 
-const Admin = require("../models/admin");
-const Player = require("../models/player");
-const Coach = require("../models/coach");
-const Parent = require("../models/parent");
+var async = require("async");
 
-exports.account_create_get = (req, res) => {
-    res.send("account_form", {title: "Create account"});
-}
-
-exports.account_create_post = (req, res, next) => {
-    // Create account 
-    switch (req.body.account_type)
-    {
-        case "admin":
-            const admin = new Admin({
-                first_name: req.body.first_name,
-                last_name: req.body.last_name,
-                email: req.body.email,
-                password: req.body.password,
-            });
-
-            admin.save((err) => {
-                if (err) {
-                    return next(err);
-                }
-
-                res.redirect(admin.url);
-            });
-
-            break;
-
-        case "coach":
-            const coach = new Coach ({
-                first_name: req.body.first_name,
-                last_name: req.body.last_name,
-                email: req.body.email,
-                password: req.body.password,
-            });
-
-            coach.save((err) => {
-                if (err) {
-                    return next(err);
-                }
-                res.redirect(coach.url);
-            });
-
-            break;
-
-        case "parent":
-            const parent = new Parent({
-                first_name: req.body.first_name,
-                last_name: req.body.last_name,
-                email: req.body.email,
-                password: req.body.password,
-            });
-
-            parent.save((err) => {
-                if (err) {
-                    return next(err);
-                }
-                res.redirect(parent.url);
-            });
-
-            break;
-
-        case "player":
-            const player = new Player({
-                first_name: req.body.first_name,
-                last_name: req.body.last_name,
-                email: req.body.email,
-                password: req.body.password,
-            });
-
-            player.save((err) => {
-                if (err) {
-                    return next(err);
-                }
-                res.redirect(player.url);
-            })
-
-            break;
-    }  
+exports.account_create_get = (req, res, next) => {
+    res.render("account", {title: "Create account"}); 
 };
 
-exports.signin_get = (req, res)  => {
-    res.send("NOT IMPLEMENTED: Sign in GET");
-}
+exports.account_create_post = [
+    // Validate and clean the fields 
+    body("first_name", "First name required").trim().isLength({min: 1}).escape(),
+    body("last_name", "Last name required").trim().isLength({min: 1}).escape(),
+    body("account_type", "Account type required").trim().isLength({min: 1}).escape(),
+    body("email", "Email is required").trim().isLength({min: 1}).escape(),
+    body("password", "Password is required").trim().isLength({min: 6}).escape(),
 
-exports.signin_post = (req, res) => {
-    res.send("NOT IMPLEMENTED: Sign in POST");
-}
+    // Process request
+    (req, res, next) => {
+        // Extract validation errors from req
+        const errors = validationResult(req);
+
+        // Render body just for checking if post work (remove for production)
+        /*
+        res.render("account", {title: "Create account",
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            email: req.body.email,
+            password: req.body.password,
+        });  
+        */     
+       
+        let newUser = {};
+        newUser.first_name = req.body.first_name;
+        newUser.last_name = req.body.last_name;
+        newUser.account_type = req.body.account_type;
+        
+        // @To Do hash the password before putting into newUser after tested
+        // var password = passwordUtil.hashPswd(req.body.password);
+        // newUser.password = password;
+
+        newUser.password = req.body.password;
+        newUser.email = req.body.email;
+        
+        User.create(newUser).then(function (result) {
+            res.json(result);
+        });
+
+        /*
+        switch(req.body.account_type) {
+            case 'admin':
+                Admin.create(newUser).then(function (result) {
+                    res.json(result);
+                });
+                break;
+
+            case 'parent':
+                Parent.create(newUser).then(function (result) {
+                    res.json(result);
+                });
+                break;
+
+            case 'player':
+                Player.create(newUser).then(function (result) {
+                    res.json(result);
+                });
+                break;
+
+            case 'coach':
+                Coach.create(newUser).then(function (result) {
+                    res.json(result);
+                })
+                break;
+                
+        }  
+        */
+    },
+];
+
+exports.signin_get = (req, res)  => {
+    res.render("signin", { title: "Sign into account"});
+};
+
+exports.signin_post =  [
+    // Validate and clean fields 
+    body("email", "Email is required").trim().isLength({min: 1}).escape(),
+    body("password", "Password is required").trim().isLength({min: 6}).escape(),
+
+    // Process request
+    (req, res) => {
+        //res.render("user_home", {title: "User home page"});
+        /*
+        res.render("signin", {title: "Sign into account",
+            email: req.body.email,
+            password: req.body.password,
+        });
+        */
+
+        // Extract validation errors from req
+        const errors = validationResult(req);
+        
+
+        // Check credentials 
+        User.login(req.body.email, req.body.password);
+
+
+    },
+];
