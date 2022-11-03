@@ -47,35 +47,6 @@ exports.account_create_post = [
         User.create(newUser).then(function (result) {
             res.json(result);
         });
-
-        /*
-        switch(req.body.account_type) {
-            case 'admin':
-                Admin.create(newUser).then(function (result) {
-                    res.json(result);
-                });
-                break;
-
-            case 'parent':
-                Parent.create(newUser).then(function (result) {
-                    res.json(result);
-                });
-                break;
-
-            case 'player':
-                Player.create(newUser).then(function (result) {
-                    res.json(result);
-                });
-                break;
-
-            case 'coach':
-                Coach.create(newUser).then(function (result) {
-                    res.json(result);
-                })
-                break;
-                
-        }  
-        */
     },
 ];
 
@@ -90,21 +61,14 @@ exports.signin_post =  [
 
     // Process request
     (req, res) => {
-        //res.render("user_home", {title: "User home page"});
-        /*
-        res.render("signin", {title: "Sign into account",
-            email: req.body.email,
-            password: req.body.password,
-        });
-        */
 
         // Extract validation errors from req
         const errors = validationResult(req);
         
-
         // Check credentials 
-        User.login(req.body.email, req.body.password);
-
+        User.login(req.body.email, req.body.password).then(function (result) {
+            res.json(result);
+        });
 
     },
 ];
