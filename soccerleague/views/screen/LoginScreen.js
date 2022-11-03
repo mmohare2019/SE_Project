@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Button, Text, TextInput, TouchableOpacity, View } from "react-native";
 import MainStyle from "../MainStyle.style";
 import FormStyle from "../Form.style";
+import axios from "axios";
 
 // initializing email and password use states
 export default function LoginScreen() {
