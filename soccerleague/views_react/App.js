@@ -1,10 +1,12 @@
 import React from "react";
-//import { Text, View } from "react-native";
-//import HelloWorld from "./view/component/HelloWorld";
+import { View } from "react-native";
 import LoginScreen from "./view/screen/LoginScreen";
 
-export default function App(){
+const App = () => {
     return (
-        <LoginScreen />
+        <View>
+            <LoginScreen />
+        </View> 
     );
 }
+export default App;

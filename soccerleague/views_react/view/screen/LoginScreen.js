@@ -1,8 +1,8 @@
 import React from "react";
-import { Button, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import MainStyle from "../MainStyle.style";
 import FormStyle from "../Form.style";
-import axios from "axios";
+
 
 export default function LoginScreen(){
     const [email, setEmail] = React.useState("");
