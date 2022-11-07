@@ -2,7 +2,7 @@ import React from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import MainStyle from "../MainStyle.style";
 import FormStyle from "../Form.style";
-
+//import axios from "axios";
 
 export default function LoginScreen(){
     const [email, setEmail] = React.useState("");
@@ -17,6 +17,11 @@ export default function LoginScreen(){
     }
 
     return (<>
+        <View>
+            <Image
+                source = {require("C:\Users\mmoha\CS482\SE_Project\soccerleague\public\images\greenville_soccer.png")}>
+            </Image>
+        </View>
         <View style={FormStyle.groupView}>
             <Text style={MainStyle.emphasisText}> Login </Text>
         </View>

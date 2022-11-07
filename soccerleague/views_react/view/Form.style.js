@@ -5,8 +5,8 @@ export default StyleSheet.create({
     input:{borderWidth: 1,borderRadius: 10,padding: 10,},
     formButton:{
         marginRight:5,marginLeft:5,marginTop:10,
-        paddingTop:10,paddingBottom:10,backgroundColor:'black',
-        borderRadius:10,borderWidth: 1,borderColor: 'white'
+        paddingTop:10,paddingBottom:10,backgroundColor:'green',
+        borderRadius:10,borderWidth: 1,borderColor: 'black'
     },
     formButtonText:{
         color:'white',textAlign:'center',fontSize:20,

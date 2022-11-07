@@ -1,8 +1,6 @@
 const User = require("../models/userDao");
 const passwordUtil = require("../util/PasswordUtil");
-
 const { body, validationResult } = require("express-validator");
-
 var async = require("async");
 
 exports.account_create_get = (req, res, next) => {
@@ -22,16 +20,6 @@ exports.account_create_post = [
         // Extract validation errors from req
         const errors = validationResult(req);
 
-        // Render body just for checking if post work (remove for production)
-        /*
-        res.render("account", {title: "Create account",
-            first_name: req.body.first_name,
-            last_name: req.body.last_name,
-            email: req.body.email,
-            password: req.body.password,
-        });  
-        */     
-       
         let newUser = {};
         newUser.first_name = req.body.first_name;
         newUser.last_name = req.body.last_name;
