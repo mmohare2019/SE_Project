@@ -47,6 +47,6 @@ let refreshRoster= () => {
         currentEditBtn.className= 'roster-table-column roster-edit';
         currentDelButton.className= 'roster-table-column roster-delete';
 
-        currentNameCol.innerHTML= rosterTableKeys[i];
+        currentFirstNameCol.innerHTML= rosterTableKeys[i];
      }
 }
