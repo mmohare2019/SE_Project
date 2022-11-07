@@ -45,7 +45,7 @@ h1
     text-overflow: ellipsis;
 }
 
-.roster-name, .roster-email, .roster-team-name
+.roster-first-name, .roster-last-name, .roster-email, .roster-team-name
 {
     flex-basis: 20%;
 
