@@ -2,21 +2,36 @@ import React from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import MainStyle from "../MainStyle.style";
 import FormStyle from "../Form.style";
+import axios from "axios";
 
+const baseUrl = "http://10.0.2.2:3000";
 
 export default function LoginScreen(){
-    const [email, setEmail] = React.useState("");
-    const [password, setPassword] = React.useState("");
+    const [email, setEmail] = useState("tester1@example.com");
+    const [password, setPassword] = useState("123");
 
-    function handleSubmit(pEmail, pPwd){
-        const user = {login: pEmail, password: pPwd};
-        // I would call a method from a different Layer
-        
-        console.log(JSON.stringify(user));
-        alert( JSON.stringify(user) );
+    async function handleSubmit(email, pswd){
+        const formData = new FormData();
+        formData.append("email", email);
+        formData.append("password", pswd);
+
+        console.log(formData);
+        console.log(`${baseUrl}/account/signin`);
+
+        try {
+            const response = await axios.post(`${baseUrl}/account/signin`, formData);
+            console.log(response.data);
+        } catch (error) {
+            console.log(error.message);
+        }
     }
 
     return (<>
+        <View>
+            <Image
+                source = {require("C:\Users\mmoha\CS482\SE_Project\soccerleague\public\images\greenville_soccer.png")}>
+            </Image>
+        </View>
         <View style={FormStyle.groupView}>
             <Text style={MainStyle.emphasisText}> Login </Text>
         </View>
