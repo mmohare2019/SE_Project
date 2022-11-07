@@ -57,14 +57,35 @@ h1
     font-weight: bolder; 
 }
 
-.roster-edit, .roster-delete
+.roster-edit, .roster-delete, .roster-add-player-column
 {
    flex-basis: 5%;
    text-align: center;
    cursor: pointer;
 }
 
-.roster-add-player-column
+#newPlayerModal
 {
+    width: 500px;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 99;
+    top: 50px;
+    position: absolute;
+    margin-left: calc(50% - 250px);
+    background-color: rgb(33, 131, 51);
+}
 
+#newPlayerModal input
+{
+    display: block;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 3px;
+    width: 100%;
+}
+
+.input-error
+{
+    background-color: rgb(255, 0, 0);
 }
