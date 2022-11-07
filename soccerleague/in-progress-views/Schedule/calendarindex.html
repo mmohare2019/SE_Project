@@ -8,8 +8,15 @@
     </head>
     <body>
         <div id="container">
-            <div id="header"></div>
-            
+            <div id="header">
+                <div id="displayMonth"></div>
+                
+                <div>
+                    <button id="backButton">Previous</button>
+                    <button id="nextButton">Next</button>
+                </div>
+            </div>
+
             <div id="weekdays">
                 <div>Sunday</div>
                 <div>Monday</div>
@@ -22,6 +29,25 @@
 
             <div id="calendar"></div>
         </div>
+
+
+        <div id="newGameModal">
+            <h2>New Game</h2>
+            <input id="gameTitleInput" placeholder="Game Title"/>
+
+            <button id="saveButton">Save</button>
+            <button id="cancelButton">Cancel</button>
+        </div>
+
+        <div id="deleteGameModal">
+            <h2>Game</h2>
+            <p id="gameText"></p>
+
+            <button id="deleteButton">Delete</button>
+            <button id="closeButton">Close</button>
+        </div>
+        <div id="modalBackDrop"></div>
+
 
         <script src="./calendarscript.js"></script>
     </body>
