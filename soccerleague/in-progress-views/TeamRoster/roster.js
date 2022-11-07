@@ -48,5 +48,12 @@ let refreshRoster= () => {
         currentDelButton.className= 'roster-table-column roster-delete';
 
         currentFirstNameCol.innerHTML= rosterTableKeys[i];
+        currentLastNameCol.innerHTML= rosterTable[rosterTableKeys[i]].lastName;
+        currentEmailCol.innerHTML= rosterTable[rosterTableKeys[i]].email;
+        currentTeamNameCol.innerHTML= rosterTable[rosterTableKeys[i]].teamName;
+
+        currentDelButton.innerHTML= '<i class="fa-solid fa-trash-can"></i>';
+        currentEditBtn.innerHTML= '<i class="fa-solid fa-user-pen"></i>';
+
      }
 }
