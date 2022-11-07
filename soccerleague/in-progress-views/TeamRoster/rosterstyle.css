@@ -1,1 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 
+body
+{
+    background-color: #64c258;
+    color: rgb(255, 255, 255);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+h1
+{
+    font-family: sans-serif;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 48px;
+    text-shadow: 5px 5px 5px rgb(0, 0, 0); 
+}
+
+.roster-table-container
+{
+    font-size: 20px;
+    margin-top: 20px;
+    width: 80%;
+    margin: auto;
+}
+
+.roster-table-row
+{
+    display: flex;
+}
+
+.roster-table-column
+{
+    background-color: rgba(14, 98, 23, 0.835);
+    margin: 2px;
+    padding: 15px; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.roster-name, .roster-email
+{
+    flex-basis: 20%;
+
+}
+
+.roster-header
+{
+    background-color: rgba(14, 98, 23, 1);
+    font-weight: bolder; 
+}
+
+.roster-edit, .roster-delete
+{
+   flex-basis: 5%;
+   text-align: center;
+   cursor: pointer;
+}
+
+.roster-add-player-column
+{
+    
+}
