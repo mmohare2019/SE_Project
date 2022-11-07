@@ -1,1 +1,30 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="rosterstyle.css">
+    </head>
+    <body>
+        <h1>Team Roster</h1>
+        <div class="roster-table-container">
+            <div class="roster-table-row">
+                <div class="roster-table-column roster-name roster-header">Name</div>
+                <div class="roster-table-column roster-email roster-header">Email</div>
+                <div class="roster-table-column roster-header roster-add-player-column" id="rosterAddNewPlayer">+</div>
+            </div>
+            <span id="roster-body"></span>
+        </div>
 
+        <div class="disable-modal" id="backdrop"></div>
+        <div class="disable-modal" id="newPlayerModal">
+            <h1>Add New Player</h1>
+            <label for="newPlayerName">Name</label>
+            <input type="text" id="newPlayerName">
+
+            <label for="newPlayerEmail">Email</label>
+            <input type="text" id="newPlayerEmail">
+
+            <button id="newPlayerCancelBtn">Cancel</button>
+            <button id="newPersonSubmitBtn">Submit</button>
+        </div>
+        <script src="roster.js"></script>
+    </body>
+</html>
