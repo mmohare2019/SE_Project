@@ -45,7 +45,7 @@ h1
     text-overflow: ellipsis;
 }
 
-.roster-name, .roster-email
+.roster-name, .roster-email, .roster-team-name
 {
     flex-basis: 20%;
 
@@ -66,5 +66,5 @@ h1
 
 .roster-add-player-column
 {
-    
+
 }
