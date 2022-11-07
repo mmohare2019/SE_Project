@@ -4,7 +4,7 @@
     </head>
     <body>
         <h1>Team Roster</h1>
-        <div class="roster-table-container">
+        div class="roster-table-container" id="rosterTableContainer">
             <div class="roster-table-row">
                 <div class="roster-table-column roster-first-name roster-header">First Name</div>
                 <div class="roster-table-column roster-last-name roster-header">Last Name</div>
@@ -33,6 +33,8 @@
             <button id="newPlayerCancelBtn">Cancel</button>
             <button id="newPersonSubmitBtn">Submit</button>
         </div>
+    
+        <button id="clearBtn" style="position: absolute; right: 0px; bottom: 0px;">Clear Local Storage</button>
         <script src="roster.js"></script>
     </body>
 </html>
