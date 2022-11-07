@@ -6,7 +6,8 @@
         <h1>Team Roster</h1>
         <div class="roster-table-container">
             <div class="roster-table-row">
-                <div class="roster-table-column roster-name roster-header">Name</div>
+                <div class="roster-table-column roster-first-name roster-header">First Name</div>
+                <div class="roster-table-column roster-last-name roster-header">Last Name</div>
                 <div class="roster-table-column roster-email roster-header">Email</div>
                 <div class="roster-table-column roster-team-name roster-header">Team Name</div>
                 <div class="roster-table-column roster-header roster-add-player-column" id="rosterAddNewPlayer">+</div>
@@ -17,8 +18,11 @@
         <div class="disable-modal" id="backdrop"></div>
         <div class="disable-modal" id="newPlayerModal">
             <h1>Add New Player</h1>
-            <label for="newPlayerName">Name</label>
-            <input type="text" id="newPlayerName">
+            <label for="newPlayerFirstName">First Name</label>
+            <input type="text" id="newPlayerFirstName">
+
+            <label for="newPlayerLastName">Last Name</label>
+            <input type="text" id="newPlayerLastName">
 
             <label for="newPlayerEmail">Email</label>
             <input type="text" id="newPlayerEmail">
