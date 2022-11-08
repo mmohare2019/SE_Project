@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1667885291573" clover="3.2.0">
-  <project timestamp="1667885291573" name="All files">
-    <metrics statements="104" coveredstatements="83" conditionals="6" coveredconditionals="1" methods="20" coveredmethods="11" elements="130" coveredelements="95" complexity="0" loc="104" ncloc="104" packages="5" files="8" classes="8"/>
+<coverage generated="1667929817749" clover="3.2.0">
+  <project timestamp="1667929817749" name="All files">
+    <metrics statements="95" coveredstatements="77" conditionals="6" coveredconditionals="1" methods="18" coveredmethods="11" elements="119" coveredelements="89" complexity="0" loc="95" ncloc="95" packages="4" files="7" classes="7"/>
     <package name="soccerleague">
       <metrics statements="27" coveredstatements="22" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
       <file name="app.js" path="C:\Users\mmoha\CS482\SE_Project\soccerleague\app.js">
@@ -36,11 +36,10 @@
       </file>
     </package>
     <package name="soccerleague.controllers">
-      <metrics statements="22" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="2"/>
+      <metrics statements="21" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="2"/>
       <file name="accountController.js" path="C:\Users\mmoha\CS482\SE_Project\soccerleague\controllers\accountController.js">
-        <metrics statements="22" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="2"/>
+        <metrics statements="21" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
@@ -129,20 +128,6 @@
         <line num="7" count="1" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
-      </file>
-    </package>
-    <package name="soccerleague.util">
-      <metrics statements="8" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-      <file name="PasswordUtil.js" path="C:\Users\mmoha\CS482\SE_Project\soccerleague\util\PasswordUtil.js">
-        <metrics statements="8" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
       </file>
     </package>
   </project>

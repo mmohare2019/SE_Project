@@ -3,7 +3,7 @@ const dao = require('../models/teamDao');
 const userDao = require('../models/userDao');
 
 beforeAll(function(){
-    dbcon.connect('test');
+    dbcon.connect();
 });
 
 afterAll(async function () {

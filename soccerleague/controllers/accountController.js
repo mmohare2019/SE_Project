@@ -1,5 +1,5 @@
 const User = require("../models/userDao");
-const passwordUtil = require("../util/PasswordUtil");
+//const passwordUtil = require("../util/PasswordUtil");
 const { body, validationResult } = require("express-validator");
 var async = require("async");
 
