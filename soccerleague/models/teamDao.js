@@ -15,3 +15,12 @@ exports.create = async function(newTeam) {
     const createdTeam = await team.save(); 
     return createdTeam;
 }
+
+exports.findMyTeam = async function(player) {
+    const team = await teamModel.findOne({player: player});
+    return team;
+}
+
+exports.deleteAll = async function() {
+    await teamModel.deleteMany(); 
+  }

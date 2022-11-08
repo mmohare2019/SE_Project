@@ -26,8 +26,3 @@ exports.login = async function(email, pswd) {
 exports.deleteAll = async function() {
   await userModel.deleteMany(); 
 }
-
-exports.readAll = async function() {
-  let users = await userModel.find();
-  return users;
-}
