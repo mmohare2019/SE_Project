@@ -16,7 +16,11 @@ exports.create = async function(newTeam) {
     return createdTeam;
 }
 
-exports.findAll = async function() {
-    let teams = await userModel.find();
-    return teams;
+exports.findMyTeam = async function(player) {
+    const team = await teamModel.findOne({player: player});
+    return team;
 }
+
+exports.deleteAll = async function() {
+    await teamModel.deleteMany(); 
+  }

@@ -1,7 +1,6 @@
 const dbcon = require('../models/dbConnection');
 const dao = require('../models/userDao');
 
-
 beforeAll(function(){
     dbcon.connect('test');
 });
@@ -33,7 +32,7 @@ test('User log in', async function() {
                     password: "abc123"
     };
     let created = await dao.create(newUser);
-    let user = await dao.login(newUser.email, newUser.password);
+    let user = await dao.login(created.email, created.password);
     expect(user.email).toBe(created.email);
     expect(user.password).toBe(created.password);
 });
