@@ -29,7 +29,7 @@ export default function LoginScreen(){
     return (<>
         <View>
             <Image
-                source = {require("..\public\images\greenville_soccer.png")}>
+                source = {require("C:\Users\mmoha\CS482\SE_Project\soccerleague\public\images\greenville_soccer.png")}>
             </Image>
         </View>
         <View style={FormStyle.groupView}>
