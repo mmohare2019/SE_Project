@@ -23,4 +23,4 @@ exports.findMyTeam = async function(player) {
 
 exports.deleteAll = async function() {
     await teamModel.deleteMany(); 
-  }
+}
