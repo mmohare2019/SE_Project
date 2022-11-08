@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import MainStyle from "../MainStyle.style";
 import FormStyle from "../Form.style";
@@ -7,8 +7,8 @@ import axios from "axios";
 const baseUrl = "http://10.0.2.2:3000";
 
 export default function LoginScreen(){
-    const [email, setEmail] = useState("tester1@example.com");
-    const [password, setPassword] = useState("123");
+    const [email, setEmail] = React.useState("");
+    const [password, setPassword] = React.useState("");
 
     async function handleSubmit(email, pswd){
         const formData = new FormData();
@@ -27,11 +27,6 @@ export default function LoginScreen(){
     }
 
     return (<>
-        <View>
-            <Image
-                source = {require("C:\Users\mmoha\CS482\SE_Project\soccerleague\public\images\greenville_soccer.png")}>
-            </Image>
-        </View>
         <View style={FormStyle.groupView}>
             <Text style={MainStyle.emphasisText}> Login </Text>
         </View>
