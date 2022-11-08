@@ -15,3 +15,8 @@ exports.create = async function(newTeam) {
     const createdTeam = await team.save(); 
     return createdTeam;
 }
+
+exports.findAll = async function() {
+    let teams = await userModel.find();
+    return teams;
+}
