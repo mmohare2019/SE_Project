@@ -7,16 +7,18 @@ clearBtn.addEventListener('click', () => {
 
 let rosterTable;
 let rosterTableTest = {
-   'Barbara': {
+   '45': {
+        'firstName': 'Barbara',
         'lastName': 'Kavanaugh',
         'email': 'bjkavanaugh@loyola.edu',
-        'teamName': 'Lions'
+        'teamName': 'Red Team'
    },
 
-   'Jane': {
+   '52': {
+        'firstName': 'Jane',
         'lastName': 'Doe',
         'email': 'janedoe@gmail.com',
-        'teamName': 'Greyhounds'
+        'teamName': 'Grey Team'
    } 
 };
 
@@ -41,6 +43,7 @@ let refreshRoster= () => {
      for (let i=0; i< rosterTableKeys.length; i++)
      {
         let currentRow= document.createElement('div'); 
+        let currentPlayerNumberCol= document.createElement('div');
         let currentFirstNameCol= document.createElement('div');
         let currentLastNameCol= document.createElement('div');
         let currentEmailCol= document.createElement('div');
@@ -49,6 +52,7 @@ let refreshRoster= () => {
         let currentDeleteButton= document.createElement('div');
 
         currentRow.className= 'roster-table-row';
+        currentPlayerNumberCol.className= 'roster-table-column roster-player-number';
         currentFirstNameCol.className= 'roster-table-column roster-first-name';
         currentLastNameCol.className= 'roster-table-column roster-last-name';
         currentEmailCol.className= 'roster-table-column roster-email';
@@ -56,7 +60,8 @@ let refreshRoster= () => {
         currentEditBtn.className= 'roster-table-column roster-edit';
         currentDeleteButton.className= 'roster-table-column roster-delete';
 
-        currentFirstNameCol.innerHTML= rosterTableKeys[i];
+        currentPlayerNumberCol.innerHTML= rosterTableKeys[i];
+        currentFirstNameCol.innerHTML= rosterTable[rosterTableKeys[i]].firstName;
         currentLastNameCol.innerHTML= rosterTable[rosterTableKeys[i]].lastName;
         currentEmailCol.innerHTML= rosterTable[rosterTableKeys[i]].email;
         currentTeamNameCol.innerHTML= rosterTable[rosterTableKeys[i]].teamName;
@@ -64,6 +69,7 @@ let refreshRoster= () => {
         currentDeleteButton.innerHTML= '<i class="fa-solid fa-trash-can"></i>';
         currentEditBtn.innerHTML= '<i class="fa-solid fa-user-pen"></i>';
 
+        currentRow.appendChild(currentPlayerNumberCol);
         currentRow.appendChild(currentFirstNameCol);
         currentRow.appendChild(currentLastNameCol);
         currentRow.appendChild(currentEmailCol);
@@ -74,11 +80,13 @@ let refreshRoster= () => {
      }
 
      let enableDisableNewPlayerModal= (settings) => {
+        let newPlayerNumber= document.getElementById('newPlayerNumber');
         let newPlayerFirstName= document.getElementById('newPlayerFirstName');
         let newPlayerLastName= document.getElementById('newPlayerLastName');
         let newPlayerEmail= document.getElementById('newPlayerEmail');
         let newPlayerTeamName= document.getElementById('newPlayerTeamName');
 
+        newPlayerNumber.value= '';
         newPlayerFirstName.value= '';
         newPlayerLastName.value= '';
         newPlayerEmail.value= '';
@@ -99,10 +107,16 @@ let refreshRoster= () => {
      let newPlayerCancelBtn= document.getElementById('newPlayerCancelBtn');
 
      newPlayerSubmitBtn.addEventListener('click', () => {
+        let newPlayerNumber= document.getElementById('newPlayerNumber').value.trim();
         let newPlayerFirstName= document.getElementById('newPlayerFirstName').value.trim();
         let newPlayerLastName= document.getElementById('newPlayerLastName').value.trim();
         let newPlayerEmail= document.getElementById('newPlayerEmail').value.trim();
         let newPlayerTeamName= document.getElementById('newPlayerTeamName').value.trim();
+
+        if (newPlayerNumber=== '')
+            document.getElementById('newPlayerNumber').className= 'input-error';
+        else
+            document.getElementById('newPlayerNumber').className= '';
 
         if (newPlayerFirstName=== '')
             document.getElementById('newPlayerFirstName').className= 'input-error';
@@ -124,10 +138,10 @@ let refreshRoster= () => {
         else
             document.getElementById('newPlayerTeamName').className= '';
 
-        if (newPlayerFirstName!== '' && newPlayerLastName!== ''  && newPlayerEmail!== '' && newPlayerTeam!== '')
+        if (newPlayerNumber!== '' && newPlayerFirstName!== '' && newPlayerLastName!== ''  && newPlayerEmail!== '' && newPlayerTeamName!== '')
         {
-            let newPlayer= {};
-            rosterTable[newPlayerFirstName]= {
+            rosterTable[newPlayerNumber]= {
+                'firstName': newPlayerFirstName,
                 'lastName': newPlayerLastName,
                 'email': newPlayerEmail,
                 'teamName': newPlayerTeamName
@@ -150,15 +164,17 @@ let refreshRoster= () => {
      for (let i=0; i<editButtons.length; i++)
      {
         editButtons[i].addEventListener('click', ($event) => {
-            let firstNameToEdit= $event.target.parentElement.children[0].innerText;
-            let playerToEdit= rosterTable[firstNameToEdit];
+            let playerNumberToEdit= $event.target.parentElement.children[0].innerText;
+            let playerToEdit= rosterTable[playerNumberToEdit];
+            let newPlayerNumber= document.getElementById('newPlayerNumber');
             let newPlayerFirstName= document.getElementById('newPlayerFirstName');
             let newPlayerLastName= document.getElementById('newPlayerLastName');
             let newPlayerEmail= document.getElementById('newPlayerEmail');
             let newPlayerTeamName= document.getElementById('newPlayerTeamName');
             enableDisableNewPlayerModal('enable');
 
-            newPlayerFirstName.value= firstNameToEdit;
+            newPlayerNumber.value= playerNumberToEdit;
+            newPlayerFirstName.value= playerToEdit.firstName;
             newPlayerLastName.value= playerToEdit.lastName;
             newPlayerEmail.value= playerToEdit.email;
             newPlayerTeamName.value= playerToEdit.teamName;
@@ -169,22 +185,22 @@ let refreshRoster= () => {
      for (let i=0; i< deleteButtons.length; i++)
      {
         deleteButtons[i].addEventListener('click', ($event) => {
-            let firstNameToDelete= $event.target.parentElement.children[0].innerText;
-            let areYouSure= window.confirm('Are you sure you want to delete '+ firstNameToDelete+ '?');
+            let playerNumberToDelete= $event.target.parentElement.children[0].innerText;
+            let areYouSure= window.confirm('Are you sure you want to delete '+ playerNumberToDelete+ '?');
 
             if (areYouSure)
-                deletePlayerFromRoster(firstNameToDelete);
+                deletePlayerFromRoster(playerNumberToDelete);
         })
      }
 }
 
-let deletePlayerFromRoster= (firstName) => {
+let deletePlayerFromRoster= (playerNumber) => {
     let tempRoster= {};
     let rosterTableKeys= Object.keys(rosterTable);
 
     for (let i=0; i<rosterTableKeys.length; i++)
     {
-        if (firstName!== rosterTableKeys[i])
+        if (playerNumber!== rosterTableKeys[i])
             tempRoster[rosterTableKeys[i]]= rosterTable[rosterTableKeys[i]];
     }
     rosterTable= tempRoster;
