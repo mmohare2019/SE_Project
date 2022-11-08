@@ -45,7 +45,7 @@ h1
     text-overflow: ellipsis;
 }
 
-.roster-first-name, .roster-last-name, .roster-email, .roster-team-name
+.roster-player-number, .roster-first-name, .roster-last-name, .roster-email, .roster-team-name
 {
     flex-basis: 20%;
     color: rgb(255, 255, 255);
