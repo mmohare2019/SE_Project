@@ -20,3 +20,9 @@ export default function viewStandings() {
     // request to endpoint to render other page 
 
 }
+
+export default function enterScore() {
+    const formData = new FormData(); 
+    // request to endpoint to render other page 
+      
+}
