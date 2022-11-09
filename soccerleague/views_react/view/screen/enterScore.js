@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Button, Text, TextInput, TouchableOpacity, View } from "react-native";
 import MainStyle from "../MainStyle.style";
 import FormStyle from "../Form.style";
-import { wnterScore } from "../component/homeScreen";
+import { enterScore } from "../component/homeScreen";
 import axios from axios;
 
 const baseUrl = "http://10.0.2.2:3000";
