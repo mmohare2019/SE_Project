@@ -1,13 +1,14 @@
-import React from "react";
 import React, { useState } from "react";
-import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import { ScrollView, Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import MainStyle from "../MainStyle.style";
 import FormStyle from "../Form.style";
-import axios from axios;
+import axios from "axios";
+const QueryString = require('query-string');
 
 const baseUrl = "http://10.0.2.2:3000";
+const logo = require("./../../static/greenville_soccer.png");
 
-export default function LoginScreen() {
+export default function CreateAccount() {
    const [first_name, setFirstName] = React.useState("");
    const [last_name, setLastName] = React.useState("");
    const [account_type, setAccountType] = React.useState("");
@@ -15,19 +16,18 @@ export default function LoginScreen() {
    const [password, setPassword] = React.useState("");
 
    async function handleSubmit(first_name, last_name, account_type, email, password){
-      const formData = new FormData();
-      formData.append("first_name", first_name);
-      formData.append("last_name", last_name);
-      formData.append("account_type", account_type);
-      formData.append("email", email);
-      formData.append("password", password);
-
-      console.log(formData);
-      console.log(`${baseUrl}/account`);
-
       try {
-          const response = await axios.post(`${baseUrl}/account`, formData);
-          console.log(response.data);
+         const response = await axios.post(`${baseUrl}/account`, QueryString.stringify ({
+            first_name: first_name,
+            last_name: last_name,
+            account_type: account_type,
+            email: email,
+            password: password
+        }), {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            }
+        });
       } catch (error) {
           console.log(error.message);
       }
@@ -35,14 +35,11 @@ export default function LoginScreen() {
   }
 
   return (<>
-      <View>
-         <Image
-            source = {require("..\public\images\greenville_soccer.png")}>
-         </Image>
-      </View>
-      <View style={FormStyle.groupView}>
-         <Text style={MainStyle.emphasisText}> Create Account </Text>
-      </View>
+      <View style={FormStyle.container}>
+            <Image style={FormStyle.logo} source={logo}/>
+            <Text style={MainStyle.emphasisText}> Create Account </Text>
+        </View>
+     
       <View style={FormStyle.groupView}>
          <Text style={FormStyle.label}>First name:</Text>
          <TextInput onChangeText={setFirstName} style={FormStyle.input} autoCapitalize={false} />

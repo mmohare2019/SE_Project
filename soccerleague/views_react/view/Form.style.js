@@ -1,5 +1,7 @@
 import { StyleSheet } from "react-native";
 export default StyleSheet.create({
+    logo:{width:200,height:200,},
+    container:{justifyContent:'center', alignItems:'center'},
     groupView:{ marginTop:30,marginLeft:10,marginRight:10},
     label:{paddingTop:10,fontSize:16,},
     input:{borderWidth: 1,borderRadius: 10,padding: 10,},
@@ -11,5 +13,5 @@ export default StyleSheet.create({
     formButtonText:{
         color:'white',textAlign:'center',fontSize:20,
             paddingLeft: 10,paddingRight: 10},
-    });
+});
     

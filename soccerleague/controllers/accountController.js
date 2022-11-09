@@ -52,6 +52,9 @@ exports.signin_post =  [
 
         // Extract validation errors from req
         const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({errors: errors.array()});
+        }
         
         // Check credentials 
         User.login(req.body.email, req.body.password).then(function (result) {
