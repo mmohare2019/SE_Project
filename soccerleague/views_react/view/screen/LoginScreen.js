@@ -19,7 +19,8 @@ export default function LoginScreen(){
         console.log(`${baseUrl}/account/signin`);
 
         try {
-            const response = await axios.post(`${baseUrl}/account/signin`, formData);
+            //const response = await axios.post(`${baseUrl}/account/signin`, formData);
+            const response = await axios.get(`${baseUrl}/account`);
             console.log(response.data);
         } catch (error) {
             console.log(error.message);
