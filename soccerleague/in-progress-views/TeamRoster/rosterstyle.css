@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+
+body
+{
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+h1
+{
+    font-family: sans-serif;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 48px;
+    text-shadow: 5px 5px 5px rgb(78, 207, 67); 
+}
+
+.roster-table-container
+{
+    font-size: 20px;
+    margin-top: 35px;
+    width: 80%;
+    margin: auto;
+}
+
+.roster-table-row
+{
+    display: flex;
+}
+
+.roster-table-column
+{
+    background-color: rgba(77, 159, 85, 0.835);
+    margin: 2px;
+    padding: 15px; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.roster-player-number, .roster-first-name, .roster-last-name, .roster-email, .roster-team-name
+{
+    flex-basis: 20%;
+    color: rgb(255, 255, 255);
+
+}
+
+.roster-header
+{
+    background-color: rgba(77, 159, 85, 0.835);
+    font-weight: bolder; 
+}
+
+.roster-edit, .roster-delete, .roster-add-player-column
+{
+   flex-basis: 5%;
+   text-align: center;
+   cursor: pointer;
+}
+
+#newPlayerModal
+{
+    width: 500px;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 99;
+    top: 50px;
+    position: absolute;
+    margin-left: calc(50% - 250px);
+    background-color: rgb(33, 131, 51);
+}
+
+#newPlayerModal input
+{
+    display: block;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 3px;
+    width: 100%;
+}
+
+.input-error
+{
+    background-color: rgb(255, 0, 0);
+}
+
+#backdrop
+{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: rgba(223, 237, 225, 0.835);
+    z-index: 50;
+    top: 0;
+    left: 0;
+}
+
+#newPlayerSubmitBtn
+{
+    background-color: rgb(47, 151, 68);
+}
+
+#newPlayerCancelBtn
+{
+    background-color: rgb(186, 86, 86);
+}
+
+button
+{
+    padding: 15px;
+    border-radius: 5px;
+    border: none;
+    float: right;
+    margin: 5px;
+    cursor: pointer;
+}
+
+button:hover
+{
+    padding: 13px;
+}
+
+.disable-modal
+{
+   visibility: hidden; 
+}
+
+.enable-modal
+{
+    visibility: visible;
+}
+
+i
+{
+    pointer-events: none;
+    color:rgb(255, 255, 255);
+}
