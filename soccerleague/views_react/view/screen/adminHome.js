@@ -29,6 +29,12 @@ async function viewPlayoff() {
   // request to endpoint to render other page 
 
 }
+  
+// logout 
+async function logOut() {
+  const formData = new FormData(); 
+
+}
 
 }
 
@@ -60,6 +66,13 @@ return ( <>
     <TouchableOpacity style={FormStyle.formButton} 
       onPress={()=> viewPlayoff()}>
       <Text style={FormStyle.formButtonText}> View playoff schedule </Text>
+    </TouchableOpacity>
+  </View>
+
+  <View>
+    <TouchableOpacity style={FormStyle.formButton} 
+      onPress={()=> logOut()}>
+      <Text style={FormStyle.formButtonText}> Log Out </Text>
     </TouchableOpacity>
   </View>
 
