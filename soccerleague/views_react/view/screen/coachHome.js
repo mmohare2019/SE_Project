@@ -28,7 +28,7 @@ export default function CoachHome() {
   async function viewStandings() {
   const formData = new FormData(); 
   // request to endpoint to render other page 
-
+ 
   }
 
   // View playoff schedule 
