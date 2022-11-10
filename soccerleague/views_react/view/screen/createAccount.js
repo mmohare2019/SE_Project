@@ -1,8 +1,9 @@
 import React from "react";
-import { ScrollView, Text, TextInput, TouchableOpacity } from "react-native";
+import { ScrollView, Text, TouchableOpacity } from "react-native";
 import FormStyle from "../Form.style";
 import Header from "../component/header";
 import FormField from "../component/formField";
+//import SelectDropdown from "react-native-select-dropdown";
 import axios from "axios";
 const QueryString = require('query-string');
 

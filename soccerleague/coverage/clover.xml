@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1667929817749" clover="3.2.0">
-  <project timestamp="1667929817749" name="All files">
-    <metrics statements="95" coveredstatements="77" conditionals="6" coveredconditionals="1" methods="18" coveredmethods="11" elements="119" coveredelements="89" complexity="0" loc="95" ncloc="95" packages="4" files="7" classes="7"/>
+<coverage generated="1668099448272" clover="3.2.0">
+  <project timestamp="1668099448272" name="All files">
+    <metrics statements="94" coveredstatements="77" conditionals="10" coveredconditionals="1" methods="18" coveredmethods="11" elements="122" coveredelements="89" complexity="0" loc="94" ncloc="94" packages="4" files="7" classes="7"/>
     <package name="soccerleague">
       <metrics statements="27" coveredstatements="22" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
       <file name="app.js" path="C:\Users\mmoha\CS482\SE_Project\soccerleague\app.js">
@@ -36,9 +36,9 @@
       </file>
     </package>
     <package name="soccerleague.controllers">
-      <metrics statements="21" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="2"/>
+      <metrics statements="20" coveredstatements="9" conditionals="4" coveredconditionals="0" methods="6" coveredmethods="2"/>
       <file name="accountController.js" path="C:\Users\mmoha\CS482\SE_Project\soccerleague\controllers\accountController.js">
-        <metrics statements="21" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="2"/>
+        <metrics statements="20" coveredstatements="9" conditionals="4" coveredconditionals="0" methods="6" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
@@ -46,20 +46,19 @@
         <line num="7" count="1" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
+        <line num="23" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="24" count="0" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="26" count="0" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
-        <line num="33" count="0" type="stmt"/>
-        <line num="35" count="0" type="stmt"/>
-        <line num="36" count="0" type="stmt"/>
-        <line num="41" count="1" type="stmt"/>
-        <line num="42" count="1" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
         <line num="45" count="1" type="stmt"/>
-        <line num="54" count="0" type="stmt"/>
-        <line num="57" count="0" type="stmt"/>
+        <line num="46" count="1" type="stmt"/>
+        <line num="49" count="1" type="stmt"/>
         <line num="58" count="0" type="stmt"/>
+        <line num="59" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
       </file>
     </package>
     <package name="soccerleague.models">

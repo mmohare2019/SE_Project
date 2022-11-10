@@ -28,6 +28,7 @@ export default function LoginScreen({navigation}){
             console.log(error.message);
         }
 
+        // evaluate which screen to display here 
         navigation.navigate('AdminHome');
     }
 
