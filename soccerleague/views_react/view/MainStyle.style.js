@@ -8,7 +8,7 @@ export default StyleSheet.create({
     },
     emphasisText: {
         fontSize: 36,
-        color:'green',
+        color:'black',
         textAlign: 'center',
     }
  });
