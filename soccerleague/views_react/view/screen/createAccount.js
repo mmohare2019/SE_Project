@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ScrollView, Image, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
 import MainStyle from "../MainStyle.style";
 import FormStyle from "../Form.style";
 import axios from "axios";
@@ -8,7 +9,7 @@ const QueryString = require('query-string');
 const baseUrl = "http://10.0.2.2:3000";
 const logo = require("./../../static/greenville_soccer.png");
 
-export default function CreateAccount() {
+export default function CreateAccount({navigation}) {
    const [first_name, setFirstName] = React.useState("");
    const [last_name, setLastName] = React.useState("");
    const [account_type, setAccountType] = React.useState("");
@@ -40,7 +41,7 @@ export default function CreateAccount() {
             <Text style={MainStyle.emphasisText}> Create Account </Text>
         </View>
      
-      <View style={FormStyle.groupView}>
+      <ScrollView style={FormStyle.groupView}>
          <Text style={FormStyle.label}>First name:</Text>
          <TextInput onChangeText={setFirstName} style={FormStyle.input} autoCapitalize={false} />
 
@@ -60,7 +61,7 @@ export default function CreateAccount() {
                onPress={()=> handleSubmit(email,password)}>
             <Text style={FormStyle.formButtonText}> Submit </Text>
          </TouchableOpacity>
-      </View>
+      </ScrollView>
       </>
    );
 

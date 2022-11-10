@@ -9,7 +9,7 @@ const baseUrl = "http://10.0.2.2:3000";
 const logo = require("./../../static/greenville_soccer.png");
 
 
-export default function LoginScreen(){
+export default function LoginScreen({navigation}){
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
 
@@ -27,6 +27,8 @@ export default function LoginScreen(){
         } catch (error) {
             console.log(error.message);
         }
+
+        navigation.navigate('AdminHome');
     }
 
     return (<>
