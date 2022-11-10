@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">42.85% </span>
+                <span class="strong">45% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/21</span>
+                <span class='fraction'>9/20</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">42.85% </span>
+                <span class="strong">45% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/21</span>
+                <span class='fraction'>9/20</span>
             </div>
         
             
@@ -124,7 +124,14 @@
 <a name='L59'></a><a href='#L59'>59</a>
 <a name='L60'></a><a href='#L60'>60</a>
 <a name='L61'></a><a href='#L61'>61</a>
-<a name='L62'></a><a href='#L62'>62</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -148,15 +155,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -178,6 +189,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -206,19 +220,23 @@ exports.account_create_post = [
 <span class="fstat-no" title="function not covered" >    (r</span>eq, res, next) =&gt; {
         // Extract validation errors from req
         const errors = <span class="cstat-no" title="statement not covered" >validationResult(req);</span>
+     
+<span class="cstat-no" title="statement not covered" >        if (!errors.isEmpty()) {</span>
+<span class="cstat-no" title="statement not covered" >            return res.status(400).json({ errors: errors.array() });</span>
+        }
 &nbsp;
-        let newUser = <span class="cstat-no" title="statement not covered" >{};</span>
-<span class="cstat-no" title="statement not covered" >        newUser.first_name = req.body.first_name;</span>
-<span class="cstat-no" title="statement not covered" >        newUser.last_name = req.body.last_name;</span>
-<span class="cstat-no" title="statement not covered" >        newUser.account_type = req.body.account_type;</span>
-        
+        const newUser = <span class="cstat-no" title="statement not covered" >{</span>
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            account_type: req.body.account_type,
+            password: req.body.password,
+            email: req.body.email
+        };
+    
         // @To Do hash the password before putting into newUser after tested
         // var password = passwordUtil.hashPswd(req.body.password);
         // newUser.password = password;
-&nbsp;
-<span class="cstat-no" title="statement not covered" >        newUser.password = req.body.password;</span>
-<span class="cstat-no" title="statement not covered" >        newUser.email = req.body.email;</span>
-        
+             
 <span class="cstat-no" title="statement not covered" >        User.create(newUser).then(<span class="fstat-no" title="function not covered" >fu</span>nction (result) {</span>
 <span class="cstat-no" title="statement not covered" >            res.json(result);</span>
         });
@@ -239,6 +257,9 @@ exports.signin_post =  [
 &nbsp;
         // Extract validation errors from req
         const errors = <span class="cstat-no" title="statement not covered" >validationResult(req);</span>
+<span class="cstat-no" title="statement not covered" >        if (!errors.isEmpty()) {</span>
+<span class="cstat-no" title="statement not covered" >            return res.status(400).json({errors: errors.array()});</span>
+        }
         
         // Check credentials 
 <span class="cstat-no" title="statement not covered" >        User.login(req.body.email, req.body.password).then(<span class="fstat-no" title="function not covered" >fu</span>nction (result) {</span>
@@ -253,7 +274,7 @@ exports.signin_post =  [
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-11-08T17:50:17.702Z
+                at 2022-11-10T16:57:28.218Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

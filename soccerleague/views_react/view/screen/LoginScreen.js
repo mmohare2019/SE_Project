@@ -1,8 +1,8 @@
-import React, {useState} from "react";
-import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
-import MainStyle from "../MainStyle.style";
+import React from "react";
+import { Text, TouchableOpacity, View } from "react-native";
 import FormStyle from "../Form.style";
 import Header from "../component/header";
+import FormField from "../component/formField";
 import axios from "axios";
 const QueryString = require('query-string');
 
@@ -28,6 +28,7 @@ export default function LoginScreen({navigation}){
             console.log(error.message);
         }
 
+        // evaluate which screen to display here 
         navigation.navigate('AdminHome');
     }
 
@@ -35,11 +36,8 @@ export default function LoginScreen({navigation}){
         <Header text={"Sign in"}/>
 
         <View style={FormStyle.groupView}>
-            <Text style={FormStyle.label}>Email:</Text>
-            <TextInput onChangeText={setEmail} style={FormStyle.input} autoCapitalize={false} />
-
-            <Text style={FormStyle.label}>Password:</Text>
-            <TextInput onChangeText={setPassword} style={FormStyle.input} secureTextEntry={true} />
+            <FormField label={"Email: "} setFunction={setEmail}/>
+            <FormField label={"Password: "} setFunction={setPassword}/>
 
             <TouchableOpacity style={FormStyle.formButton} 
                  onPress={()=> handleSubmit(email,password)}>

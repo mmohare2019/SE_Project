@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { ScrollView, Image, Text, TextInput, TouchableOpacity, View } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import MainStyle from "../MainStyle.style";
+import React from "react";
+import { ScrollView, Text, TouchableOpacity } from "react-native";
 import FormStyle from "../Form.style";
 import Header from "../component/header";
+import FormField from "../component/formField";
+//import SelectDropdown from "react-native-select-dropdown";
 import axios from "axios";
 const QueryString = require('query-string');
 
@@ -30,9 +30,12 @@ export default function CreateAccount({navigation}) {
             }
         });
         console.log(response.data);
+
       } catch (error) {
           console.log(error.message);
       }
+      
+      navigation.navigate('LoginScreen');
 
   }
 
@@ -40,20 +43,11 @@ export default function CreateAccount({navigation}) {
       <Header text={"Create Account"} />
      
       <ScrollView style={FormStyle.groupView}>
-         <Text style={FormStyle.label}>First name:</Text>
-         <TextInput onChangeText={setFirstName} style={FormStyle.input} autoCapitalize={false} />
-
-         <Text style={FormStyle.label}>Last name:</Text>
-         <TextInput onChangeText={setLastName} style={FormStyle.input} autoCapitalize={false} />
-
-         <Text style={FormStyle.label}>Role (Admin, Player, Parent, Coach):</Text>
-         <TextInput onChangeText={setAccountType} style={FormStyle.input} autoCapitalize={false} />
-
-         <Text style={FormStyle.label}>Email:</Text>
-         <TextInput onChangeText={setEmail} style={FormStyle.input} autoCapitalize={false} />
-
-         <Text style={FormStyle.label}>Password:</Text>
-         <TextInput onChangeText={setPassword} style={FormStyle.input} secureTextEntry={true} />
+         <FormField label={"First name: "} setFunction={setFirstName}/>
+         <FormField label={"Last name: "} setFunction={setLastName} />
+         <FormField label={"Role (Admin, Player, Parent, Coach): "} setFunction={setAccountType}/>
+         <FormField label={"Email: "} setFunction={setEmail}/>
+         <FormField label={"Password: " } setFunction={setPassword}/>
 
          <TouchableOpacity style={FormStyle.formButton} 
                onPress={()=> handleSubmit(first_name, last_name, account_type, email, password)}>
