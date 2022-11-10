@@ -15,11 +15,13 @@ export default function AppHome({navigation}) {
         navigation.navigate('LoginScreen');
     }
 
+    // Don't use header component here because the logo is slightly bigger on the home page!
     return (<>
-        <View style={HomeStyle.container}>
+         <View style={HomeStyle.container}>
             <Image style={HomeStyle.logo} source={logo}/>
             <Text style={HomeStyle.emphasisText}> Greenville Soccer League </Text>
         </View>
+
         <View style={HomeStyle.groupView}>
             <TouchableOpacity style={HomeStyle.formButton} 
                 onPress={()=> onCreateAccount()}>

@@ -2,11 +2,11 @@ import React, {useState} from "react";
 import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import MainStyle from "../MainStyle.style";
 import FormStyle from "../Form.style";
+import Header from "../component/header";
 import axios from "axios";
 const QueryString = require('query-string');
 
 const baseUrl = "http://10.0.2.2:3000";
-const logo = require("./../../static/greenville_soccer.png");
 
 
 export default function LoginScreen({navigation}){
@@ -32,10 +32,8 @@ export default function LoginScreen({navigation}){
     }
 
     return (<>
-        <View style={FormStyle.container}>
-            <Image style={FormStyle.logo} source={logo}/>
-            <Text style={MainStyle.emphasisText}> Login </Text>
-        </View>
+        <Header text={"Sign in"}/>
+
         <View style={FormStyle.groupView}>
             <Text style={FormStyle.label}>Email:</Text>
             <TextInput onChangeText={setEmail} style={FormStyle.input} autoCapitalize={false} />

@@ -1,11 +1,11 @@
 import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
+import Header from "../component/header";
 import MainStyle from "../MainStyle.style";
 import FormStyle from "../Form.style";
 import axios from "axios";
 
 const baseUrl = "http://10.0.2.2:3000";
-const logo = require("./../../static/greenville_soccer.png");
 
 export default function ParentHome({navigation}) {
   // View schedule 
@@ -40,10 +40,7 @@ export default function ParentHome({navigation}) {
 
 
   return ( <>
-    <View style={FormStyle.container}>
-      <Image style={FormStyle.logo} source={logo}/>
-      <Text style={MainStyle.emphasisText}> Parent Home </Text>
-    </View>
+    <Header text={"Parent Home"}/>
 
     <View>
       <TouchableOpacity style={FormStyle.formButton} 

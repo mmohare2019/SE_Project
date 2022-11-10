@@ -3,11 +3,11 @@ import { ScrollView, Image, Text, TextInput, TouchableOpacity, View } from "reac
 import { NavigationContainer } from "@react-navigation/native";
 import MainStyle from "../MainStyle.style";
 import FormStyle from "../Form.style";
+import Header from "../component/header";
 import axios from "axios";
 const QueryString = require('query-string');
 
 const baseUrl = "http://10.0.2.2:3000";
-const logo = require("./../../static/greenville_soccer.png");
 
 export default function CreateAccount({navigation}) {
    const [first_name, setFirstName] = React.useState("");
@@ -29,6 +29,7 @@ export default function CreateAccount({navigation}) {
                 'Content-Type': 'application/x-www-form-urlencoded',
             }
         });
+        console.log(response.data);
       } catch (error) {
           console.log(error.message);
       }
@@ -36,10 +37,7 @@ export default function CreateAccount({navigation}) {
   }
 
   return (<>
-      <View style={FormStyle.container}>
-            <Image style={FormStyle.logo} source={logo}/>
-            <Text style={MainStyle.emphasisText}> Create Account </Text>
-        </View>
+      <Header text={"Create Account"} />
      
       <ScrollView style={FormStyle.groupView}>
          <Text style={FormStyle.label}>First name:</Text>
@@ -58,7 +56,7 @@ export default function CreateAccount({navigation}) {
          <TextInput onChangeText={setPassword} style={FormStyle.input} secureTextEntry={true} />
 
          <TouchableOpacity style={FormStyle.formButton} 
-               onPress={()=> handleSubmit(email,password)}>
+               onPress={()=> handleSubmit(first_name, last_name, account_type, email, password)}>
             <Text style={FormStyle.formButtonText}> Submit </Text>
          </TouchableOpacity>
       </ScrollView>
