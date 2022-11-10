@@ -8,7 +8,7 @@ const QueryString = require('query-string');
 
 const baseUrl = "http://10.0.2.2:3000";
 
-
+// change name
 export default function LoginScreen({navigation}){
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
