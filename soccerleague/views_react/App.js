@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import AppHome from "./view/screen/appHome";
 import CreateAccount from "./view/screen/createAccount";
-import LoginScreen from "./view/screen/loginScreen";
+import LoginScreen from "./view/screen/LoginScreen";
 import AdminHome from "./view/screen/adminHome";
 import CoachHome from "./view/screen/coachHome";
 import PlayerHome from "./view/screen/playerHome";
