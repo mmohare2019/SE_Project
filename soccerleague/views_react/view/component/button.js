@@ -1,13 +1,13 @@
 import React from "react";
-import { TouchableOpacity} from 'react-native';
+import { Text, TouchableOpacity} from 'react-native';
 import HomeStyle from "../Home.style";
 
-export default function CustomButton(props) {
+export default function CustomButton({text, onPress}) {
     
     return (
         <TouchableOpacity style={HomeStyle.formButton} 
-            onPress={()=> props.funct }>
-            <Text style={HomeStyle.formButtonText}> {props.txt} </Text>
+            onPress={onPress}>
+            <Text style={HomeStyle.formButtonText}> {text} </Text>
         </TouchableOpacity>
     );
 };

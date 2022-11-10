@@ -1,38 +1,38 @@
 import React from "react";
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import Header from "../component/header";
-import MainStyle from "../MainStyle.style";
-import FormStyle from "../Form.style";
+import CustomButton from "../component/button";
+import LogoutButton from "../component/logoutButton";
 import axios from "axios";
 
 const baseUrl = "http://10.0.2.2:3000";
 
 export default function CoachHome({navigation}) {
-  async function updateTeam() {
+  async function onUpdateTeam() {
     const formData = new FormData(); 
   }
 
 
-  async function admitPlayer() {
+  async function onAdmitPlayer() {
     const formData = new FormData(); 
   }
   
   // View schedule 
-  async function viewSchedule() {
+  async function onViewSchedule() {
   const formData = new FormData(); 
   // request to endpoint to render other page 
 
   }
 
   // View standings
-  async function viewStandings() {
+  async function onViewStandings() {
   const formData = new FormData(); 
   // request to endpoint to render other page 
 
   }
 
   // View playoff schedule 
-  async function viewPlayoff() {
+  async function onViewPlayoff() {
   const formData = new FormData(); 
   // request to endpoint to render other page 
 
@@ -45,47 +45,14 @@ export default function CoachHome({navigation}) {
   return ( <>
     <Header text={"Coach Home"}/>
 
-    <View>
-      <TouchableOpacity style={FormStyle.formButton} 
-        onPress={()=> updateTeam()}>
-        <Text style={FormStyle.formButtonText}> Edit team details </Text>
-      </TouchableOpacity>
-    </View>
-
-    <View>
-      <TouchableOpacity style={FormStyle.formButton} 
-        onPress={()=> admitPlayer()}>
-        <Text style={FormStyle.formButtonText}> Admit player </Text>
-      </TouchableOpacity>
-    </View>
-
-    <View>
-      <TouchableOpacity style={FormStyle.formButton} 
-        onPress={()=> viewSchedule()}>
-        <Text style={FormStyle.formButtonText}> View schedule </Text>
-      </TouchableOpacity>
-    </View>
-
-    <View>
-      <TouchableOpacity style={FormStyle.formButton} 
-        onPress={()=> viewStandings()}>
-        <Text style={FormStyle.formButtonText}> View standings </Text>
-      </TouchableOpacity>
-    </View>
-
-    <View>
-      <TouchableOpacity style={FormStyle.formButton} 
-        onPress={()=> viewPlayoff()}>
-        <Text style={FormStyle.formButtonText}> View playoff schedule </Text>
-      </TouchableOpacity>
-    </View>
-
-    <View>
-      <TouchableOpacity style={FormStyle.formSubmitButton} 
-        onPress={()=> onLogout()}>
-        <Text style={FormStyle.formSubmitButtonText}> Log out </Text>
-      </TouchableOpacity>
-    </View>
+    <ScrollView>
+      <CustomButton text={"Edit team details"} onPress={onUpdateTeam}/>
+      <CustomButton text={"Admit player"} onPress={onAdmitPlayer}/>
+      <CustomButton text={"View schedule"} onPress={onViewSchedule}/>
+      <CustomButton text={"View standings"} onPress={onViewSchedule}/>
+      <CustomButton text={"View playoff schedule"} onPress={onViewPlayoff}/>
+      <LogoutButton onPress={onLogout}/>
+    </ScrollView>
 
   </> )
 

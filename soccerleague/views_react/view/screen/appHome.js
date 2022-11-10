@@ -1,5 +1,6 @@
 import React from "react";
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { Image, Text, View } from "react-native";
+import CustomButton from "../component/button";
 import HomeStyle from "../Home.style";
 const QueryString = require('query-string');
 
@@ -17,22 +18,14 @@ export default function AppHome({navigation}) {
 
     // Don't use header component here because the logo is slightly bigger on the home page!
     return (<>
-         <View style={HomeStyle.container}>
+        <View style={HomeStyle.container}>
             <Image style={HomeStyle.logo} source={logo}/>
             <Text style={HomeStyle.emphasisText}> Greenville Soccer League </Text>
         </View>
 
         <View style={HomeStyle.groupView}>
-            <TouchableOpacity style={HomeStyle.formButton} 
-                onPress={()=> onCreateAccount()}>
-                <Text style={HomeStyle.formButtonText}> Create account </Text>
-            </TouchableOpacity>
-        
-            <TouchableOpacity style={HomeStyle.formButton} 
-                onPress={()=> onLoginAccount()}>
-                <Text style={HomeStyle.formButtonText}> Sign in to account </Text>
-            </TouchableOpacity>
+            <CustomButton text={"Create account"} onPress={onCreateAccount}/>
+            <CustomButton text={"Sign in to account"} onPress={onLoginAccount}/>
         </View>
-        </>
-    );
+    </>);
 }
