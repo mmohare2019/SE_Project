@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { View } from "react-native";
 import Header from "../component/header";
 import CustomButton from "../component/button";
 import LogoutButton from "../component/logoutButton";
@@ -34,43 +34,20 @@ export default function ParentHome({navigation}) {
     const formData = new FormData(); 
   }
 
+  async function onLogout() {
+    navigation.navigate('AppHome');
+  }
+  
   return ( <>
     <Header text={"Parent Home"}/>
 
     <View>
-      <TouchableOpacity style={FormStyle.formButton} 
-        onPress={()=> viewSchedule()}>
-        <Text style={FormStyle.formButtonText}> View schedule </Text>
-      </TouchableOpacity>
+      <CustomButton text={"View live game"} onPress={onViewLiveGame}/>
+      <CustomButton text={"View schedule"} onPress={onViewSchedule}/>
+      <CustomButton text={"View standings"} onPress={onViewSchedule}/>
+      <CustomButton text={"View playoff schedule"} onPress={onViewPlayoff}/>
+      <LogoutButton onPress={onLogout}/>
     </View>
-
-    <View>
-      <TouchableOpacity style={FormStyle.formButton} 
-        onPress={()=> viewLiveGame()}>
-        <Text style={FormStyle.formButtonText}> View live game </Text>
-      </TouchableOpacity>
-    </View>
-
-    <View>
-      <TouchableOpacity style={FormStyle.formButton} 
-        onPress={()=> viewStandings()}>
-        <Text style={FormStyle.formButtonText}> View standings </Text>
-      </TouchableOpacity>
-    </View>
-
-    <View>
-      <TouchableOpacity style={FormStyle.formButton} 
-        onPress={()=> viewPlayoff()}>
-        <Text style={FormStyle.formButtonText}> View playoff schedule </Text>
-      </TouchableOpacity>
-    </View>
-
-    <View>
-        <TouchableOpacity style={FormStyle.formSubmitButton} 
-          onPress={()=> onLogout()}>
-          <Text style={FormStyle.formSubmitButtonText}> Log out </Text>
-        </TouchableOpacity>
-      </View>
 
   </>)
 
