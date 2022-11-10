@@ -27,7 +27,3 @@ export default function enterScore() {
       
 }
 
-export default function logOut() {
-    const formData = new FormData(); 
-      
-}
