@@ -26,3 +26,8 @@ export default function enterScore() {
     // request to endpoint to render other page 
       
 }
+
+export default function logOut() {
+    const formData = new FormData(); 
+      
+}
