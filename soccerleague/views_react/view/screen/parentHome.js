@@ -33,6 +33,10 @@ export default function ParentHome() {
   async function viewLiveGame() {
     const formData = new FormData(); 
   }
+  
+   async function logOut() {
+   const formData = new FormData(); 
+  }
 }
 
 return ( <>
@@ -70,6 +74,13 @@ return ( <>
     <TouchableOpacity style={FormStyle.formButton} 
       onPress={()=> viewPlayoff()}>
       <Text style={FormStyle.formButtonText}> View playoff schedule </Text>
+    </TouchableOpacity>
+  </View>
+
+  <View>
+    <TouchableOpacity style={FormStyle.formButton} 
+      onPress={()=> logOut()}>
+      <Text style={FormStyle.formButtonText}> Log Out </Text>
     </TouchableOpacity>
   </View>
 
