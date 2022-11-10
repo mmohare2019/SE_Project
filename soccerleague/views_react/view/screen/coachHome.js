@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, View } from "react-native";
+import { ScrollView } from "react-native";
 import Header from "../component/header";
 import CustomButton from "../component/button";
 import LogoutButton from "../component/logoutButton";
