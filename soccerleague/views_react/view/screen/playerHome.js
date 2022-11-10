@@ -16,6 +16,11 @@ export default function PlayerHome() {
     // request to endpoint to render other page 
 
   }
+  
+    async function logOut() 
+    {
+      const formData = new FormData();
+    }
 
 }
 
@@ -53,6 +58,13 @@ return ( <>
     <TouchableOpacity style={FormStyle.formButton} 
       onPress={()=> viewPlayoff()}>
       <Text style={FormStyle.formButtonText}> View playoff schedule </Text>
+    </TouchableOpacity>
+  </View>
+
+   <View>
+    <TouchableOpacity style={FormStyle.formButton} 
+      onPress={()=> logOut()}>
+      <Text style={FormStyle.formButtonText}> Log Out </Text>
     </TouchableOpacity>
   </View>
 
