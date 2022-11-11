@@ -1,8 +1,8 @@
 import React from "react";
 import { View } from "react-native";
-import Header from "../component/header";
-import LogoutButton from "../component/logoutButton";
-import CustomButton from "../component/button";
+import Header from "../../component/header";
+import LogoutButton from "../../component/logoutButton";
+import CustomButton from "../../component/button";
 import axios from "axios";
 
 const baseUrl = "http://10.0.2.2:3000";
@@ -12,29 +12,22 @@ export default function PlayerHome({navigation}) {
 
   // Render the team page 
   async function onPickTeam() {
-    const formData = new FormData(); 
-    // request to endpoint to render other page 
 
   }
 
   // View schedule 
   async function onViewSchedule() {
-    const formData = new FormData(); 
-    // request to endpoint to render other page 
-  
+    navigation.navigate('ViewSchedule');
   }
   
   // View standings
-  async function onViewStandings() {
-    const formData = new FormData(); 
-    // request to endpoint to render other page 
-  
+  async function onViewStandings() { 
+    navigation.navigate('ViewStandings');
   }
   
   // View playoff schedule 
   async function onViewPlayoff() {
-    const formData = new FormData(); 
-      // request to endpoint to render other page 
+    navigation.navigate('ViewPlayoffs')
   }
 
   async function onLogout() {

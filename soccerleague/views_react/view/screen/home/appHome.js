@@ -1,11 +1,11 @@
 import React from "react";
 import { Image, Text, View } from "react-native";
-import CustomButton from "../component/button";
-import HomeStyle from "../Home.style";
+import CustomButton from "../../component/button";
+import HomeStyle from "../../Home.style";
 const QueryString = require('query-string');
 
 const baseUrl = "http://10.0.2.2:3000";
-const logo = require("./../../static/greenville_soccer.png");
+const logo = require("./../../../static/greenville_soccer.png");
 
 export default function AppHome({navigation}) {
     async function onCreateAccount() {

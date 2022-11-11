@@ -35,8 +35,6 @@ exports.account_create_post = [
             password: req.body.password,
             email: req.body.email
         };
-    
-        ;
              
         User.create(newUser).then(function (result) {
             res.json(result);
