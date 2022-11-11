@@ -1,9 +1,9 @@
 import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
-import FormStyle from "../Form.style";
-import Header from "../component/header";
-import FormField from "../component/formField";
-import PasswordFormField from "../component/passwordForm";
+import FormStyle from "../../Form.style";
+import Header from "../../component/header";
+import FormField from "../../component/formField";
+import PasswordFormField from "../../component/passwordForm";
 import axios from "axios";
 import { response } from "express";
 const QueryString = require('query-string');

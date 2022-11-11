@@ -4,8 +4,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import AppHome from "./view/screen/home/appHome";
-import CreateAccount from "./view/screen/createAccount";
-import LoginScreen from "./view/screen/loginScreen";
+import CreateAccount from "./view/screen/account/createAccount";
+import LoginScreen from "./view/screen/account/loginScreen";
 import AdminHome from "./view/screen/home/adminHome";
 import CoachHome from "./view/screen/home/coachHome";
 import PlayerHome from "./view/screen/home/playerHome";
