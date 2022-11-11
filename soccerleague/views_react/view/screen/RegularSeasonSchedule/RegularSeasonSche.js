@@ -57,7 +57,7 @@ function loadCalendar()
     {
         const daySquare= document.createElement('div');
         daySquare.classList.add('day');
-        const dayString= '${month+1}/${i-paddingDays}/{$year}';
+        const dayString= `${month+1}/${i-paddingDays}/${year}`;
 
         if (i> paddingDays)
         {
@@ -146,4 +146,3 @@ function inCalendarButtons()
 
 inCalendarButtons();
 loadCalendar();
-

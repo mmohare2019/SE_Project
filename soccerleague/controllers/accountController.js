@@ -24,6 +24,10 @@ exports.account_create_post = [
             return res.status(400).json({ errors: errors.array() });
         }
 
+        // @To Do hash the password before putting into newUser after tested
+        // var password = passwordUtil.hashPswd(req.body.password);
+        // newUser.password = password
+        
         const newUser = {
             first_name: req.body.first_name,
             last_name: req.body.last_name,
@@ -32,9 +36,7 @@ exports.account_create_post = [
             email: req.body.email
         };
     
-        // @To Do hash the password before putting into newUser after tested
-        // var password = passwordUtil.hashPswd(req.body.password);
-        // newUser.password = password;
+        ;
              
         User.create(newUser).then(function (result) {
             res.json(result);
