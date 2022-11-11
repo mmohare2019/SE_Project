@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { ScheduleHeader } from './src/ScheduleHeader';
 import { ScheduleHeader } from './src/ScheduleHeader';
 import { Day } from './Day';
+import { NewGameModal } from './src/NewGameModal';
+import { DeleteGameModal } from './src/DeleteGameModal';
+import { DateHooks } from './DateHooks';
 
 export const App= () => {
     const [nav, setNav]= useState(0);
     const [clicked, setClicked]= useState();
-    const [displayDate, setDisplayDate]= useState('');
-    const [days, setDays]= useState();
     const [games, setGames]= useState(
         localStorage.getItem('games') ? 
         JSON.parse(localStorage.getItem('games')) : []);
@@ -18,60 +19,16 @@ export const App= () => {
         localStorage.setItem('games', JSON.stringify(games));
     }, [games]);
 
-    useEffect(() => {
-        const weekdays= ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        const dt= new Date();
-        if (nav!== 0)
-            dt.setMonth(new Date().getMonth()+nav);
-        
-        const day= dt.getDate();
-        const month= dt.getMonth();
-        const year= dt.getFullYear();
-
-        const firstDayofMonth= new Date(year, month, 1);
-        const daysInMonth= new Date(year, month+1, 0).getDate();
-
-        const dateString= firstDayofMonth.toLocaleDateString('en-us', {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'numeric',
-            day: 'numeric'
-        });
-
-        setDisplayDate(`${dt.toLocaleDateString('en-us', { month: 'long' })} ${year}`);
-        const paddingDays= weekdays.indexOf(dateString.split(', ')[0]);
-        const daysArray= [];
-
-        for (let i=1; i<=paddingDays+daysInMonth; i++)
-        {
-            const dayString= `${month+1}/${i-paddingDays}/${year}`; 
-
-            if (i>paddingDays)
-            {
-                daysArray.push({
-                    value: i-paddingDays,
-                    game: gameForDate(dayString),
-                    isCurrentDay: i-paddingDays=== day && nav=== 0,
-                    date: dayString,
-                });
-            }
-        
-            else
-            {   
-                daysArray.push({
-                    value: 'padding',
-                    game: gameForDate(dayString),
-                    isCurrentDay: false,
-                    date: "",
-                });
-            }
-        }
-        setDays(daysArray);
-    }, [games, nav]);
+    const {days, displayDate}= DateHooks(games, nav);
 
     return (
+        <>
         <div id="container">
-            <ScheduleHeader />
+            <ScheduleHeader 
+                displayDate= {displayDate}
+                nextNav= {() => setNav(nav+1)}
+                previousNav= {() => setNav(nav-1)}
+            />
               
 
             <div id="weekdays">
@@ -90,12 +47,36 @@ export const App= () => {
                         key= {index}
                         day= {d}
                         onClick= {() => {
-                            if (day.value!== 'padding')
-                              setClicked(day.date);  
+                            if (d.value!== 'padding')
+                              setClicked(d.date);  
                         }}
                     />
                 ))}
             </div>
         </div>
+        
+        {
+            clicked && !gameForDate(clicked) &&
+            <NewGameModal
+                closing= {() => setClicked(null)}
+                saving= {title => {
+                    setGames([...games, {title, date: clicked}]);
+                    setClicked(null);
+                }}
+            />
+        }
+
+        {
+            clicked && gameForDate(clicked) &&
+            <DeleteGameModal 
+                gameText= {gameForDate(clicked).title}
+                closing= {() => setClicked(null)}
+                deleting= {() => {
+                    setGames(games.filter(g => g.date !== clicked));
+                    setClicked(null);
+                }}
+            />
+        }
+        </>
     );
 };
