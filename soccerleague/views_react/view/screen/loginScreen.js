@@ -3,7 +3,9 @@ import { Text, TouchableOpacity, View } from "react-native";
 import FormStyle from "../Form.style";
 import Header from "../component/header";
 import FormField from "../component/formField";
+import PasswordFormField from "../component/passwordForm";
 import axios from "axios";
+import { response } from "express";
 const QueryString = require('query-string');
 
 const baseUrl = "http://10.0.2.2:3000";
@@ -29,6 +31,7 @@ export default function LoginScreen({navigation}){
         }
 
         // evaluate which screen to display here 
+        
         navigation.navigate('AdminHome');
     }
 
@@ -37,7 +40,7 @@ export default function LoginScreen({navigation}){
 
         <View style={FormStyle.groupView}>
             <FormField label={"Email: "} setFunction={setEmail}/>
-            <FormField label={"Password: "} setFunction={setPassword}/>
+            <PasswordFormField setFunction={setPassword}/>
 
             <TouchableOpacity style={FormStyle.formButton} 
                  onPress={()=> handleSubmit(email,password)}>

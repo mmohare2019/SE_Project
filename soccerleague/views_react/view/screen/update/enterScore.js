@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
-import MainStyle from "../MainStyle.style";
-import FormStyle from "../Form.style";
+import MainStyle from "../../MainStyle.style";
+import FormStyle from "../../Form.style";
 import axios from "axios";
 
 const baseUrl = "http://10.0.2.2:3000";
@@ -14,7 +14,7 @@ export default function enterScore()
 
   }
 
-
+}
   class Counter extends React.Component {
       state = { count: 0 };
       increment = () => this.setState({count: this.state.count + 1});

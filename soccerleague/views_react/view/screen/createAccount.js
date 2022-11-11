@@ -3,6 +3,7 @@ import { ScrollView, Text, TouchableOpacity } from "react-native";
 import FormStyle from "../Form.style";
 import Header from "../component/header";
 import FormField from "../component/formField";
+import PasswordFormField from "../component/passwordForm";
 //import SelectDropdown from "react-native-select-dropdown";
 import axios from "axios";
 const QueryString = require('query-string');
@@ -47,8 +48,9 @@ export default function CreateAccount({navigation}) {
          <FormField label={"Last name: "} setFunction={setLastName} />
          <FormField label={"Role (Admin, Player, Parent, Coach): "} setFunction={setAccountType}/>
          <FormField label={"Email: "} setFunction={setEmail}/>
-         <FormField label={"Password: " } setFunction={setPassword}/>
-
+         <PasswordFormField setFunction={setPassword}/>
+         
+         
          <TouchableOpacity style={FormStyle.formButton} 
                onPress={()=> handleSubmit(first_name, last_name, account_type, email, password)}>
             <Text style={FormStyle.formButtonText}> Submit </Text>
