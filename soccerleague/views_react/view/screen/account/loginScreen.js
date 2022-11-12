@@ -32,11 +32,11 @@ export default function LoginScreen({navigation}){
 
         // evaluate which screen to display here 
         
-        navigation.navigate('AdminHome');
+        navigation.navigate('CoachHome');
     }
 
     return (<>
-        <Header text={"Sign in"}/>
+        <Header label={"Sign in"}/>
 
         <View style={FormStyle.groupView}>
             <FormField label={"Email: "} setFunction={setEmail}/>

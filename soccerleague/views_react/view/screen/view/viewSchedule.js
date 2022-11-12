@@ -1,3 +1,5 @@
+/*
+
 import React from "react";
 import Header from "../../component/header";
 import {View} from "react-native";
@@ -161,3 +163,4 @@ function inCalendarButtons()
 
 inCalendarButtons();
 loadCalendar();
+*/

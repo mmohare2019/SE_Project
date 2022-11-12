@@ -26,12 +26,12 @@ export default function AdminHome({navigation}) {
   }
 
   return ( <>
-    <Header text={"Admin home"}/>
+    <Header label={"Admin home"}/>
 
     <View>
-      <CustomButton text={"View schedule"} onPress={onViewSchedule}/>
-      <CustomButton text={"View standings"} onPress={onViewStandings}/>
-      <CustomButton text={"View playoff schedule"} onPress={onViewPlayoff}/>
+      <CustomButton label={"View schedule"} onPress={onViewSchedule}/>
+      <CustomButton label={"View standings"} onPress={onViewStandings}/>
+      <CustomButton label={"View playoff schedule"} onPress={onViewPlayoff}/>
       <LogoutButton onPress={onLogout}/>
     </View>
 

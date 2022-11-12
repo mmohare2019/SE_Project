@@ -41,7 +41,7 @@ export default function CreateAccount({navigation}) {
   }
 
   return (<>
-      <Header text={"Create Account"} />
+      <Header label={"Create Account"} />
      
       <ScrollView style={FormStyle.groupView}>
          <FormField label={"First name: "} setFunction={setFirstName}/>
