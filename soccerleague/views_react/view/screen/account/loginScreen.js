@@ -32,7 +32,7 @@ export default function LoginScreen({navigation}){
 
         // evaluate which screen to display here 
         
-        navigation.navigate('CoachHome');
+        navigation.navigate("CoachHome");
     }
 
     return (<>

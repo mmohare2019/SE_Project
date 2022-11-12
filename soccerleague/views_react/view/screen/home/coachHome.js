@@ -9,7 +9,7 @@ const baseUrl = "http://10.0.2.2:3000";
 
 export default function CoachHome({navigation}) {
   async function onUpdateTeam() {
-    navigation.navigate("CreateTeam");
+    navigation.navigate("UpdateTeamDetails");
   }
 
   async function onAdmitPlayer() { 

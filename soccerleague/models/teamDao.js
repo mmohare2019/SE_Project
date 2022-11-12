@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const TeamSchema = new Schema ({
     team_name : {type: String, required: true, maxLength: 100},
     color : {type: String, required: true, maxLength: 100},
-    //roster : {type: Schema.Types.ObjectId, ref: "Roster"}
+    roster : {type: Schema.Types.ObjectId, ref: "Roster"}
 });
 
 const teamModel = mongoose.model("Team", TeamSchema);
@@ -15,13 +15,12 @@ exports.create = async function(newTeam) {
     return createdTeam;
 }
 
-/*
-exports.findMyTeam = async function(player) {
-    const team = await teamModel.findOne({player: player});
-    return team;
-}
-*/ 
-
 exports.deleteAll = async function() {
     await teamModel.deleteMany(); 
+}
+
+exports.getAll = async function(req, res) {
+    res.status(200);
+    res.send(await rosterModel.readAll());
+    res.end(); 
 }

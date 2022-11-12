@@ -2,14 +2,13 @@ import React from "react";
 import { TouchableOpacity, View, Text } from "react-native";
 import Header from "../../component/header";
 import FormField from "../../component/formField";
-import CustomButton from "../../component/button";
 import FormStyle from "../../Form.style";
 import axios from "axios";
 const QueryString = require('query-string');
 
 const baseUrl = "http://10.0.2.2:3000";
 
-export default function CreateTeam({navigation}) {
+export default function UpdateTeamDetails({navigation}) {
     const [team_name, setTeamName] = React.useState("");
     const [color, setColor] = React.useState("");
 
