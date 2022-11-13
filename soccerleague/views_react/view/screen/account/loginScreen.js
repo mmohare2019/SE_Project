@@ -26,17 +26,32 @@ export default function LoginScreen({navigation}){
                 }
             });
             console.log(response.data);
+
+            if (response.data.account_type === "coach") { 
+                navigation.navigate("CoachHome");
+            }
+
+            else if (response.data.account_type === "admin") {
+                navigation.navigate("AdminHome");
+            }
+
+            else if (response.data.account_type === "parent") {
+                navigation.navigate("ParentHome");
+            }
+
+            else {
+                navigation.navigate("PlayerHome");
+            }
+
+
         } catch (error) {
             console.log(error.message);
         }
 
-        // evaluate which screen to display here 
-        
-        navigation.navigate('AdminHome');
     }
 
     return (<>
-        <Header text={"Sign in"}/>
+        <Header label={"Sign in"}/>
 
         <View style={FormStyle.groupView}>
             <FormField label={"Email: "} setFunction={setEmail}/>

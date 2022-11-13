@@ -1,5 +1,5 @@
-const dbcon = require("../models/dbConnection");
-const admin = require("../models/userDao");
+const dbcon = require("./dbConnection");
+const admin = require("./userDao");
 
 beforeAll(function(){
     dbcon.connect();

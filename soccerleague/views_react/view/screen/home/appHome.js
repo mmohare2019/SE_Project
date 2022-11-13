@@ -24,8 +24,8 @@ export default function AppHome({navigation}) {
         </View>
 
         <View style={HomeStyle.groupView}>
-            <CustomButton text={"Create account"} onPress={onCreateAccount}/>
-            <CustomButton text={"Sign in to account"} onPress={onLoginAccount}/>
+            <CustomButton label={"Create account"} onPress={onCreateAccount}/>
+            <CustomButton label={"Sign in to account"} onPress={onLoginAccount}/>
         </View>
     </>);
 }

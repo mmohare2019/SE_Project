@@ -10,6 +10,10 @@ exports.create_team_post = [
     (req, res, next) => { 
         // Extract validation errors from req
         const errors = validationResult(req);
+        
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array()});
+        }
 
         let newTeam = {};
         newTeam.team_name = req.body.team_name;

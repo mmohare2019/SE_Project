@@ -7,6 +7,6 @@ import renderer from 'react-test-renderer';
 
 test("custom button", function () {
     const component = renderer
-    .create(<CustomButton text={"Hello world"} onPress={()=>1}/>).toJSON();
+    .create(<CustomButton label={"Hello world"} onPress={()=>1}/>).toJSON();
     expect(component).toMatchSnapshot();
 }); 

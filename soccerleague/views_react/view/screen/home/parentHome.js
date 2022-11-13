@@ -32,13 +32,13 @@ export default function ParentHome({navigation}) {
   }
   
   return ( <>
-    <Header text={"Parent Home"}/>
+    <Header label={"Parent Home"}/>
 
     <View>
-      <CustomButton text={"View live game"} onPress={onViewLiveGame}/>
-      <CustomButton text={"View schedule"} onPress={onViewSchedule}/>
-      <CustomButton text={"View standings"} onPress={onViewStandings}/>
-      <CustomButton text={"View playoff schedule"} onPress={onViewPlayoff}/>
+      <CustomButton label={"View live game"} onPress={onViewLiveGame}/>
+      <CustomButton label={"View schedule"} onPress={onViewSchedule}/>
+      <CustomButton label={"View standings"} onPress={onViewStandings}/>
+      <CustomButton label={"View playoff schedule"} onPress={onViewPlayoff}/>
       <LogoutButton onPress={onLogout}/>
     </View>
 

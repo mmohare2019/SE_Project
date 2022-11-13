@@ -35,13 +35,13 @@ export default function PlayerHome({navigation}) {
   }
 
   return ( <>
-    <Header text={"Player Home"}/>
+    <Header label={"Player Home"}/>
 
     <View>
-      <CustomButton text={"Pick team"} onPress={onPickTeam}/>
-      <CustomButton text={"View schedule"} onPress={onViewSchedule}/>
-      <CustomButton text={"View standings"} onPress={onViewSchedule}/>
-      <CustomButton text={"View playoff schedule"} onPress={onViewPlayoff}/>
+      <CustomButton label={"Pick team"} onPress={onPickTeam}/>
+      <CustomButton label={"View schedule"} onPress={onViewSchedule}/>
+      <CustomButton label={"View standings"} onPress={onViewSchedule}/>
+      <CustomButton label={"View playoff schedule"} onPress={onViewPlayoff}/>
       <LogoutButton onPress={onLogout}/>
     </View>
 

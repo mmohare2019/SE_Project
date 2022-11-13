@@ -9,8 +9,8 @@ const baseUrl = "http://10.0.2.2:3000";
 
 export default function CoachHome({navigation}) {
   async function onUpdateTeam() {
+    navigation.navigate("UpdateTeamDetails");
   }
-
 
   async function onAdmitPlayer() { 
   }
@@ -32,14 +32,14 @@ export default function CoachHome({navigation}) {
   }
 
   return ( <>
-    <Header text={"Coach Home"}/>
+    <Header label={"Coach Home"}/>
 
     <ScrollView>
-      <CustomButton text={"Edit team details"} onPress={onUpdateTeam}/>
-      <CustomButton text={"Admit player"} onPress={onAdmitPlayer}/>
-      <CustomButton text={"View schedule"} onPress={onViewSchedule}/>
-      <CustomButton text={"View standings"} onPress={onViewStandings}/>
-      <CustomButton text={"View playoff schedule"} onPress={onViewPlayoff}/>
+      <CustomButton label={"Edit team details"} onPress={onUpdateTeam}/>
+      <CustomButton label={"Admit player"} onPress={onAdmitPlayer}/>
+      <CustomButton label={"View schedule"} onPress={onViewSchedule}/>
+      <CustomButton label={"View standings"} onPress={onViewStandings}/>
+      <CustomButton label={"View playoff schedule"} onPress={onViewPlayoff}/>
       <LogoutButton onPress={onLogout}/>
     </ScrollView>
 

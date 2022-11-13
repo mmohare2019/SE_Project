@@ -19,7 +19,6 @@ exports.create = async function(newRoster) {
     return createdRoster;
 }
 
-// redo?
 exports.updatePlayer = async function(player) {
     const filter = { first_name: "", last_name: ""};
     let newMember = await rosterModel.findOneAndUpdate(filter, player, {
@@ -30,4 +29,10 @@ exports.updatePlayer = async function(player) {
 
 exports.deleteAll = async function() {
     await rosterModel.deleteMany(); 
+}
+
+exports.getAll = async function(req, res) {
+    res.status(200);
+    res.send(await rosterModel.readAll());
+    res.end(); 
 }

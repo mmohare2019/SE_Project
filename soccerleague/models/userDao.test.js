@@ -1,5 +1,5 @@
-const dbcon = require('../models/dbConnection');
-const dao = require('../models/userDao');
+const dbcon = require('./dbConnection');
+const dao = require('./userDao');
 
 beforeAll(function(){
     dbcon.connect();

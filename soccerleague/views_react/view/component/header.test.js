@@ -7,6 +7,6 @@ import renderer from 'react-test-renderer';
 
 test("Testing header component", function () {
     const component = renderer
-    .create(<Header text={"Hello world"} />).toJSON();
+    .create(<Header label={"Hello world"} />).toJSON();
     expect(component).toMatchSnapshot();
 }); 
