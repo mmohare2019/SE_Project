@@ -22,4 +22,4 @@ https://studentsloyola-my.sharepoint.com/:x:/g/personal/mmohare_loyola_edu/EVpmN
 https://docs.google.com/document/d/1rkOuPZZxofVajymdH4bY2jYohjbIFmYCalHjBDfX7Bk/edit?usp=sharing 
 
 ## Package Diagram
-In the main folder called ```soccerleaguepackagediagram.png```
+In a file called ```soccerleaguepackagediagram.png```
