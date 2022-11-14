@@ -25,7 +25,21 @@ class Counter extends React.Component {
       
 return ( <>
   <View style={FormStyle.groupView}>
-      <Text style={MainStyle.emphasisText}> Enter Score: </Text>
+      <Text style={MainStyle.emphasisText}> Enter Team 2 Score: </Text>
+  </View>
+
+  <View style={styles.container}>
+    <TouchableOpacity onPress={this.decrement}>
+      <Text style={styles.text}>-</Text>
+    </TouchableOpacity>
+      <Text style={styles.text}>{this.state.count}</Text>
+    <TouchableOpacity onPress={this.increment}>
+      <Text style={styles.text}>+</Text>
+    </TouchableOpacity>
+  </View>
+
+  <View style={FormStyle.groupView}>
+      <Text style={MainStyle.emphasisText}> Enter Team 1 Score: </Text>
   </View>
 
   <View style={styles.container}>
