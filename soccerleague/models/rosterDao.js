@@ -14,7 +14,7 @@ const RosterSchema = new Schema ({
 const rosterModel = mongoose.model("Roster", RosterSchema);
 
 exports.create = async function(newRoster) {
-    const roster = new teamModel(newRoster);
+    const roster = new rosterModel(newRoster);
     const createdRoster = await roster.save(); 
     return createdRoster;
 }

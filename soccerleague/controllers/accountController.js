@@ -1,5 +1,4 @@
 const User = require("../models/userDao");
-const Roster = require("../models/rosterDao");
 //const passwordUtil = require("../util/PasswordUtil");
 const { body, validationResult } = require("express-validator");
 var async = require("async");
@@ -41,10 +40,10 @@ exports.account_create_post = [
              
         User.create(newUser).then(function (result) {
             res.json(result);
-        });
 
-        // if user is a coach then make a roster 
-        
+        }).catch((error) => {
+            res.status(400).json({error: error.array()});
+        }); 
     },
 ];
 
@@ -74,8 +73,7 @@ exports.signin_post =  [
             //res.redirect("/coach");
         }).catch((error) => {
             res.status(400).json({error: error.array()});
-        });
+        }); 
 
-        
     },
 ];

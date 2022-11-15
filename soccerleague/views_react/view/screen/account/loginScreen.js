@@ -28,6 +28,10 @@ export default function LoginScreen({navigation}){
             console.log(response.data);
 
             if (response.data.account_type === "coach") { 
+                // create roster 
+                const res = await axios.post(`${baseUrl}/roster`, response);
+                console.log(res.data);
+
                 navigation.navigate("CoachHome");
             }
 
