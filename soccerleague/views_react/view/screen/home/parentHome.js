@@ -25,6 +25,7 @@ export default function ParentHome({navigation}) {
 
   // View live game 
   async function onViewLiveGame() {
+    //navigation.navigate('ViewScore');
   }
 
   async function onLogout() {
