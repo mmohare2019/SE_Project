@@ -23,6 +23,19 @@ exports.login = async function(email, pswd) {
   return user;
 }
 
+exports.logout = async function(user)
+{
+    if (request.session.userId) 
+    {
+        delete request.session.userId;
+        response.json({result: 'Logged Out'});
+    } 
+    else 
+    {
+        response.json({result: 'ERROR', message: 'User not found'});
+    }   
+}
+
 exports.deleteAll = async function() {
   await userModel.deleteMany(); 
 }
