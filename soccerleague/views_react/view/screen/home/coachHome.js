@@ -7,7 +7,9 @@ import axios from "axios";
 
 const baseUrl = "http://10.0.2.2:3000";
 
-export default function CoachHome({navigation}, user) {
+export default function CoachHome({navigation}) {
+  //console.log(user);
+
   async function onUpdateTeam() {
     navigation.navigate("UpdateTeamDetails");
   }

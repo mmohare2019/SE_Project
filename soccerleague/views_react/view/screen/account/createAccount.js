@@ -41,7 +41,6 @@ export default function CreateAccount({navigation}) {
             } catch (error) {
                console.log(error.message);
             }
-         
          }
 
       } catch (error) {
@@ -49,7 +48,6 @@ export default function CreateAccount({navigation}) {
       }
 
       navigation.navigate('LoginScreen');
-
   }
 
   return (<>

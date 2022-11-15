@@ -23,8 +23,10 @@ exports.deleteAll = async function() {
     await rosterModel.deleteMany(); 
 }
 
+/*
 exports.getAll = async function(req, res) {
     res.status(200);
     res.send(await rosterModel.readAll());
     res.end(); 
 }
+*/

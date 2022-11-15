@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for soccerleague/models/teamDao.js</title>
+    <title>Code coverage report for soccerleague/controllers/teamController.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">soccerleague/models</a> teamDao.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">soccerleague/controllers</a> teamController.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">78.57% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/14</span>
+                <span class='fraction'>4/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/3</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">78.57% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>11/14</span>
+                <span class='fraction'>4/12</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -88,57 +88,60 @@
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const mongoose = require("mongoose");
-const Schema = mongoose.Schema; 
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const Team = require("../models/teamDao");
+const { body, validationResult } = require("express-validator");
+var async = require("async");
 &nbsp;
-const TeamSchema = new Schema ({
-    team_name : {type: String, required: true, maxLength: 100},
-    color : {type: String, required: true, maxLength: 100},
-    roster : {type: Schema.Types.ObjectId, ref: "Roster"}
-});
+// coach sets name and team colors 
+exports.create_team_post = [
+    body("team_name", "Team name required").trim().isLength({min: 1}).escape(),
+    body("color", "Color required").trim().isLength({min: 1}).escape(),
 &nbsp;
-const teamModel = mongoose.model("Team", TeamSchema);
+<span class="fstat-no" title="function not covered" >    (r</span>eq, res, next) =&gt; { 
+        // Extract validation errors from req
+        const errors = <span class="cstat-no" title="statement not covered" >validationResult(req);</span>
+        
+<span class="cstat-no" title="statement not covered" >        if (!errors.isEmpty()) {</span>
+<span class="cstat-no" title="statement not covered" >            return res.status(400).json({ errors: errors.array()});</span>
+        }
 &nbsp;
-exports.create = async function(newTeam) {
-    const team = new teamModel(newTeam);
-    const createdTeam = await team.save(); 
-    return createdTeam;
-}
+        let newTeam = <span class="cstat-no" title="statement not covered" >{};</span>
+<span class="cstat-no" title="statement not covered" >        newTeam.team_name = req.body.team_name;</span>
+<span class="cstat-no" title="statement not covered" >        newTeam.color = req.body.color;</span>
 &nbsp;
-exports.deleteAll = async function() {
-    await teamModel.deleteMany(); 
-}
+<span class="cstat-no" title="statement not covered" >        Team.create(newTeam).then(<span class="fstat-no" title="function not covered" >fu</span>nction(result) {</span>
+<span class="cstat-no" title="statement not covered" >            res.json(result);</span>
+        });
 &nbsp;
-exports.getAll = <span class="fstat-no" title="function not covered" >as</span>ync function(req, res) {
-<span class="cstat-no" title="statement not covered" >    res.status(200);</span>
-<span class="cstat-no" title="statement not covered" >    res.send(await rosterModel.readAll());</span>
-<span class="cstat-no" title="statement not covered" >    res.end(); </span>
-}</pre></td></tr></table></pre>
+    },
+];</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->

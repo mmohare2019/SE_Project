@@ -28,7 +28,7 @@ export default function LoginScreen({navigation}){
             console.log(response.data);
 
             if (response.data.account_type === "coach") { 
-                navigation.navigate("CoachHome", response);
+                navigation.navigate("CoachHome");
             }
 
             else if (response.data.account_type === "admin") {
