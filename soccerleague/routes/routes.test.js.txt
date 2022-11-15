@@ -1,0 +1,6 @@
+const request = require('supertest');
+const app = require('../app');
+
+import { test, expect } from "@jest/globals";
+
+test("Testing other things first", expect(1).toBe(1));

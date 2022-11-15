@@ -14,25 +14,19 @@ const RosterSchema = new Schema ({
 const rosterModel = mongoose.model("Roster", RosterSchema);
 
 exports.create = async function(newRoster) {
-    const roster = new teamModel(newRoster);
+    const roster = new rosterModel(newRoster);
     const createdRoster = await roster.save(); 
     return createdRoster;
-}
-
-exports.updatePlayer = async function(player) {
-    const filter = { first_name: "", last_name: ""};
-    let newMember = await rosterModel.findOneAndUpdate(filter, player, {
-        new: true
-    });
-    return newMember;
 }
 
 exports.deleteAll = async function() {
     await rosterModel.deleteMany(); 
 }
 
+/*
 exports.getAll = async function(req, res) {
     res.status(200);
     res.send(await rosterModel.readAll());
     res.end(); 
 }
+*/
