@@ -6,6 +6,7 @@ import FormField from "../../component/formField";
 import PasswordFormField from "../../component/passwordForm";
 //import SelectDropdown from "react-native-select-dropdown";
 import axios from "axios";
+import { response } from "express";
 const QueryString = require('query-string');
 
 const baseUrl = "http://10.0.2.2:3000";
@@ -32,10 +33,21 @@ export default function CreateAccount({navigation}) {
         });
         console.log(response.data);
 
+        // Set up roster for coach 
+        if (response.data.account_type === "coach") {
+            try {
+               const res = await axios.post(`${baseUrl}/roster`, response.data);
+               console.log(res.data);
+            } catch (error) {
+               console.log(error.message);
+            }
+         
+         }
+
       } catch (error) {
           console.log(error.message);
       }
-      
+
       navigation.navigate('LoginScreen');
 
   }
