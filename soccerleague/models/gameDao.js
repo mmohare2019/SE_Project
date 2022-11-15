@@ -1,10 +1,14 @@
 const mongoose = require("mongoose");
+const validateInteger = require('mongoose-integer');
 const Schema = mongoose.Schema; 
 
 const GameSchema = new Schema ({
-    team1 : {type: Schema.Types.ObjectId, ref: "TeamSchema"}
-    team2 : {type: Schema.Types.ObjectId, ref: "TeamSchema"}
+    team1 : {type: Schema.Types.ObjectId, ref: "TeamSchema"},
+    team1_score : {type: Number, required: true},
+    team2 : {type: Schema.Types.ObjectId, ref: "TeamSchema"},
+    team2_score : {type: Number, required: true}
 });
+QuestionSchema.plugin(validateInteger);
 
 const gameModel = mongoose.model("Game", GameSchema);
 
