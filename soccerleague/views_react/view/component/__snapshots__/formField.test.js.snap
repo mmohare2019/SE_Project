@@ -39,6 +39,7 @@ exports[`Testing form field 1`] = `
     }
   >
      
+    Hello world
      
   </Text>
 </View>
