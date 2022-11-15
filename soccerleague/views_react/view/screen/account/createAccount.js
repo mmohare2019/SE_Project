@@ -11,6 +11,32 @@ const QueryString = require('query-string');
 
 const baseUrl = "http://10.0.2.2:3000";
 
+
+async function makeRoster(user) {
+   try {
+      const response = await axios.post(`${baseUrl}/roster`, user.data);
+      console.log("Roster created with coach");
+      console.log(response.data);
+      
+      return response;
+
+   } catch (error) {
+      console.log("Problem with creating roster", error.message);
+   }
+}
+
+async function makeTeam(roster) {
+   try {
+      const response = await axios.post(`${baseUrl}/team/initialize`, roster.data);
+      console.log("Team created with coach");
+      console.log(response.data);
+      return response;
+   } catch (error) {
+      console.log("Problem with creating team", error.message);
+   }
+
+}
+
 export default function CreateAccount({navigation}) {
    const [first_name, setFirstName] = React.useState("");
    const [last_name, setLastName] = React.useState("");
@@ -31,20 +57,22 @@ export default function CreateAccount({navigation}) {
                 'Content-Type': 'application/x-www-form-urlencoded',
             }
         });
+        console.log("Account created");
         console.log(response.data);
 
         // Set up roster for coach 
         if (response.data.account_type === "coach") {
-            try {
-               const res = await axios.post(`${baseUrl}/roster`, response.data);
-               console.log(res.data);
-            } catch (error) {
-               console.log(error.message);
-            }
+            const res = await makeRoster(response);
+            console.log("Roster");
+            console.log(res.data);
+
+            const resp = await makeTeam(res);
+            console.log("Team");
+            console.log(resp.data);
          }
 
       } catch (error) {
-          console.log(error.message);
+          console.log("Problem creating account", error.message);
       }
 
       navigation.navigate('LoginScreen');

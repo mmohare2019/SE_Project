@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema; 
 
 const TeamSchema = new Schema ({
-    team_name : {type: String, required: true, maxLength: 100},
-    color : {type: String, required: true, maxLength: 100},
+    team_name : {type: String, maxLength: 100},
+    color : {type: String, maxLength: 100},
     roster : {type: Schema.Types.ObjectId, ref: "Roster"}
 });
 
