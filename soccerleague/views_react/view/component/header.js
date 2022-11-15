@@ -6,11 +6,11 @@ import MainStyle from "../MainStyle.style";
 const logo = require("./../../static/greenville_soccer.png");
 
 // Displays the logo and name of the page 
-export default function Header({text}) {
+export default function Header({label}) {
     return (
         <View style={FormStyle.container}>
         <Image style={FormStyle.logo} source={logo}/>
-        <Text style={MainStyle.emphasisText}> {text} </Text>
+        <Text style={MainStyle.emphasisText}> {label} </Text>
       </View>
     )
 }

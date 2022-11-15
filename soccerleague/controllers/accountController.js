@@ -3,9 +3,11 @@ const User = require("../models/userDao");
 const { body, validationResult } = require("express-validator");
 var async = require("async");
 
+/*
 exports.account_create_get = (req, res, next) => {
     res.render("account", {title: "Create account"}); 
 };
+*/
 
 exports.account_create_post = [
     // Validate and clean the fields 
@@ -35,18 +37,21 @@ exports.account_create_post = [
             password: req.body.password,
             email: req.body.email
         };
-    
-        ;
              
         User.create(newUser).then(function (result) {
             res.json(result);
-        });
+
+        }).catch((error) => {
+            res.status(400).json({error: error.array()});
+        }); 
     },
 ];
 
+/*
 exports.signin_get = (req, res)  => {
     res.render("signin", { title: "Sign into account"});
 };
+*/
 
 exports.signin_post =  [
     // Validate and clean fields 
@@ -65,7 +70,10 @@ exports.signin_post =  [
         // Check credentials 
         User.login(req.body.email, req.body.password).then(function (result) {
             res.json(result);
-        });
+            //res.redirect("/coach");
+        }).catch((error) => {
+            res.status(400).json({error: error.array()});
+        }); 
 
     },
 ];
