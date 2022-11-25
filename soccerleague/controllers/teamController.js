@@ -2,6 +2,7 @@ const Team = require("../models/teamDao");
 const { body, validationResult } = require("express-validator");
 var async = require("async");
 
+// Initialize a team with a coach 
 exports.initialize_team_post = (req, res, next) => {
     const errors = validationResult(req);
         
@@ -10,7 +11,7 @@ exports.initialize_team_post = (req, res, next) => {
     }
 
     let newTeam = {
-        roster: req.body._id
+        coach: req.body._id
     };
 
     Team.create(newTeam).then(function (result) {
@@ -22,7 +23,7 @@ exports.initialize_team_post = (req, res, next) => {
 }
 
 // coach sets name and team colors 
-exports.create_team_post = [
+exports.update_team_details_post = [
     body("team_name", "Team name required").trim().isLength({min: 1}).escape(),
     body("color", "Color required").trim().isLength({min: 1}).escape(),
 

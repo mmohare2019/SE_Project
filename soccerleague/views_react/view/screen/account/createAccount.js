@@ -11,23 +11,9 @@ const QueryString = require('query-string');
 
 const baseUrl = "http://10.0.2.2:3000";
 
-
-async function makeRoster(user) {
+async function makeTeam(coach) {
    try {
-      const response = await axios.post(`${baseUrl}/roster`, user.data);
-      console.log("Roster created with coach");
-      console.log(response.data);
-      
-      return response;
-
-   } catch (error) {
-      console.log("Problem with creating roster", error.message);
-   }
-}
-
-async function makeTeam(roster) {
-   try {
-      const response = await axios.post(`${baseUrl}/team/initialize`, roster.data);
+      const response = await axios.post(`${baseUrl}/team/initialize`, coach.data);
       console.log("Team created with coach");
       console.log(response.data);
       return response;
@@ -62,11 +48,7 @@ export default function CreateAccount({navigation}) {
 
         // Set up roster for coach 
         if (response.data.account_type === "coach") {
-            const res = await makeRoster(response);
-            console.log("Roster");
-            console.log(res.data);
-
-            const resp = await makeTeam(res);
+            const resp = await makeTeam(response);
             console.log("Team");
             console.log(resp.data);
          }

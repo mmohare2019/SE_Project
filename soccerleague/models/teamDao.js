@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const TeamSchema = new Schema ({
     team_name : {type: String, maxLength: 100},
     color : {type: String, maxLength: 100},
+    coach : {type: Schema.Types.ObjectId, ref: "User"},
     roster : {type: Schema.Types.ObjectId, ref: "Roster"}
 });
 

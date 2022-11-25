@@ -15,7 +15,7 @@ export default function UpdateTeamDetails({navigation}) {
 
     async function handleSubmit(team_name, color){
         try {
-           const response = await axios.post(`${baseUrl}/team`, QueryString.stringify ({
+           const response = await axios.post(`${baseUrl}/team/update`, QueryString.stringify ({
                 team_name: team_name,
                 color: color
           }), {
