@@ -25,10 +25,13 @@ export default function LoginScreen({navigation}){
                     'Content-Type': 'application/x-www-form-urlencoded',
                 }
             });
+            console.log("Signed into the following account:")
             console.log(response.data);
 
             if (response.data.account_type === "coach") { 
-                navigation.navigate("CoachHome");
+                navigation.navigate("CoachHome", {
+                    coach: response.data
+                });
             }
 
             else if (response.data.account_type === "admin") {

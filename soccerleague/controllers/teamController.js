@@ -27,7 +27,7 @@ exports.update_team_details_post = [
     body("team_name", "Team name required").trim().isLength({min: 1}).escape(),
     body("color", "Color required").trim().isLength({min: 1}).escape(),
 
-    (req, res, next) => { 
+    (req, res) => { 
         // Extract validation errors from req
         const errors = validationResult(req);
         
@@ -35,6 +35,15 @@ exports.update_team_details_post = [
             return res.status(400).json({ errors: errors.array()});
         }
 
+        Team.find(req.body.coach).then(function (result) {
+            res.json(result);
+        }).catch((error) => {
+            res.status(400).json({error: error});
+        });
+       
+        
+
+        /*
         let newTeam = {};
         newTeam.team_name = req.body.team_name;
         newTeam.color = req.body.color;
@@ -42,6 +51,8 @@ exports.update_team_details_post = [
         Team.create(newTeam).then(function(result) {
             res.json(result);
         });
+        */
 
+        
     },
 ];

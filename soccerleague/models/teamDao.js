@@ -16,6 +16,11 @@ exports.create = async function(newTeam) {
     return createdTeam;
 }
 
+exports.find = async function(coach) {
+    let team = await teamModel.findOne({coach: coach._id});
+    return team;
+}
+
 exports.deleteAll = async function() {
     await teamModel.deleteMany(); 
 }
