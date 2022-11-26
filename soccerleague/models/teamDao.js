@@ -17,6 +17,7 @@ exports.create = async function(newTeam) {
 }
 
 exports.find = async function(coach) {
+    console.log("what is being queried", coach);
     let team = await teamModel.findOne({coach: coach});
     return team;
 }

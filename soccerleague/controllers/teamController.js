@@ -35,14 +35,16 @@ exports.update_team_details_post = [
             return res.status(400).json({ errors: errors.array()});
         }
 
+        console.log("Controller");
+        console.log(req.body.coach);
+
         Team.find(req.body.coach).then(function (result) {
             res.json(result);
-        });
-        /*
-        .catch((error) => {
+
+        }).catch((error) => {
             res.status(400).json({error: error});
         });
-       */
+    
         
 
         /*

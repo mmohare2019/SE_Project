@@ -13,13 +13,13 @@ export default function UpdateTeamDetails({navigation, route}) {
     const [team_name, setTeamName] = React.useState("");
     const [color, setColor] = React.useState("");
 
-    const coach = route.params;
-    //console.log("Coach in update\t", coach);
+    const coach = route.params.coach;
+    console.log("Coach in update\t", coach);
 
     async function handleSubmit(team_name, color){
         try {
            const response = await axios.post(`${baseUrl}/team/update`, QueryString.stringify ({
-                //coach: coach,
+                coach: coach,
                 team_name: team_name,
                 color: color
           }), {
