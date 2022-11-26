@@ -10,12 +10,9 @@ const baseUrl = "http://10.0.2.2:3000";
 export default function CoachHome({navigation, route}) {
 
   async function onUpdateTeam() {
-    //console.log("Route params\t", route.params);
-    //console.log("Route params text\t", route.params.text);
     const coach = route.params;
     console.log("Coach in home\t", coach);
-    navigation.navigate("UpdateTeamDetails", {coach: coach});
-    
+    navigation.navigate("UpdateTeamDetails", {coach: coach}); 
   }
 
   async function onAdmitPlayer() { 

@@ -30,7 +30,7 @@ export default function LoginScreen({navigation}){
 
             if (response.data.account_type === "coach") { 
                 navigation.navigate("CoachHome", {
-                    coach: response.data
+                    coach: response.data._id
                 });
             }
 

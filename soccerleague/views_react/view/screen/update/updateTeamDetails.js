@@ -13,8 +13,6 @@ export default function UpdateTeamDetails({navigation, route}) {
     const [team_name, setTeamName] = React.useState("");
     const [color, setColor] = React.useState("");
 
-    //console.log("1. Route\t", route);
-    //console.log("2. route params\t", route.params);
     const coach = route.params;
 
     async function handleSubmit(team_name, color){
