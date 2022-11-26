@@ -12,7 +12,7 @@ export default function CoachHome({navigation, route}) {
   async function onUpdateTeam() {
     const coach = route.params;
     console.log("Coach in home\t", coach);
-    navigation.navigate("UpdateTeamDetails", {coach: coach}); 
+    navigation.navigate("UpdateTeamDetails", coach); 
   }
 
   async function onAdmitPlayer() { 
