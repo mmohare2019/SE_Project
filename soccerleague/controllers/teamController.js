@@ -37,10 +37,12 @@ exports.update_team_details_post = [
 
         Team.find(req.body.coach).then(function (result) {
             res.json(result);
-        }).catch((error) => {
+        });
+        /*
+        .catch((error) => {
             res.status(400).json({error: error});
         });
-       
+       */
         
 
         /*
