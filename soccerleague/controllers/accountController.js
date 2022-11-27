@@ -3,12 +3,6 @@ const User = require("../models/userDao");
 const { body, validationResult } = require("express-validator");
 var async = require("async");
 
-/*
-exports.account_create_get = (req, res, next) => {
-    res.render("account", {title: "Create account"}); 
-};
-*/
-
 exports.account_create_post = [
     // Validate and clean the fields 
     body("first_name", "First name required").trim().isLength({min: 1}).escape(),
@@ -46,12 +40,6 @@ exports.account_create_post = [
         }); 
     },
 ];
-
-/*
-exports.signin_get = (req, res)  => {
-    res.render("signin", { title: "Sign into account"});
-};
-*/
 
 exports.signin_post =  [
     // Validate and clean fields 

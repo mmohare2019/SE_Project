@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema; 
 
 const RosterSchema = new Schema ({
-    coach :   {type: Schema.Types.ObjectId, ref: "User"},
     player1 : {type: Schema.Types.ObjectId, ref: "User"},
     player2 : {type: Schema.Types.ObjectId, ref: "User"},
     player3 : {type: Schema.Types.ObjectId, ref: "User"},
