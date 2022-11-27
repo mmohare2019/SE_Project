@@ -16,10 +16,16 @@ exports.create = async function(newTeam) {
     return createdTeam;
 }
 
+// Find team based on coach ID
 exports.find = async function(coach) {
-    console.log("what is being queried", coach);
     let team = await teamModel.findOne({coach: coach});
     return team;
+}
+
+// Find team based on coach ID and update team details 
+exports.findAndUpdate = async function(coach, update) {
+    let team = await teamModel.findOneAndUpdate({coach: coach}, update);
+    return team; 
 }
 
 exports.deleteAll = async function() {
