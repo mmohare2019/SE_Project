@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { TouchableOpacity, View, Text, Alert, SafeAreaView, FlatList } from "react-native";
+import { TouchableOpacity, View, Text, SafeAreaView, FlatList } from "react-native";
 import Header from "../../component/header";
 import FormStyle from "../../Form.style";
 import FlatlistStyle from "../../Flatlist.style";
@@ -8,23 +8,23 @@ const QueryString = require('query-string');
 
 const baseUrl = "http://10.0.2.2:3000";
 
-  const TEAMS = [
-    {
-      _id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      team_name: 'Team 1',
-      color: 'blue',
-    },
-    {
-      _id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      team_name: 'Team 2 ',
-      color: 'yellow',
-    },
-    {
-      _id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      team_name: 'Team 3',
-      color: 'red',
-    },
-  ];
+const TEAMS = [
+  {
+    _id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    team_name: 'Team 1',
+    color: 'blue',
+  },
+  {
+    _id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    team_name: 'Team 2',
+    color: 'yellow',
+  },
+  {
+    _id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    team_name: 'Team 3',
+    color: 'red',
+  },
+];
 
 const Item = ({ team_name, color }) => (
     <View style={FlatlistStyle.item}>
@@ -33,8 +33,11 @@ const Item = ({ team_name, color }) => (
     </View>
 );
   
+var team;
 
 export default function PickTeam({navigation, route}) {
+  const [team_list, setTeamList] = React.useState([]); 
+
     //var teams;
     /*
     (async () => {
@@ -57,39 +60,44 @@ export default function PickTeam({navigation, route}) {
     }
     */
 
-    axios.get(`${baseUrl}/team/display`).then((response) => {
-        const MY_TEAMS = response.data;
-        console.log("in axios", MY_TEAMS);
-    })
-    .catch(error=> console.error(`Error: ${error}`));
+  function setData(data) {
+    setTeamList(data); 
+  }
 
-    //console.log(MY_TEAMS);
 
-    //console.log("my teams", MY_TEAMS);
-    const renderItem = ({ item }) => (
-        <Item team_name={item.team_name} color={item.color}/>
-    );
+  axios.get(`${baseUrl}/team/display`).then((response) => {
+    const MY_TEAMS = response.data;
+    setData(MY_TEAMS);
+    console.log("in axios", MY_TEAMS);
+  })
+  .catch(error=> console.error(`Error: ${error}`));
+
+  //console.log(MY_TEAMS);
+
+  //console.log("my teams", MY_TEAMS);
+  const renderItem = ({ item }) => (
+    <Item team_name={item.team_name} color={item.color}/>
+  );
     
-    async function handleSubmit() {
-        navigation.navigate('PlayerHome');
-    }
+  async function handleSubmit() {
+    navigation.navigate('PlayerHome');
+  }
 
+  return (<>
+    <Header label="Pick a team to join"/>
 
-    return (<>
-        <Header label="Pick a team to join"/>
+    <SafeAreaView style={FlatlistStyle.container}>
+      <FlatList
+        data={team_list}
+        renderItem={renderItem}
+        keyExtractor={item => item._id}cd 
+      />
+    </SafeAreaView>        
 
-        <SafeAreaView style={FlatlistStyle.container}>
-        <FlatList
-            data={TEAMS}
-            renderItem={renderItem}
-            keyExtractor={item => item._id}
-        />
-        </SafeAreaView>        
-
-        <TouchableOpacity style={FormStyle.formButton} 
-            onPress={()=> handleSubmit()}>
-            <Text style={FormStyle.formButtonText}> Submit </Text>
-        </TouchableOpacity>
-    </>)
+    <TouchableOpacity style={FormStyle.formButton} 
+      onPress={()=> handleSubmit()}>
+      <Text style={FormStyle.formButtonText}> Submit </Text>
+    </TouchableOpacity>
+  </>)
     
 }
