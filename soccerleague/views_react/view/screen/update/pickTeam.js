@@ -1,44 +1,26 @@
 import React, { Fragment } from "react";
 import { TouchableOpacity, View, Text, Alert, SafeAreaView, FlatList } from "react-native";
 import Header from "../../component/header";
-import FormField from "../../component/formField";
 import FormStyle from "../../Form.style";
 import FlatlistStyle from "../../Flatlist.style";
 import axios from "axios";
-import { response } from "express";
-import { get } from "mongoose";
-import { timeout } from "async";
 const QueryString = require('query-string');
 
 const baseUrl = "http://10.0.2.2:3000";
 
-async function getTeams() {
-    try {
-        const response = await axios.get(`${baseUrl}/team/display`);
-        console.log(typeof response);
-        console.log("in try\t", response.data); 
-
-        return response.data;
-
-    } catch (error) {
-            console.log(error.message);
-    }
-}
-
-
-const DATA = [
+  const TEAMS = [
     {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+      _id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
       team_name: 'Team 1',
       color: 'blue',
     },
     {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+      _id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
       team_name: 'Team 2 ',
       color: 'yellow',
     },
     {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      _id: '58694a0f-3da1-471f-bd96-145571e29d72',
       team_name: 'Team 3',
       color: 'red',
     },
@@ -53,12 +35,37 @@ const Item = ({ team_name, color }) => (
   
 
 export default function PickTeam({navigation, route}) {
-    let teams;
+    //var teams;
+    /*
     (async () => {
-        teams = await getTeams();
-        console.log("waiting..", teams);
+        const TEAMS = await getTeams();
+        console.log("waiting..", TEAMS);
     })()
+    */
+   /*
+    async function getTeams() {
+        try {
+            const response = await axios.get(`${baseUrl}/team/display`);
+            console.log(typeof response);
+            console.log("in try\t", response.data); 
+    
+            return response.data;
+    
+        } catch (error) {
+                console.log(error.message);
+        }
+    }
+    */
 
+    axios.get(`${baseUrl}/team/display`).then((response) => {
+        const MY_TEAMS = response.data;
+        console.log("in axios", MY_TEAMS);
+    })
+    .catch(error=> console.error(`Error: ${error}`));
+
+    //console.log(MY_TEAMS);
+
+    //console.log("my teams", MY_TEAMS);
     const renderItem = ({ item }) => (
         <Item team_name={item.team_name} color={item.color}/>
     );
@@ -67,14 +74,15 @@ export default function PickTeam({navigation, route}) {
         navigation.navigate('PlayerHome');
     }
 
+
     return (<>
         <Header label="Pick a team to join"/>
 
         <SafeAreaView style={FlatlistStyle.container}>
         <FlatList
-            data={DATA}
+            data={TEAMS}
             renderItem={renderItem}
-            keyExtractor={item => item.id}
+            keyExtractor={item => item._id}
         />
         </SafeAreaView>        
 
