@@ -19,15 +19,10 @@ const TeamDetails = ({ team_name, color }) => (
 export default function PickTeam({navigation, route}) {
   const [team_list, setTeamList] = React.useState([]); 
 
-  function setData(data) {
-    setTeamList(data); 
-  }
-  
   React.useEffect(() => {
     axios.get(`${baseUrl}/team/display`).then((response) => {
-      const MY_TEAMS = response.data;
-      setData(MY_TEAMS);
-      console.log("in axios", MY_TEAMS);
+      setTeamList(response.data);
+      console.log("in axios", response.data);
     })
     .catch(error=> console.error(`Error: ${error}`));
   }, []);
@@ -48,7 +43,7 @@ export default function PickTeam({navigation, route}) {
       <FlatList
         data={team_list}
         renderItem={renderItem}
-        keyExtractor={item => item._id}cd 
+        keyExtractor={item => item._id}
       />
     </SafeAreaView>        
 
