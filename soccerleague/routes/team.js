@@ -13,6 +13,6 @@ router.post("/initialize", team_controller.initialize_team_post);
 router.get("/display", team_controller.display_team_get);
 
 // add player request 
-router.get("/add", team_controller.add_player_post);
+router.post("/add", team_controller.add_player_post);
 
 module.exports = router;

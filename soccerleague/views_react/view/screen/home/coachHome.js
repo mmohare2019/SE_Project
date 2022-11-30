@@ -8,10 +8,10 @@ import axios from "axios";
 const baseUrl = "http://10.0.2.2:3000";
 
 export default function CoachHome({navigation, route}) {
+  const coach = route.params;
+  console.log("current coach logged in is", coach);
 
   async function onUpdateTeam() {
-    const coach = route.params;
-    console.log("Coach in home\t", coach);
     navigation.navigate("UpdateTeamDetails", coach); 
   }
 

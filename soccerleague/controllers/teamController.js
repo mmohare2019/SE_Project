@@ -73,7 +73,8 @@ exports.add_player_post = (req, res, next) => {
     }
 
     let team = req.body.team;
+    let player = req.body.player
+    console.log("player in the controller", req.body.player);
 
-    res.send(team);
-    //console.log("in the controller", req.body.team);
+    res.send(player);
 }

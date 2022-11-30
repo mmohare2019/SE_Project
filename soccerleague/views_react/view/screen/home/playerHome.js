@@ -8,12 +8,12 @@ import axios from "axios";
 const baseUrl = "http://10.0.2.2:3000";
 
 
-export default function PlayerHome({navigation}) {
+export default function PlayerHome({navigation, route}) {
+  const player = route.params;
 
   // Render the team page 
   async function onPickTeam() {
-    navigation.navigate('PickTeam')
-    
+    navigation.navigate('PickTeam', player);
   }
 
   // View schedule 

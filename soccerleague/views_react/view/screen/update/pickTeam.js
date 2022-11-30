@@ -13,6 +13,9 @@ const baseUrl = "http://10.0.2.2:3000";
 export default function PickTeam({navigation, route}) {
   const [team_list, setTeamList] = React.useState([]); 
 
+  const player = route.params.player;
+  console.log("Player in pick team is ", player);
+
   React.useEffect(() => {
     axios.get(`${baseUrl}/team/display`).then((response) => {
       setTeamList(response.data);
@@ -21,21 +24,24 @@ export default function PickTeam({navigation, route}) {
     .catch(error=> console.error(`Error: ${error}`));
   }, []);
 
-  async function sendPlayer(team) {
+  async function sendPlayer(team, player) {
     console.log("Team id is", team);
+    console.log("Player to be sent is", player);
+    
     try {
-        const response = await axios.post(`${baseUrl}/team/update`, QueryString.stringify ({
-          team: team
-        }), {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          }
+      const response = await axios.post(`${baseUrl}/team/add`, QueryString.stringify ({
+        team: team, 
+        player: player
+      }), {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        }
       });
-      //console.log(response.data);
+      console.log("Received from controller is", response.data);
       //Alert.alert("Success - request sent to coach for approval!");
 
     } catch (error) {
-        console.log(error.message);
+        console.log(`Error:  ${error}`);
     }
     
     navigation.navigate('PlayerHome');
@@ -43,7 +49,7 @@ export default function PickTeam({navigation, route}) {
 
   const renderItem = ({ item }) => (
     <TeamDisplay 
-      onPress={()=> sendPlayer(item._id)}
+      onPress={() => sendPlayer(item._id, player)}
       team_name={item.team_name}
       color={item.color}
     />
