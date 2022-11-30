@@ -1,20 +1,13 @@
 import React, { Fragment } from "react";
 import { TouchableOpacity, View, Text, SafeAreaView, FlatList } from "react-native";
 import Header from "../../component/header";
+import TeamDisplay from "../../component/teamDisplay";
 import FormStyle from "../../Form.style";
 import FlatlistStyle from "../../Flatlist.style";
 import axios from "axios";
 const QueryString = require('query-string');
 
 const baseUrl = "http://10.0.2.2:3000";
-
-
-const TeamDetails = ({ team_name, color }) => (
-    <View style={FlatlistStyle.item}>
-      <Text style={FlatlistStyle.text}> Team name: {team_name} </Text>
-      <Text style={FlatlistStyle.text}> Color: {color} </Text>
-    </View>
-);
 
 export default function PickTeam({navigation, route}) {
   const [team_list, setTeamList] = React.useState([]); 
@@ -29,7 +22,7 @@ export default function PickTeam({navigation, route}) {
   
 
   const renderItem = ({ item }) => (
-    <TeamDetails team_name={item.team_name} color={item.color}/>
+    <TeamDisplay team_name={item.team_name} color={item.color}/>
   );
     
   async function handleSubmit() {
