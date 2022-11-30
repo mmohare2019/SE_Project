@@ -27,7 +27,7 @@ export default function PickTeam({navigation, route}) {
   async function sendPlayer(team, player) {
     console.log("Team id is", team);
     console.log("Player to be sent is", player);
-    
+
     try {
       const response = await axios.post(`${baseUrl}/team/add`, QueryString.stringify ({
         team: team, 
@@ -37,8 +37,8 @@ export default function PickTeam({navigation, route}) {
           'Content-Type': 'application/x-www-form-urlencoded',
         }
       });
-      console.log("Received from controller is", response.data);
-      //Alert.alert("Success - request sent to coach for approval!");
+      console.log("Player Received from controller is", response.data);
+      Alert.alert("Success - request sent to coach for approval!");
 
     } catch (error) {
         console.log(`Error:  ${error}`);
