@@ -12,4 +12,7 @@ router.post("/initialize", team_controller.initialize_team_post);
 // Display all teams
 router.get("/display", team_controller.display_team_get);
 
+// add player request 
+router.post("/add", team_controller.add_player_post);
+
 module.exports = router;

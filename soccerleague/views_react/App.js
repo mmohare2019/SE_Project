@@ -13,15 +13,6 @@ import ParentHome from "./view/screen/home/parentHome";
 import UpdateTeamDetails from "./view/screen/update/updateTeamDetails";
 import PickTeam from "./view/screen/update/pickTeam";
 import ApprovePlayer from "./view/screen/update/approvePlayer";
-//import ViewPlayoffs from "./view/screen/view/viewPlayoffs";
-//import ViewStandings from "./view/screen/view/viewStandings";
-//import ViewSchedule from "./view/screen/view/viewSchedule";
-/*
-
-                <Stack.Screen name= "ViewStandings" component={ViewStandings}/>
-                <Stack.Screen name= "ViewPlayoffs" component={ViewPlayoffs}/>
-                <Stack.Screen name= "ViewSchedule" component={ViewSchedule}/>
-*/
 
 const Stack = createNativeStackNavigator(); 
 

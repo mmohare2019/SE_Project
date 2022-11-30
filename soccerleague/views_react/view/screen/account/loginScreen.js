@@ -10,7 +10,6 @@ const QueryString = require('query-string');
 
 const baseUrl = "http://10.0.2.2:3000";
 
-// change name
 export default function LoginScreen({navigation}){
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
@@ -35,17 +34,22 @@ export default function LoginScreen({navigation}){
             }
 
             else if (response.data.account_type === "admin") {
-                navigation.navigate("AdminHome");
+                navigation.navigate("AdminHome", {
+                    admin: response.data._id
+                });
             }
 
             else if (response.data.account_type === "parent") {
-                navigation.navigate("ParentHome");
+                navigation.navigate("ParentHome", {
+                    parent: response.data._id
+                });
             }
 
             else {
-                navigation.navigate("PlayerHome");
+                navigation.navigate("PlayerHome", {
+                    player: response.data._id
+                });
             }
-
 
         } catch (error) {
             console.log(error.message);

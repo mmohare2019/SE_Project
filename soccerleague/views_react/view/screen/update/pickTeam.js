@@ -1,23 +1,20 @@
-import React, { Fragment } from "react";
-import { TouchableOpacity, View, Text, SafeAreaView, FlatList } from "react-native";
+import React from "react";
+import { TouchableOpacity, Text, SafeAreaView, FlatList, Alert } from "react-native";
 import Header from "../../component/header";
+import TeamDisplay from "../../component/teamDisplay";
 import FormStyle from "../../Form.style";
 import FlatlistStyle from "../../Flatlist.style";
 import axios from "axios";
+import { response } from "express";
 const QueryString = require('query-string');
 
 const baseUrl = "http://10.0.2.2:3000";
 
-
-const TeamDetails = ({ team_name, color }) => (
-    <View style={FlatlistStyle.item}>
-      <Text style={FlatlistStyle.text}> Team name: {team_name} </Text>
-      <Text style={FlatlistStyle.text}> Color: {color} </Text>
-    </View>
-);
-
 export default function PickTeam({navigation, route}) {
   const [team_list, setTeamList] = React.useState([]); 
+
+  const player = route.params.player;
+  console.log("Player in pick team is ", player);
 
   React.useEffect(() => {
     axios.get(`${baseUrl}/team/display`).then((response) => {
@@ -26,10 +23,36 @@ export default function PickTeam({navigation, route}) {
     })
     .catch(error=> console.error(`Error: ${error}`));
   }, []);
-  
+
+  async function sendPlayer(team, player) {
+    console.log("Team id is", team);
+    console.log("Player to be sent is", player);
+
+    try {
+      const response = await axios.post(`${baseUrl}/team/add`, QueryString.stringify ({
+        team: team, 
+        player: player
+      }), {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        }
+      });
+      console.log("Player Received from controller is", response.data);
+      Alert.alert("Success - request sent to coach for approval!");
+
+    } catch (error) {
+        console.log(`Error:  ${error}`);
+    }
+    
+    navigation.navigate('PlayerHome');
+  }
 
   const renderItem = ({ item }) => (
-    <TeamDetails team_name={item.team_name} color={item.color}/>
+    <TeamDisplay 
+      onPress={() => sendPlayer(item._id, player)}
+      team_name={item.team_name}
+      color={item.color}
+    />
   );
     
   async function handleSubmit() {
