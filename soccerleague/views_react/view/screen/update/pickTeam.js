@@ -1,10 +1,11 @@
-import React, { Fragment } from "react";
-import { TouchableOpacity, View, Text, SafeAreaView, FlatList } from "react-native";
+import React from "react";
+import { TouchableOpacity, Text, SafeAreaView, FlatList, Alert } from "react-native";
 import Header from "../../component/header";
 import TeamDisplay from "../../component/teamDisplay";
 import FormStyle from "../../Form.style";
 import FlatlistStyle from "../../Flatlist.style";
 import axios from "axios";
+import { response } from "express";
 const QueryString = require('query-string');
 
 const baseUrl = "http://10.0.2.2:3000";
@@ -19,10 +20,33 @@ export default function PickTeam({navigation, route}) {
     })
     .catch(error=> console.error(`Error: ${error}`));
   }, []);
-  
+
+  async function sendPlayer(team) {
+    console.log("Team id is", team);
+    try {
+        const response = await axios.post(`${baseUrl}/team/update`, QueryString.stringify ({
+          team: team
+        }), {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          }
+      });
+      //console.log(response.data);
+      //Alert.alert("Success - request sent to coach for approval!");
+
+    } catch (error) {
+        console.log(error.message);
+    }
+    
+    navigation.navigate('PlayerHome');
+  }
 
   const renderItem = ({ item }) => (
-    <TeamDisplay team_name={item.team_name} color={item.color}/>
+    <TeamDisplay 
+      onPress={()=> sendPlayer(item._id)}
+      team_name={item.team_name}
+      color={item.color}
+    />
   );
     
   async function handleSubmit() {

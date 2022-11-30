@@ -64,3 +64,16 @@ exports.display_team_get = (req, res, next) => {
         res.status(400).json({error: error.array()});
     });  
 }
+
+exports.add_player_post = (req, res, next) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.status(400).json({errors: errors.array()});
+    }
+
+    let team = req.body.team;
+
+    res.send(team);
+    //console.log("in the controller", req.body.team);
+}
