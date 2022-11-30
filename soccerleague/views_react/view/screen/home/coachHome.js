@@ -15,7 +15,8 @@ export default function CoachHome({navigation, route}) {
     navigation.navigate("UpdateTeamDetails", coach); 
   }
 
-  async function onAdmitPlayer() { 
+  async function onApprovePlayer() { 
+    navigation.navigate('ApprovePlayer');
   }
   
   async function onViewSchedule() {
@@ -39,7 +40,7 @@ export default function CoachHome({navigation, route}) {
 
     <ScrollView>
       <CustomButton label={"Edit team details"} onPress={onUpdateTeam}/>
-      <CustomButton label={"Admit player"} onPress={onAdmitPlayer}/>
+      <CustomButton label={"Approve player"} onPress={onApprovePlayer}/>
       <CustomButton label={"View schedule"} onPress={onViewSchedule}/>
       <CustomButton label={"View standings"} onPress={onViewStandings}/>
       <CustomButton label={"View playoff schedule"} onPress={onViewPlayoff}/>

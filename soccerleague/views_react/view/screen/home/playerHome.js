@@ -12,6 +12,7 @@ export default function PlayerHome({navigation}) {
 
   // Render the team page 
   async function onPickTeam() {
+    navigation.navigate('PickTeam')
     
   }
 

@@ -9,4 +9,7 @@ router.post("/update", team_controller.update_team_details_post);
 // Update team post 
 router.post("/initialize", team_controller.initialize_team_post);
 
+// Display all teams
+router.get("/display", team_controller.display_team_get);
+
 module.exports = router;

@@ -11,6 +11,8 @@ import CoachHome from "./view/screen/home/coachHome";
 import PlayerHome from "./view/screen/home/playerHome";
 import ParentHome from "./view/screen/home/parentHome";
 import UpdateTeamDetails from "./view/screen/update/updateTeamDetails";
+import PickTeam from "./view/screen/update/pickTeam";
+import ApprovePlayer from "./view/screen/update/approvePlayer";
 //import ViewPlayoffs from "./view/screen/view/viewPlayoffs";
 //import ViewStandings from "./view/screen/view/viewStandings";
 //import ViewSchedule from "./view/screen/view/viewSchedule";
@@ -35,6 +37,8 @@ const App = () => {
                 <Stack.Screen name= "PlayerHome" component={PlayerHome}/>
                 <Stack.Screen name= "ParentHome" component={ParentHome}/>
                 <Stack.Screen name= "UpdateTeamDetails" component={UpdateTeamDetails}/>
+                <Stack.Screen name= "PickTeam" component={PickTeam}/>
+                <Stack.Screen name= "ApprovePlayer" component={ApprovePlayer}/>
             </Stack.Navigator>
         </NavigationContainer>
         

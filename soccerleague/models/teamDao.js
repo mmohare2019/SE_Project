@@ -32,10 +32,8 @@ exports.deleteAll = async function() {
     await teamModel.deleteMany(); 
 }
 
-/*
+// display all teams 
 exports.getAll = async function(req, res) {
-    res.status(200);
-    res.send(await rosterModel.readAll());
-    res.end(); 
+    let teams = await teamModel.find();
+    return teams; 
 }
-*/
