@@ -12,6 +12,9 @@ router.post("/initialize", team_controller.initialize_team_post);
 // find coach's teaam
 router.post("/find", team_controller.find_team_of_coach_post);
 
+// temp make pending 
+router.post("/")
+
 // Display all teams
 router.get("/display", team_controller.display_team_get);
 

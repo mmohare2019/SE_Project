@@ -14,6 +14,15 @@ export default function ApprovePlayer({navigation, route}) {
     const team = route.params;
     console.log("Team in approve is", team);
 
+    axios.post(`${baseUrl}/pending/list`, {
+        team: team
+  
+      }).then(function (response) {
+        console.log("Players awaiting approval are", response.data);
+  
+      }).catch(function (error) {
+        console.log(error);
+      });
 
     return (<>
         <Header label="Review the following player requests:" />

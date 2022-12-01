@@ -9,6 +9,7 @@ const Bcrypt= require("bcryptjs");
 var accountRouter = require('./routes/account');
 var teamRouter = require('./routes/team');
 var rosterRouter = require('./routes/roster');
+var pendingRouter = require('./routes/pending');
 
 var app = express();
 
@@ -25,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/account', accountRouter);
 app.use('/team', teamRouter);
 app.use('/roster', rosterRouter);
+app.use('/pending', pendingRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
