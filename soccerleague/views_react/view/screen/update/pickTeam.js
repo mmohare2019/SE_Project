@@ -29,7 +29,7 @@ export default function PickTeam({navigation, route}) {
     console.log("Player to be sent is", player);
 
     try {
-      const response = await axios.post(`${baseUrl}/team/add`, QueryString.stringify ({
+      const response = await axios.post(`${baseUrl}/pending/new`, QueryString.stringify ({
         team: team, 
         player: player
       }), {

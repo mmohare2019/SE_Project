@@ -23,6 +23,11 @@ exports.login = async function(email, pswd) {
   return user;
 }
 
+exports.searchUser = async function(id) {
+  let found = await userModel.findById(id);
+  return found;
+}
+
 exports.deleteAll = async function() {
   await userModel.deleteMany(); 
 }
