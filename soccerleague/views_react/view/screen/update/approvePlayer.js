@@ -29,6 +29,7 @@ export default function ApprovePlayer({navigation, route}) {
         }
     }
 
+
     axios.post(`${baseUrl}/pending/list`, {
         team: team
   
