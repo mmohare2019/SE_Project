@@ -30,7 +30,6 @@ exports.list_pending_post = (req, res, next) => {
 
     let team = req.body.team;
 
-    
     Pending.findPending(team).then(function (result) {
         res.json(result);
     }).catch((error) => {
