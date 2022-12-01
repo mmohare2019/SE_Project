@@ -20,3 +20,6 @@ https://studentsloyola-my.sharepoint.com/:x:/g/personal/mmohare_loyola_edu/EVpmN
 
 ## Planning and Design Document 
 https://docs.google.com/document/d/1rkOuPZZxofVajymdH4bY2jYohjbIFmYCalHjBDfX7Bk/edit?usp=sharing 
+
+## Package Diagram
+In a file called ```soccerleaguepackagediagram.png```
