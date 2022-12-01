@@ -73,11 +73,13 @@ exports.lookup_user_post = (req, res, next) => {
        return res.status(400).json({errors: errors.array()});
     }
 
-    let id = req.body.id;
+    let user_ids = req.body.user_ids;
+    console.log("ids: ", user_ids);
 
-    User.searchUser(id).then(function (result) {
+    User.returnUsers(user_ids).then(function (result) {
         res.json(result);
     }).catch((error) => {
         res.status(400).json({error: error.array()});
-    });
+    })
+    
 }

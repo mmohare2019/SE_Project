@@ -15,18 +15,18 @@ export default function ApprovePlayer({navigation, route}) {
     console.log("Team in approve is", team);
 
     async function getPlayerInfo(pendings) {
-        for( var i = 0; i < pendings.length; i++) {
-            var id = pendings[i].player;
-            axios.post(`${baseUrl}/account/lookup`, {
-                id: id
-          
-            }).then(function (response) { 
-                console.log(response.data);
-          
-            }).catch(function (error) {
-                console.log(error);
-            });
+       var user_ids = [];
+        for (var i = 0; i < pendings.length; i++) {
+            user_ids.push(pendings[i].player);
         }
+
+        axios.post(`${baseUrl}/account/lookup`, {
+            user_ids: user_ids
+        }).then(function(response) {
+            console.log(response.data);
+        }).catch(function (error) {
+            console.log(error);
+        });
     }
 
 

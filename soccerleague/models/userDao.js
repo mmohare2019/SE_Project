@@ -28,6 +28,11 @@ exports.searchUser = async function(id) {
   return found;
 }
 
+exports.returnUsers = async function(ids) {
+  let found = await userModel.find().where('_id').in(ids).exec();
+  return found; 
+}
+
 exports.deleteAll = async function() {
   await userModel.deleteMany(); 
 }
