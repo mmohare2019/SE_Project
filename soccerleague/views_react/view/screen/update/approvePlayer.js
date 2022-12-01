@@ -11,13 +11,8 @@ const baseUrl = "http://10.0.2.2:3000";
 export default function ApprovePlayer({navigation, route}) {
     const [player, setPlayer] = React.useState([]); 
 
-    React.useEffect(() => {
-        axios.get(`${baseUrl}/team/add`).then((response) => {
-            setPlayer(response.data);
-            console.log("in axios get", response.data);
-        })
-        .catch(error=> console.error(`Error: ${error}`));
-    }, []);
+    const team = route.params;
+    console.log("Team in approve is", team);
 
 
     return (<>

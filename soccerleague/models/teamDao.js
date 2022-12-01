@@ -17,7 +17,7 @@ exports.create = async function(newTeam) {
 }
 
 // Find team based on coach ID
-exports.find = async function(coach) {
+exports.findTeam = async function(coach) {
     let team = await teamModel.findOne({coach: coach});
     return team;
 }

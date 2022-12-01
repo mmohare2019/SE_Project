@@ -5,18 +5,31 @@ import CustomButton from "../../component/button";
 import LogoutButton from "../../component/logoutButton";
 import axios from "axios";
 
+const QueryString = require('query-string');
+
 const baseUrl = "http://10.0.2.2:3000";
 
 export default function CoachHome({navigation, route}) {
-  const coach = route.params;
-  console.log("current coach logged in is", coach);
+  const coach = route.params.coach;
+
+  console.log("current coach logged in is: ", coach);
 
   async function onUpdateTeam() {
     navigation.navigate("UpdateTeamDetails", coach); 
   }
 
   async function onApprovePlayer() { 
-    navigation.navigate('ApprovePlayer');
+    axios.post(`${baseUrl}/team/find`, {
+      coach: coach
+
+    }).then(function (response) {
+      const team = response.data;
+      console.log("Coach's team is...", team);
+      navigation.navigate("ApprovePlayer", team);
+
+    }).catch(function (error) {
+      console.log(error);
+    });
   }
   
   async function onViewSchedule() {

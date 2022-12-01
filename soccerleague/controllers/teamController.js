@@ -51,6 +51,22 @@ exports.update_team_details_post = [
     },
 ];
 
+exports.find_team_of_coach_post = (req, res, next) => {
+    // Extract validation errors from req
+    const errors = validationResult(req);
+        
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array()});
+    }
+    
+    Team.findTeam(req.body.coach).then(function (result) {
+        res.json(result);
+    }).catch((error) => {
+        res.status(400).json({error: error});
+    });
+    
+}
+
 exports.display_team_get = (req, res, next) => {
     const errors = validationResult(req);
         
@@ -63,18 +79,4 @@ exports.display_team_get = (req, res, next) => {
     }).catch((error) => {
         res.status(400).json({error: error.array()});
     });  
-}
-
-exports.add_player_post = (req, res, next) => {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-        return res.status(400).json({errors: errors.array()});
-    }
-
-    let team = req.body.team;
-    let player = req.body.player
-    console.log("player in the controller", req.body.player);
-
-    res.send(player);
 }
