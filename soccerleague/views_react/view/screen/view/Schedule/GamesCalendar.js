@@ -6,7 +6,6 @@ import
     Text,
     View,
     StyleSheet,
-    AppRegistry,
     TouchableOpacity
 } from 'react-native';
 
@@ -25,9 +24,10 @@ export default class GamesCalendar extends Component
        }
     }
 
-    handlePicker= () => {
+    handlePicker= (datetime) => {
         this.setState({
-            isVisible: false
+            isVisible: false,
+            chosenDate: moment(datetime).format('MMMM, Do YYYY HH:mm')
         })
     }
 
@@ -37,10 +37,9 @@ export default class GamesCalendar extends Component
         })
     }
 
-    hidePicker= (datetime) => {
+    hidePicker= () => {
         this.setState({
             isVisible: false,
-            chosenDate: moment(datetime).format('MMMM, Do YYYY HH:mm')
         })
     }
 
@@ -48,8 +47,8 @@ export default class GamesCalendar extends Component
     {
         return (
             <View style= {styles.container}>
-                <Text>
-
+                <Text style= {{color: 'green', fontSize: 20, marginBottom: 100}}>
+                    {this.state.chosenDate}
                 </Text>
 
                 <TouchableOpacity style= {styles.button} onPress= {this.showPicker}>
@@ -61,7 +60,6 @@ export default class GamesCalendar extends Component
                 onConfirm= {this.handlePicker}
                 onCancel= {this.hidePicker}
                 mode= {'datetime'}
-                datePickerModeAndroid= {'spinner'}
                 is24Hour= {false}
             />
             </View>
