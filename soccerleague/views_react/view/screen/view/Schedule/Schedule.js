@@ -1,5 +1,45 @@
 import * as React from 'react';
 import * as RN from 'react-native';
+import Realm from 'realm';
+
+const ScheduleSchema= {
+    name: 'Schedule',
+    properties: {
+        _id: 'int',
+        month: 'string',
+        week_day: 'string',
+        date: 'int',
+        year: 'int'
+    },
+    primaryKey: '_id',
+};
+
+React.useEffect(() => {
+    (async () => {
+        const realm= await Realm.open({
+            path: 'mypath',
+            scheme: [ScheduleSchema],
+        }).then(realm => {
+            const theSchedule= realm.objects('Schedule');
+            generateSchedule([...theSchedule]);
+            setRealm(realm);
+
+            try 
+            {
+                theSchedule.addListener(() =>
+                {
+                    generateSchedule([...theSchedule]);
+                });
+            }
+
+            catch (error)
+            {
+                console.error(`Error Updating Schedule: ${error}`);
+            }
+        })
+    })
+})
+
 
 class Schedule extends React.Component
 {
