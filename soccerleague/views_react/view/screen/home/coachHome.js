@@ -35,6 +35,10 @@ export default function CoachHome({navigation, route}) {
     });
   }
   
+  async function onViewRoster() {
+    navigation.navigate('ViewRoster', {coach: coach});
+  }
+
   async function onViewSchedule() {
     navigation.navigate('ViewSchedule');
   }
@@ -57,6 +61,7 @@ export default function CoachHome({navigation, route}) {
     <ScrollView>
       <CustomButton label={"Edit team details"} onPress={onUpdateTeam}/>
       <CustomButton label={"Approve player"} onPress={onApprovePlayer}/>
+      <CustomButton label={"View roster"} onPress={onViewRoster}/>
       <CustomButton label={"View schedule"} onPress={onViewSchedule}/>
       <CustomButton label={"View standings"} onPress={onViewStandings}/>
       <CustomButton label={"View playoff schedule"} onPress={onViewPlayoff}/>
