@@ -1,6 +1,7 @@
 import React from "react";
-import { SafeAreaView, FlatList, Alert } from "react-native";
+import { SafeAreaView, FlatList, Alert, TouchableOpacity, Text } from "react-native";
 import FlatlistStyle from "../../Flatlist.style";
+import FormStyle from "../../Form.style";
 import PlayerDisplay from "../../component/playerDisplay";
 import Header from "../../component/header";
 import axios from "axios";
@@ -40,13 +41,13 @@ function onPress(player, coach) {
   
     } catch (error) {
         console.log(`Error:  ${error}`);
-    }
-    
+    }   
 }
 
 export default function ApprovePlayer({navigation, route}) {
     const [player_list, setPlayerList] = React.useState([]); 
-    const team = route.params;
+    const team = route.params.team;
+    const coach = route.params.coach;
 
     React.useEffect(() => {
         axios.post(`${baseUrl}/pending/list`, {
@@ -81,6 +82,13 @@ export default function ApprovePlayer({navigation, route}) {
         />
     )
 
+    async function handleSubmit() {
+        navigation.navigate('CoachHome', {
+            team: team, 
+            coach: coach
+        });
+    }
+
     return (<>
         <Header label="Review the following player requests:" />
 
@@ -91,5 +99,10 @@ export default function ApprovePlayer({navigation, route}) {
             keyExtractor={item => item._id}
         />
         </SafeAreaView>   
+
+        <TouchableOpacity style={FormStyle.formButton} 
+            onPress={()=> handleSubmit()}>
+            <Text style={FormStyle.formButtonText}> Return home </Text>
+        </TouchableOpacity>
     </>)
 }

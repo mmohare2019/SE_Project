@@ -15,7 +15,7 @@ export default function CoachHome({navigation, route}) {
   console.log("current coach logged in is: ", coach);
 
   async function onUpdateTeam() {
-    navigation.navigate("UpdateTeamDetails", coach); 
+    navigation.navigate("UpdateTeamDetails", {coach: coach} ); 
   }
 
   async function onApprovePlayer() { 
@@ -25,7 +25,10 @@ export default function CoachHome({navigation, route}) {
     }).then(function (response) {
       const team = response.data;
       console.log("Coach's team is...", team);
-      navigation.navigate("ApprovePlayer", team);
+      navigation.navigate("ApprovePlayer", {
+        team: team, 
+        coach: coach
+      });
 
     }).catch(function (error) {
       console.log(error);
