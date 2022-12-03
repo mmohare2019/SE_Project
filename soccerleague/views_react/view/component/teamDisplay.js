@@ -1,8 +1,8 @@
 import React from "react";
-import { Text, View, TouchableOpacity} from 'react-native';
+import { Text, TouchableOpacity} from 'react-native';
 import FlatlistStyle from "../Flatlist.style";
 
-export default function TeamDisplay({team_name, color, onPress}) {
+export default function TeamDisplay({team_name, color, coach, onPress}) {
     return (
         <TouchableOpacity style={FlatlistStyle.item} onPress={onPress}>
             <Text style={FlatlistStyle.text}> Team name: {team_name} </Text>

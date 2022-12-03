@@ -18,4 +18,7 @@ router.post("/")
 // Display all teams
 router.get("/display", team_controller.display_team_get);
 
+// Add player to team
+router.post("/add", team_controller.add_player_post);
+
 module.exports = router;
