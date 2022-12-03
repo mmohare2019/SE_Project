@@ -10,7 +10,7 @@ var accountRouter = require('./routes/account');
 var teamRouter = require('./routes/team');
 var rosterRouter = require('./routes/roster');
 var pendingRouter = require('./routes/pending');
-var gameRouter = require('./routes/game');
+//var gameRouter = require('./routes/game');
 
 var app = express();
 
@@ -28,7 +28,7 @@ app.use('/account', accountRouter);
 app.use('/team', teamRouter);
 app.use('/roster', rosterRouter);
 app.use('/pending', pendingRouter);
-app.use('/game', gameRouter);
+//app.use('/game', gameRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

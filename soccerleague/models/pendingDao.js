@@ -18,3 +18,7 @@ exports.findPending = async function(team) {
     let players = await pendingModel.find({team: team}).exec();
     return players;
 }
+
+exports.deletePending = async function(player) {
+    await pendingModel.deleteOne({player: player});
+}

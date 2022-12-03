@@ -37,3 +37,17 @@ exports.list_pending_post = (req, res, next) => {
     });
     
 }
+
+exports.delete_player_post = (req, res, next) => {
+    const errors = validationResult(req);
+        
+    if (!errors.isEmpty()) {
+       return res.status(400).json({errors: errors.array()});
+    }
+
+    let player = req.body.player 
+
+    Pending.deletePending(player).catch((error) => {
+        res.status(400).json({error: error.array()});
+    });
+}

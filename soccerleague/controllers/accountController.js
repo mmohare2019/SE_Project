@@ -49,16 +49,13 @@ exports.signin_post =  [
     // Process request
     (req, res) => {
 
-        // Extract validation errors from req
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({errors: errors.array()});
         }
         
-        // Check credentials 
         User.login(req.body.email, req.body.password).then(function (result) {
             res.json(result);
-            //res.redirect("/coach");
         }).catch((error) => {
             res.status(400).json({error: error.array()});
         }); 
@@ -73,11 +70,13 @@ exports.lookup_user_post = (req, res, next) => {
        return res.status(400).json({errors: errors.array()});
     }
 
-    let id = req.body.id;
+    // array of user ids is passed 
+    let user_ids = req.body.user_ids;
 
-    User.searchUser(id).then(function (result) {
+    User.returnUsers(user_ids).then(function (result) {
         res.json(result);
     }).catch((error) => {
         res.status(400).json({error: error.array()});
-    });
+    })
+    
 }
