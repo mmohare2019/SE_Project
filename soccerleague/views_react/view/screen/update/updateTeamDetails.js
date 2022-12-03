@@ -33,7 +33,7 @@ export default function UpdateTeamDetails({navigation, route}) {
             console.log(error.message);
         }
         
-        navigation.navigate('CoachHome');
+        //navigation.navigate('CoachHome');
   
     }
 

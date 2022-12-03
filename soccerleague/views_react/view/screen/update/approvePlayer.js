@@ -19,6 +19,15 @@ function onPress(player, coach) {
     console.log("player: ", player);
     console.log("team: ", coach);
 
+    axios.post(`${baseUrl}/team/add`, {
+        coach: coach,
+        player: player
+    }).then(function(response) {
+        console.log("team after addition: ", response.data);
+    }).catch(function (error) {
+        console.log(error);
+    });
+
     try {
         axios.post(`${baseUrl}/pending/delete`, QueryString.stringify ({
           player: player
@@ -29,29 +38,10 @@ function onPress(player, coach) {
         });
         Alert.alert("Sucess - player deleted");
   
-      } catch (error) {
-          console.log(`Error:  ${error}`);
-      }
-
-    /*
-    axios.post(`${baseUrl}/team/add`, {
-        coach: coach,
-        player: player
-    }).then(function(response) {
-        console.log("Player added to team", response.data);
-
-        axios.post(`${baseUrl}/pending/delete`, {
-            player: player
-        }).then(function (response) {
-            console.log("deleted player");
-        }).catch(function (error) {
-            console.log(error);
-        });
-
-    }).catch(function (error) {
-        console.log(error);
-    });
-    */
+    } catch (error) {
+        console.log(`Error:  ${error}`);
+    }
+    
 }
 
 export default function ApprovePlayer({navigation, route}) {
