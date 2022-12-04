@@ -9,6 +9,7 @@ const QueryString = require('query-string');
 
 const baseUrl = "http://10.0.2.2:3000";
 
+
 export default function CoachHome({navigation, route}) {
   const coach = route.params.coach;
 
@@ -36,7 +37,22 @@ export default function CoachHome({navigation, route}) {
   }
   
   async function onViewRoster() {
-    navigation.navigate('ViewRoster', {coach: coach});
+    //navigation.navigate('ViewRoster', {coach: coach});
+    axios.post(`${baseUrl}/team/find`, {
+      coach: coach
+
+    }).then(function (response) {
+      const team = response.data;
+      console.log("Coach's team is...", team);
+      navigation.navigate("ViewRoster", {
+        team: team, 
+        coach: coach
+      });
+
+    }).catch(function (error) {
+      console.log(error);
+    });
+
   }
 
   async function onViewSchedule() {
