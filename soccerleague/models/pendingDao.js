@@ -22,3 +22,7 @@ exports.findPending = async function(team) {
 exports.deletePending = async function(player) {
     await pendingModel.deleteOne({player: player});
 }
+
+exports.deleteAll = async function() {
+    await pendingModel.deleteMany(); 
+}

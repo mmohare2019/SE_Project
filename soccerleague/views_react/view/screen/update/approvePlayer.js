@@ -19,6 +19,7 @@ function extractPlayerIds(pendings) {
 export default function ApprovePlayer({navigation, route}) {
     const [player_list, setPlayerList] = React.useState([]); 
     const team = route.params.team;
+    console.log("log team for testing", team);
     const coach = route.params.coach;
 
     function onPress(player, coach) {
