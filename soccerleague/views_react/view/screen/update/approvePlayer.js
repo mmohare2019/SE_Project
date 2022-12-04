@@ -16,38 +16,42 @@ function extractPlayerIds(pendings) {
     return user_ids;
 } 
 
-function onPress(player, coach) {
-    console.log("player: ", player);
-    console.log("team: ", coach);
-
-    axios.post(`${baseUrl}/team/add`, {
-        coach: coach,
-        player: player
-    }).then(function(response) {
-        console.log("team after addition: ", response.data);
-    }).catch(function (error) {
-        console.log(error);
-    });
-
-    try {
-        axios.post(`${baseUrl}/pending/delete`, QueryString.stringify ({
-          player: player
-        }), {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          }
-        });
-        Alert.alert("Sucess - player deleted");
-  
-    } catch (error) {
-        console.log(`Error:  ${error}`);
-    }   
-}
-
 export default function ApprovePlayer({navigation, route}) {
     const [player_list, setPlayerList] = React.useState([]); 
     const team = route.params.team;
     const coach = route.params.coach;
+
+    function onPress(player, coach) {
+        console.log("player: ", player);
+        console.log("team: ", coach);
+    
+        axios.post(`${baseUrl}/team/add`, {
+            coach: coach,
+            player: player
+        }).then(function(response) {
+            console.log("team after addition: ", response.data);
+        }).catch(function (error) {
+            console.log(error);
+        });
+    
+        try {
+            axios.post(`${baseUrl}/pending/delete`, QueryString.stringify ({
+              player: player
+            }), {
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+              }
+            });
+            Alert.alert("Sucess - player added to roster");
+            navigation.navigate('CoachHome', {
+                team: team, 
+                coach: coach
+            });
+      
+        } catch (error) {
+            console.log(`Error:  ${error}`);
+        }   
+    }
 
     React.useEffect(() => {
         axios.post(`${baseUrl}/pending/list`, {
@@ -90,7 +94,7 @@ export default function ApprovePlayer({navigation, route}) {
     }
 
     return (<>
-        <Header label="Review the following player requests:" />
+        <Header label="Players requesting to join your team:" />
 
         <SafeAreaView style={FlatlistStyle.container}>
         <FlatList

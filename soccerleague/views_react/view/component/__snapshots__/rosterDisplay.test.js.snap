@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing team display field 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#d4d4d4",
+      "marginHorizontal": 16,
+      "marginVertical": 8,
+      "padding": 20,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "fontSize": 16,
+      }
+    }
+  >
+     First name: 
+     
+  </Text>
+  <Text
+    style={
+      Object {
+        "fontSize": 16,
+      }
+    }
+  >
+     Last name: 
+     
+  </Text>
+  <Text
+    style={
+      Object {
+        "fontSize": 16,
+      }
+    }
+  >
+     Email: 
+     
+  </Text>
+</View>
+`;
