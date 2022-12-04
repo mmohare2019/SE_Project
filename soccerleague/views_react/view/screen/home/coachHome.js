@@ -9,13 +9,14 @@ const QueryString = require('query-string');
 
 const baseUrl = "http://10.0.2.2:3000";
 
+
 export default function CoachHome({navigation, route}) {
   const coach = route.params.coach;
 
   console.log("current coach logged in is: ", coach);
 
   async function onUpdateTeam() {
-    navigation.navigate("UpdateTeamDetails", coach); 
+    navigation.navigate("UpdateTeamDetails", {coach: coach} ); 
   }
 
   async function onApprovePlayer() { 
@@ -25,13 +26,35 @@ export default function CoachHome({navigation, route}) {
     }).then(function (response) {
       const team = response.data;
       console.log("Coach's team is...", team);
-      navigation.navigate("ApprovePlayer", team);
+      navigation.navigate("ApprovePlayer", {
+        team: team, 
+        coach: coach
+      });
 
     }).catch(function (error) {
       console.log(error);
     });
   }
   
+  async function onViewRoster() {
+    //navigation.navigate('ViewRoster', {coach: coach});
+    axios.post(`${baseUrl}/team/find`, {
+      coach: coach
+
+    }).then(function (response) {
+      const team = response.data;
+      console.log("Coach's team is...", team);
+      navigation.navigate("ViewRoster", {
+        team: team, 
+        coach: coach
+      });
+
+    }).catch(function (error) {
+      console.log(error);
+    });
+
+  }
+
   async function onViewSchedule() {
     navigation.navigate('ViewSchedule');
   }
@@ -54,6 +77,7 @@ export default function CoachHome({navigation, route}) {
     <ScrollView>
       <CustomButton label={"Edit team details"} onPress={onUpdateTeam}/>
       <CustomButton label={"Approve player"} onPress={onApprovePlayer}/>
+      <CustomButton label={"View roster"} onPress={onViewRoster}/>
       <CustomButton label={"View schedule"} onPress={onViewSchedule}/>
       <CustomButton label={"View standings"} onPress={onViewStandings}/>
       <CustomButton label={"View playoff schedule"} onPress={onViewPlayoff}/>

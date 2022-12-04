@@ -44,7 +44,32 @@ exports.getAll = async function() {
     return teams; 
 }
 
-exports.addPlayer = async function(coach, player) {
-    let team = await teamModel.findOneAndUpdate({coach: coach}, {player1: player});
+exports.addPlayer1 = async function(coach, player_id) {
+    let team = await teamModel.findOneAndUpdate({coach: coach}, {player1: player_id});
     return team;
+}
+
+exports.addPlayer2 = async function (coach, player_id) {
+    let team = await teamModel.findOneAndUpdate({coach: coach}, {player2: player_id});
+    return team; 
+}
+
+exports.addPlayer3 = async function (coach, player_id) {
+    let team = await teamModel.findOneAndUpdate({coach: coach}, {player3: player_id});
+    return team; 
+}
+
+exports.addPlayer4 = async function (coach, player_id) {
+    let team = await teamModel.findOneAndUpdate({coach: coach}, {player4: player_id});
+    return team; 
+}
+
+exports.addPlayer5 = async function (coach, player_id) {
+    let team = await teamModel.findOneAndUpdate({coach: coach}, {player5: player_id});
+    return team; 
+}
+
+exports.addPlayer6 = async function (coach, player_id) {
+    let team = await teamModel.findOneAndUpdate({coach: coach}, {player6: player_id});
+    return team; 
 }

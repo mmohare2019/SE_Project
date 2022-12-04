@@ -77,10 +77,64 @@ exports.add_player_post = (req, res, next) => {
     let coach = req.body.coach;
     let player = req.body.player;
 
-    Team.addPlayer(coach, player).then(function (result) {
-        res.json(result);
+    Team.findTeam(coach).then(function (result) {
+        if (result.player1 == undefined) {
+            console.log("p1 spot not filled");
+            Team.addPlayer1(coach, player).then(function (result) {
+                res.json(result);
+            }).catch((error) => {
+                res.status(400).json({error: error});
+            });
+            
+        }
+        else if (result.player2 == undefined)  {
+            console.log("p2 spot not filled");
+            Team.addPlayer2(coach, player).then(function (result) {
+                res.json(result);
+            }).catch((error) => {
+                res.status(400).json({error: error});
+            });
+        }
+        else if (result.player3 == undefined) {
+            console.log("p3 spot not filled");
+            Team.addPlayer3(coach, player).then(function (result) {
+                res.json(result);
+            }).catch((error) => {
+                res.status(400).json({error: error});
+            });
+        }
+        else if (result.player4 == undefined) {
+            console.log("p4 spot not filled");
+            Team.addPlayer4(coach, player).then(function (result) {
+                res.json(result);
+            }).catch((error) => {
+                res.status(400).json({error: error});
+            });
+        }
+        else if (result.player5 == undefined) {
+            console.log("p5 spot not filled");
+            Team.addPlayer5(coach, player).then(function (result) {
+                res.json(result);
+            }).catch((error) => {
+                res.status(400).json({error: error});
+            });
+        }
+        else if (result.player6 == undefined) {
+            console.log("p6 spot not filled");
+            Team.addPlayer6(coach, player).then(function (result) {
+                res.json(result);
+            }).catch((error) => {
+                res.status(400).json({error: error});
+            });
+        }
+        else {
+            res.json("the team roster is full");
+        }
+        
+
+
     }).catch((error) => {
-        res.status(400).json({error: errors.array()});
+        res.status(400).json({error: error});
     })
 }
 

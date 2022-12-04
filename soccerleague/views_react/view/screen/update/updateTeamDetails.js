@@ -14,6 +14,7 @@ export default function UpdateTeamDetails({navigation, route}) {
     const [color, setColor] = React.useState("");
 
     const coach = route.params.coach;
+    console.log("coach in update", coach);
 
     async function handleSubmit(team_name, color){
         try {
@@ -33,8 +34,7 @@ export default function UpdateTeamDetails({navigation, route}) {
             console.log(error.message);
         }
         
-        navigation.navigate('CoachHome');
-  
+        navigation.navigate('CoachHome', {coach: coach});
     }
 
     return (<>

@@ -72,7 +72,7 @@ export default function PickTeam({navigation, route}) {
 
     <TouchableOpacity style={FormStyle.formButton} 
       onPress={()=> handleSubmit()}>
-      <Text style={FormStyle.formButtonText}> Submit </Text>
+      <Text style={FormStyle.formButtonText}> Return home </Text>
     </TouchableOpacity>
   </>)
     

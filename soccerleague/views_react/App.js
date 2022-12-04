@@ -13,6 +13,7 @@ import ParentHome from "./view/screen/home/parentHome";
 import UpdateTeamDetails from "./view/screen/update/updateTeamDetails";
 import PickTeam from "./view/screen/update/pickTeam";
 import ApprovePlayer from "./view/screen/update/approvePlayer";
+import ViewRoster from "./view/screen/view/viewRoster";
 
 const Stack = createNativeStackNavigator(); 
 
@@ -30,6 +31,7 @@ const App = () => {
                 <Stack.Screen name= "UpdateTeamDetails" component={UpdateTeamDetails}/>
                 <Stack.Screen name= "PickTeam" component={PickTeam}/>
                 <Stack.Screen name= "ApprovePlayer" component={ApprovePlayer}/>
+                <Stack.Screen name= "ViewRoster" component={ViewRoster}/>
             </Stack.Navigator>
         </NavigationContainer>
         
