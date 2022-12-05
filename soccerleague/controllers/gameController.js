@@ -17,7 +17,8 @@ exports.game_create_post = (req, res, next) => {
     // new game request for scores
     const newGame = {
       team1_score: req.body.team1_score,
-      team2_score: req.body.team2_score
+      team2_score: req.body.team2_score,
+      game_time: req.body.game_time
     };
   
     Game.create(newGame).then(function (result) {
@@ -25,6 +26,6 @@ exports.game_create_post = (req, res, next) => {
       
     }).catch((error) => {
         res.status(400).json({error: error.array()});
-    });  
+    });
 
 };
