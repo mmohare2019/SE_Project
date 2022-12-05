@@ -7,19 +7,19 @@ export default function Time({time}){
         const formattedValue=("0" +convertedValue).slice(-2)
         return formattedValue
     }
-    
+
     const transformSeconds=()=>{
         const convertedValue= Math.floor((time / 1000) % 60);
         const formattedValue=("0" +convertedValue).slice(-2)
         return formattedValue
     }
-    
+
     const transformMilliseconds=()=>{
         const convertedValue= Math.floor((time / 10) % 100);
         const formattedValue=("0" +convertedValue).slice(-2)
         return formattedValue
     }
-    
+
     return(
         <View style={styles.row}>
             <Text style={styles.time}>
