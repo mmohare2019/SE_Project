@@ -3,12 +3,6 @@ const User = require("../models/userDao");
 const { body, validationResult } = require("express-validator");
 var async = require("async");
 
-/*
-exports.account_create_get = (req, res, next) => {
-    res.render("account", {title: "Create account"}); 
-};
-*/
-
 exports.account_create_post = [
     // Validate and clean the fields 
     body("first_name", "First name required").trim().isLength({min: 1}).escape(),
@@ -47,12 +41,6 @@ exports.account_create_post = [
     },
 ];
 
-/*
-exports.signin_get = (req, res)  => {
-    res.render("signin", { title: "Sign into account"});
-};
-*/
-
 exports.signin_post =  [
     // Validate and clean fields 
     body("email", "Email is required").trim().isLength({min: 1}).escape(),
@@ -61,19 +49,34 @@ exports.signin_post =  [
     // Process request
     (req, res) => {
 
-        // Extract validation errors from req
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({errors: errors.array()});
         }
         
-        // Check credentials 
         User.login(req.body.email, req.body.password).then(function (result) {
             res.json(result);
-            //res.redirect("/coach");
         }).catch((error) => {
             res.status(400).json({error: error.array()});
         }); 
 
     },
 ];
+
+exports.lookup_user_post = (req, res, next) => {
+    const errors = validationResult(req);
+        
+    if (!errors.isEmpty()) {
+       return res.status(400).json({errors: errors.array()});
+    }
+
+    // array of user ids is passed 
+    let user_ids = req.body.user_ids;
+
+    User.returnUsers(user_ids).then(function (result) {
+        res.json(result);
+    }).catch((error) => {
+        res.status(400).json({error: error.array()});
+    })
+    
+}

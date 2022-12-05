@@ -11,15 +11,9 @@ import CoachHome from "./view/screen/home/coachHome";
 import PlayerHome from "./view/screen/home/playerHome";
 import ParentHome from "./view/screen/home/parentHome";
 import UpdateTeamDetails from "./view/screen/update/updateTeamDetails";
-//import ViewPlayoffs from "./view/screen/view/viewPlayoffs";
-//import ViewStandings from "./view/screen/view/viewStandings";
-//import ViewSchedule from "./view/screen/view/viewSchedule";
-/*
-
-                <Stack.Screen name= "ViewStandings" component={ViewStandings}/>
-                <Stack.Screen name= "ViewPlayoffs" component={ViewPlayoffs}/>
-                <Stack.Screen name= "ViewSchedule" component={ViewSchedule}/>
-*/
+import PickTeam from "./view/screen/update/pickTeam";
+import ApprovePlayer from "./view/screen/update/approvePlayer";
+import ViewRoster from "./view/screen/view/viewRoster";
 
 const Stack = createNativeStackNavigator(); 
 
@@ -35,6 +29,9 @@ const App = () => {
                 <Stack.Screen name= "PlayerHome" component={PlayerHome}/>
                 <Stack.Screen name= "ParentHome" component={ParentHome}/>
                 <Stack.Screen name= "UpdateTeamDetails" component={UpdateTeamDetails}/>
+                <Stack.Screen name= "PickTeam" component={PickTeam}/>
+                <Stack.Screen name= "ApprovePlayer" component={ApprovePlayer}/>
+                <Stack.Screen name= "ViewRoster" component={ViewRoster}/>
             </Stack.Navigator>
         </NavigationContainer>
         

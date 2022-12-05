@@ -1,12 +1,12 @@
 import "react-native";
 import "react";
-import PasswordFormField from "./passwordForm";
+import PlayerDisplay from "./playerDisplay";
 import { test, expect } from "@jest/globals";
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-test("Testing form field", function () {
+test("Testing team display field", function () {
     const component = renderer
-    .create(<PasswordFormField setFunction={()=>1}/>).toJSON();
+    .create(<PlayerDisplay onPress={()=>1}/>).toJSON();
     expect(component).toMatchSnapshot();
 }); 

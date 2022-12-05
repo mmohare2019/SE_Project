@@ -12,6 +12,11 @@ Wait for the blue screen to appear then in a new window...
 <br>
 ```npx react-native run-android```
 
+### Coverage Report
+Back end - inside of the ```soccerleague``` folder
+<br>
+Front end - inside of the ```views_react``` folder
+
 ### To run Node.js server
 ```npm run serverstart```
 
