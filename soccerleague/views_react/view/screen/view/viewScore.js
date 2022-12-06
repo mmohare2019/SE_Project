@@ -19,7 +19,7 @@ function DisplayTimer() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#D4D4D4',
     alignItems: 'center',
     justifyContent: 'center',
   },
