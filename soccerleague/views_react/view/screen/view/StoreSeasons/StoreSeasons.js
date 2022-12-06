@@ -1,10 +1,10 @@
 import React from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
     StyleSheet,
     Text,
     View,
     TouchableOpacity,
-    AsyncStorageStatic
 } from 'react-native';
 
 export default class StoreSeasons extends React.Component 
@@ -33,13 +33,13 @@ export default class StoreSeasons extends React.Component
        }
 
        let season= 'Fall 2022';
-       AsyncStorageStatic.setItem('season', JSON.stringify(testSeason));
+       AsyncStorage.setItem('season', JSON.stringify(testSeason));
     }
 
     displaySeason= async () => 
     {
         try {
-            let season= await AsyncStorageStatic.getItem('season');
+            let season= await AsyncStorage.getItem('season');
             let parsed= JSON.parse(season)
             alert(parsed.seasonName);
         }

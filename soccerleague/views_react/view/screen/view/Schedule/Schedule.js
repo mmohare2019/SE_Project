@@ -1,45 +1,5 @@
 import * as React from 'react';
 import * as RN from 'react-native';
-import Realm from 'realm';
-
-const ScheduleSchema= {
-    name: 'Schedule',
-    properties: {
-        _id: 'int',
-        month: 'string',
-        week_day: 'string',
-        date: 'int',
-        year: 'int'
-    },
-    primaryKey: '_id',
-};
-
-React.useEffect(() => {
-    (async () => {
-        const realm= await Realm.open({
-            path: 'mypath',
-            scheme: [ScheduleSchema],
-        }).then(realm => {
-            const theSchedule= realm.objects('Schedule');
-            generateSchedule([...theSchedule]);
-            setRealm(realm);
-
-            try 
-            {
-                theSchedule.addListener(() =>
-                {
-                    generateSchedule([...theSchedule]);
-                });
-            }
-
-            catch (error)
-            {
-                console.error(`Error Updating Schedule: ${error}`);
-            }
-        })
-    })
-})
-
 
 class Schedule extends React.Component
 {
@@ -53,12 +13,12 @@ class Schedule extends React.Component
 
     weekDays= 
     [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday"
+        "Sun",
+        "Mon",
+        "Tues",
+        "Wed",
+        "Thurs",
+        "Fri"
     ];
 
     daysInMonth= [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -125,7 +85,7 @@ class Schedule extends React.Component
     {
         var schedule= this.generateSchedule();
         var rows=[];
-        rows.schedule.map((row, rowIndex) => {
+        rows= schedule.map((row, rowIndex) => {
             var rowItems= row.map((item, columnIndex) => {
                return (
                 <RN.Text
