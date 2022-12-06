@@ -1,43 +1,61 @@
-import AsyncStorage from '@react-native-async-storage/aysnc-storage';
-import { useState } from 'react';
+import React from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+    StyleSheet,
+    Text,
+    View,
+    TouchableOpacity,
+} from 'react-native';
 
-export default function StoreSeasons2()
+export default class StoreSeasons extends React.Component 
 {
-    const [storageReady, setStorageReady]= useState(false);
-
-    const exampleSeasons= [{
-        season: "Fall 2019",
-        champion: "Red Team",
-        seasonID: "1"
-        }, {
-            season: "Fall 2021",
-            champion: "Blue Team",
-            seasonID: "2",
-        }, {
-            season: "Fall 2022",
-            champion: "Green Team",
-            seasonID: "3"
-    }]
-
-    const [season, setSeason]= useState(initializeSeasons);
-
-    const loadSeasons= () => {
-        AsyncStorage.getItem("storedSeasons").then(data => {
-            if (data!== null)
-                setSeason(JSON.parse(data))
-        }).catch ((error) => console.log(error));
-    }
-
-    if (!storageReady)
+    render()
     {
         return (
-            
-        )
+            <View style= {styles.container}>
+                <TouchableOpacity onPress={this.saveSeason}>
+                    <Text>Save Season Data</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={this.displaySeason}>
+                    <Text>Display Season Data</Text>
+                </TouchableOpacity>
+            </View>
+        );
     }
 
-    return (
-        <Container>
-            <Home season= {season} setSeason= {setSeason}/>
-        </Container>
-    )
+    saveSeason()
+    {
+       let testSeason = 
+       {
+            seasonName: 'Fall 2022',
+            champion: 'Green Team'
+       }
+
+       let season= 'Fall 2022';
+       AsyncStorage.setItem('season', JSON.stringify(testSeason));
+    }
+
+    displaySeason= async () => 
+    {
+        try {
+            let season= await AsyncStorage.getItem('season');
+            let parsed= JSON.parse(season)
+            alert(parsed.seasonName);
+        }
+
+        catch (error) {
+            alert(error);
+        }
+    }
+
 }
+
+const styles= StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+});
