@@ -2,7 +2,7 @@ import React from "react";
 import {Text,StyleSheet,View} from 'react-native';
 
 // time formatting and necessary conversion
-export default function Time({time}){
+export default function TimeDisplay({time}){
     const transformMinutes=()=>{
         const convertedValue= Math.floor((time / 60000) % 60);
         const formattedValue=("0" +convertedValue).slice(-2)
