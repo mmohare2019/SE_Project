@@ -3,8 +3,8 @@ import { Button, StyleSheet, Text, TextInput, TouchableOpacity, View } from "rea
 import MainStyle from "../MainStyle.style";
 import FormStyle from "../Form.style";
 import Timer from "../../../component/timer";
+import
 import { enterScore } from "../../../component/homeScreen";
-
 import axios from axios;
 
 const baseUrl = "http://10.0.2.2:3000";
@@ -26,4 +26,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function ViewScore(){
+export default function ViewScore({navigation}) {
+  
