@@ -7,6 +7,7 @@ const StandingsSchema = new Schema ({
    team_wins : {type: Number, required: true},
    team_losses : {type: Number, required: true}
 });
+QuestionSchema.plugin(validateInteger);
 
 const standingsModel = mongoose.model("Standings", StandingsSchema);
 
