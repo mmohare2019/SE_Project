@@ -152,3 +152,19 @@ exports.display_team_get = (req, res, next) => {
     });  
 }
 
+exports.teamCount = (req,res) =>
+{
+    const errors = validationResult(req);
+        
+    var teams = db.collection('');
+
+        teams.find({}).toArray(function (errors, result) {
+        if (errors) {
+            res.send(errors);
+        } else {
+            size = result.size();
+            res.send(JSON.stringify(size));
+        }
+    })
+}
+
