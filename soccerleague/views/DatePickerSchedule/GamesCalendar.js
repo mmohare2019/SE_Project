@@ -1,95 +1,181 @@
-// yarn add react-native-modal-datetime-picker
-import React, {Component} from 'react';
+import * as React from 'react';
+import * as RN from 'react-native';
+import Realm from 'realm';
 
-import 
+const ScheduleSchema= {
+    name: 'Schedule',
+    properties: {
+        _id: 'int',
+        month: 'string',
+        week_day: 'string',
+        date: 'int',
+        year: 'int'
+    },
+    primaryKey: '_id',
+};
+
+React.useEffect(() => {
+    (async () => {
+        const realm= await Realm.open({
+            path: 'mypath',
+            scheme: [ScheduleSchema],
+        }).then(realm => {
+            const theSchedule= realm.objects('Schedule');
+            generateSchedule([...theSchedule]);
+            setRealm(realm);
+
+            try 
+            {
+                theSchedule.addListener(() =>
+                {
+                    generateSchedule([...theSchedule]);
+                });
+            }
+
+            catch (error)
+            {
+                console.error(`Error Updating Schedule: ${error}`);
+            }
+        })
+    })
+})
+
+
+class Schedule extends React.Component
 {
-    Text,
-    View,
-    StyleSheet,
-    TouchableOpacity
-} from 'react-native';
+    months= 
+    [
+        "January", "February", "March", 
+        "April", "May", "June", 
+        "July", "August", "September", 
+        "October", "November", "December"
+    ];
 
-import DateTimePicker from 'react-native-modal-datetime-picker';
-import moment from 'moment';
+    weekDays= 
+    [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+    ];
 
-export default class GamesCalendar extends Component
-{
-    constructor()
+    daysInMonth= [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+    state=
     {
-       super()
-       this.state= 
-       {
-            isVisible: false,
-            chosenDate: ''
-       }
+        activeDate: new Date()
     }
 
-    handlePicker= (datetime) => {
-        this.setState({
-            isVisible: false,
-            chosenDate: moment(datetime).format('MMMM, Do YYYY HH:mm')
-        })
+    generateSchedule()
+    {
+        var schedule= [];
+        schedule[0]= this.weekDays;
+        var count= 1;
+
+        var year= this.state.activeDate.getFullYear();
+        var month= this.state.activeDate.getMonth();
+        var firstDay= new Date(year, month, 1).getDay();
+
+        var maximumDays= this.daysInMonth[month];
+        if (month==1)
+        {
+            if ((year%4== 0 && year%100!= 0) || year%400== 0)
+                maximumDays+=1;
+        }
+
+        for (var row=1; row<7; row++)
+        {
+            schedule[row]= [];
+            
+            for (var column=0; column<7; column++)
+            {
+                schedule[row][column]= -1;
+
+                if (row==1 && column>=firstDay)
+                    schedule[row][column]= count++;
+                else if (row>1 && count<=maximumDays)
+                    schedule[row][column]= count++;
+            }
+        }
+        return schedule;
     }
 
-    showPicker= () => {
-        this.setState({
-            isVisible: true
-        })
-    }
+    _onPress= (item) => {
+        this.setState(() => {
+            if (!item.match && item!= -1)
+            {
+                this.state.activeDate.setDate(item);
+                return this.state;
+            }
+        });
+    };
 
-    hidePicker= () => {
-        this.setState({
-            isVisible: false,
-        })
+    changeMonth= (mth) => {
+        this.setState(() => {
+            this.state.activeDate.setMonth(
+                this.state.activeDate.getMonth()+ mth
+            )
+            return this.state;
+        });
     }
 
     render()
     {
+        var schedule= this.generateSchedule();
+        var rows=[];
+        rows= schedule.map((row, rowIndex) => {
+            var rowItems= row.map((item, columnIndex) => {
+               return (
+                <RN.Text
+                    style= {{
+                        flex: 1,
+                        height: 18,
+                        textAlign: 'center',
+                        backgroundColor: rowIndex== 0 ? '#ddd' : '#fff',
+                        color: columnIndex== 0 ? '#a00' : '#000',
+                        fontWeight: item== this.state.activeDate.getDate() ? 'bold' : ''
+                    }}
+                    onPress= {() => this._onPress(item)}>
+                    {item!= -1 ? item: ''}
+                </RN.Text>
+               );
+            });
+
+            return (
+                <RN.View
+                    style= {{
+                        flex: 1,
+                        flexDirection: 'row',
+                        padding: 15,
+                        justifyContent: 'space-around',
+                        alignItems: 'center',
+                    }}>
+                    {rowItems}
+                </RN.View>
+            );
+        });
+
         return (
-            <View style= {styles.container}>
-                <Text style= {{color: 'green', fontSize: 20, marginBottom: 100}}>
-                    {this.state.chosenDate}
-                </Text>
+            <RN.View>
+                <RN.Text style= {{
+                    fontWeight: 'bold',
+                    fontSize: 18,
+                    textAlign: 'center'
+                }}>
+                    {this.months[this.state.activeDate.getMonth()]} &nbsp;
+                    {this.state.activeDate.getFullYear()}
+                </RN.Text>
+                {rows}
 
-                <TouchableOpacity style= {styles.button} onPress= {this.showPicker}>
-                    <Text style= {styles.text}>Show Schedule</Text>
-                </TouchableOpacity>
-
-            <DateTimePicker
-                isVisible= {this.state.isVisible}
-                onConfirm= {this.handlePicker}
-                onCancel= {this.hidePicker}
-                mode= {'datetime'}
-                is24Hour= {false}
-            />
-            </View>
-        )
+                <RN.Button title= "Previous"
+                    onPress= {() => this.changeMonth(-1)}/>
+                <RN.Button title= "Next"
+                    onPress= {() => this.changeMonth(+1)}/>
+            </RN.View>
+        );
     }
 }
 
-const styles= StyleSheet.create({
-    container: 
-    {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#fcfcfc',
-    },
-
-    button:
-    {
-        width: 250,
-        height: 50,
-        backgroundColor: '#0ba32a',
-        borderRadius: 30,
-        justifyContent: 'center',
-        marginTop: 15
-    },
-
-    text:
-    {
-        fontSize: 18,
-        color: 'white',
-        textAlign: 'center' 
-    }
-})
+export default Schedule
