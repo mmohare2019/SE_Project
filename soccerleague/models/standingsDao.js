@@ -1,9 +1,11 @@
 const mongoose = require("mongoose");
+const validateInteger = require('mongoose-integer');
 const Schema = mongoose.Schema; 
 
 const StandingsSchema = new Schema ({
-   team_wins : {type: Number, min: 0},
-   team_losses : {type: Number, min: 0}
+   team : {type: Schema.Types.ObjectId, ref: "TeamSchema"},
+   team_wins : {type: Number, required: true},
+   team_losses : {type: Number, required: true}
 });
 
 const standingsModel = mongoose.model("Standings", StandingsSchema);
