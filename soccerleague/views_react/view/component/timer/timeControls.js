@@ -1,7 +1,7 @@
 import React from "react";
 import {TouchableOpacity,View,Text,StyleSheet} from 'react-native';
 
-export default function Controls({
+export default function timeControls({
     status,
     handleStart,
     handleStop,
